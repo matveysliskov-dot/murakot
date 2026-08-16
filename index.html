@@ -1,12 +1,223 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Привет, Аня!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фанатская битва ⚽</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0f0c29;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 36px;
+            text-shadow: 0 0 20px #ffcc00;
+            margin-bottom: 10px;
+        }
+        .sub {
+            color: #aaa;
+            margin-bottom: 30px;
+        }
+        .team {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid #333;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: 0.3s;
+        }
+        .team:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: #ffcc00;
+        }
+        .team-name {
+            font-size: 20px;
+            font-weight: bold;
+            width: 150px;
+            text-align: left;
+        }
+        .team-bar {
+            flex: 1;
+            height: 20px;
+            background: #222;
+            border-radius: 10px;
+            margin: 0 15px;
+            overflow: hidden;
+            position: relative;
+        }
+        .team-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #f7971e, #ffd200);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+        .team-votes {
+            width: 60px;
+            font-size: 18px;
+            color: #ffd200;
+        }
+        .vote-btn {
+            background: #f7971e;
+            border: none;
+            color: #000;
+            font-weight: bold;
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+            font-family: 'Courier New', monospace;
+        }
+        .vote-btn:hover {
+            transform: scale(1.1);
+            background: #ffd200;
+        }
+        .vote-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .share-btn {
+            background: #1DA1F2;
+            border: none;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 20px;
+            font-family: 'Courier New', monospace;
+        }
+        .share-btn:hover {
+            background: #0d8bd9;
+        }
+        .footer {
+            margin-top: 30px;
+            color: #555;
+            font-size: 14px;
+        }
+        @media (max-width: 600px) {
+            .team {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .team-name {
+                width: 100%;
+                text-align: center;
+                margin-bottom: 5px;
+            }
+            .team-bar {
+                width: 100%;
+                margin: 5px 0;
+            }
+            .team-votes {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Привет, Аня, если тебя так зовут, то нажми на эту кнопку, пожалуйста :)</h1>
-    <button onclick="document.getElementById('message').style.display='block'">Нажми меня</button>
-    <p id="message" style="display:none; font-size:24px; color:red; font-weight:bold;">Скинь фото котлеток</p>
+    <div class="container">
+        <h1>⚽ ФАНАТСКАЯ БИТВА</h1>
+        <p class="sub">Кто самый популярный клуб России? Голосуй и зови друзей!</p>
+
+        <div id="teams-container"></div>
+
+        <button class="share-btn" onclick="shareLink()">📤 Позвать друзей в битву!</button>
+        <div class="footer">Голосовать можно 1 раз за команду 🔥</div>
+    </div>
+
+    <script>
+        const teams = [
+            { name: "Спартак", id: "spartak" },
+            { name: "ЦСКА", id: "cska" },
+            { name: " Зенит", id: "zenit" },
+            { name: "Динамо", id: "dinamo" },
+            { name: "Ростов", id: "rostov" },
+            { name: "Локомотив", id: "loko" },
+            { name: "Крылья", id: "krylya" },
+            { name: "Краснодар", id: "krasnodar" }
+        ];
+        const STORAGE_KEY = 'fan_votes';
+        function loadVotes() {
+            const data = localStorage.getItem(STORAGE_KEY);
+            if (data) {
+                return JSON.parse(data);
+            }
+            const initial = {};
+            teams.forEach(t => initial[t.id] = Math.floor(Math.random() * 20) + 5);
+            return initial;
+        }
+
+        function saveVotes(votes) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(votes));
+        }
+        function render() {
+            const votes = loadVotes();
+            const container = document.getElementById('teams-container');
+            container.innerHTML = '';
+            const sorted = [...teams].sort((a, b) => votes[b.id] - votes[a.id]);
+            const maxVotes = Math.max(...teams.map(t => votes[t.id]), 1);
+
+            sorted.forEach(team => {
+                const count = votes[team.id] || 0;
+                const percent = Math.max((count / maxVotes) * 100, 5);
+                const votedKey = `voted_${team.id}`;
+                const alreadyVoted = localStorage.getItem(votedKey) === 'true';
+
+                const div = document.createElement('div');
+                div.className = 'team';
+                div.innerHTML = `
+                    <div class="team-name">${team.name}</div>
+                    <div class="team-bar">
+                        <div class="team-bar-fill" style="width: ${percent}%;"></div>
+                    </div>
+                    <div class="team-votes">${count} 🗳️</div>
+                    <button class="vote-btn" id="btn-${team.id}" ${alreadyVoted ? 'disabled' : ''}>
+                        ${alreadyVoted ? '✅ Готово' : 'ЗА!'}
+                    </button>
+                `;
+                container.appendChild(div);
+                if (!alreadyVoted) {
+                    document.getElementById(`btn-${team.id}`).onclick = function() {
+                        const newVotes = loadVotes();
+                        newVotes[team.id] = (newVotes[team.id] || 0) + 1;
+                        saveVotes(newVotes);
+                        localStorage.setItem(`voted_${team.id}`, 'true');
+                        render();
+                    };
+                }
+            });
+        }
+        function shareLink() {
+            const url = window.location.href;
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Фанатская битва!',
+                    text: 'Голосуй за свой клуб! ⚽',
+                    url: url
+                });
+            } else {
+                // Копируем в буфер
+                navigator.clipboard.writeText(url).then(() => {
+                    alert('Ссылка скопирована! Кидай друзьям в чат 😉');
+                });
+            }
+        }
+        render();
+    </script>
 </body>
 </html>
