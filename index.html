@@ -3,221 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Фанатская битва ⚽</title>
+    <title>Пиксельный тест</title>
+    <!-- Подключаем пиксельный шрифт -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
     <style>
-        body {
-            font-family: 'Courier New', monospace;
-            background: #0f0c29;
-            color: #fff;
-            text-align: center;
-            padding: 20px;
+        /* СБРАСЫВАЕМ ОТСТУПЫ */
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        h1 {
-            font-size: 36px;
-            text-shadow: 0 0 20px #ffcc00;
-            margin-bottom: 10px;
-        }
-        .sub {
-            color: #aaa;
-            margin-bottom: 30px;
-        }
-        .team {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid #333;
-            border-radius: 15px;
-            padding: 15px;
-            margin-bottom: 10px;
+
+        body {
+            min-height: 100vh;
             display: flex;
+            justify-content: center;
             align-items: center;
-            justify-content: space-between;
-            transition: 0.3s;
+            font-family: 'Press Start 2P', monospace; /* ПИКСЕЛЬНЫЙ ШРИФТ */
+
+            /* ПИКСЕЛЬНЫЙ ФОН (паттерн "квадратики") */
+            background-color: #1a1a2e;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px; /* размер "пикселя" */
         }
-        .team:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: #ffcc00;
+
+        /* КОНТЕЙНЕР ДЛЯ КАРТИНКИ И ТЕКСТА */
+        .container {
+            text-align: center;
+            padding: 40px;
+            border: 4px solid #00ffcc;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 8px;
+            box-shadow: 0 0 40px rgba(0, 255, 204, 0.2);
         }
-        .team-name {
-            font-size: 20px;
-            font-weight: bold;
-            width: 150px;
-            text-align: left;
+
+        /* КАРТИНКА */
+        .container img {
+            display: block;
+            margin: 0 auto 30px auto;
+            max-width: 300px;
+            border: 4px solid #00ffcc;
+            image-rendering: pixelated; /* делаем картинку "пиксельной" */
         }
-        .team-bar {
-            flex: 1;
-            height: 20px;
-            background: #222;
-            border-radius: 10px;
-            margin: 0 15px;
-            overflow: hidden;
-            position: relative;
+
+        /* ТЕКСТ ПИКСЕЛЬНЫМ ШРИФТОМ */
+        h1 {
+            font-size: 24px;
+            color: #00ffcc;
+            text-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+            line-height: 1.6;
         }
-        .team-bar-fill {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, #f7971e, #ffd200);
-            border-radius: 10px;
-            transition: width 0.5s ease;
-        }
-        .team-votes {
-            width: 60px;
-            font-size: 18px;
-            color: #ffd200;
-        }
-        .vote-btn {
-            background: #f7971e;
-            border: none;
-            color: #000;
-            font-weight: bold;
-            padding: 8px 20px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: 0.3s;
-            font-family: 'Courier New', monospace;
-        }
-        .vote-btn:hover {
-            transform: scale(1.1);
-            background: #ffd200;
-        }
-        .vote-btn:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-            transform: none;
-        }
-        .share-btn {
-            background: #1DA1F2;
-            border: none;
-            color: #fff;
-            padding: 12px 30px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 18px;
-            margin-top: 20px;
-            font-family: 'Courier New', monospace;
-        }
-        .share-btn:hover {
-            background: #0d8bd9;
-        }
-        .footer {
-            margin-top: 30px;
-            color: #555;
+
+        p {
             font-size: 14px;
+            color: #aaa;
+            margin-top: 15px;
+            line-height: 1.8;
         }
-        @media (max-width: 600px) {
-            .team {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .team-name {
-                width: 100%;
-                text-align: center;
-                margin-bottom: 5px;
-            }
-            .team-bar {
-                width: 100%;
-                margin: 5px 0;
-            }
-            .team-votes {
-                width: 100%;
-                text-align: center;
-            }
+
+        .highlight {
+            color: #ff6b6b;
+            font-size: 18px;
         }
     </style>
 </head>
 <body>
+
     <div class="container">
-        <h1>⚽ ФАНАТСКАЯ БИТВА</h1>
-        <p class="sub">Кто самый популярный клуб России? Голосуй и зови друзей!</p>
+        <!-- ВСТАВЛЯЕМ КАРТИНКУ "1" -->
+        <img src="1.png" alt="Картинка 1">
 
-        <div id="teams-container"></div>
-
-        <button class="share-btn" onclick="shareLink()">📤 Позвать друзей в битву!</button>
-        <div class="footer">Голосовать можно 1 раз за команду 🔥</div>
+        <h1>ПИКСЕЛЬНЫЙ ТЕСТ</h1>
+        <p>Этот шрифт — <span class="highlight">Press Start 2P</span></p>
+        <p style="font-size: 12px; color: #666;">Фон сделан "пиксельным" с помощью CSS</p>
     </div>
 
-    <script>
-        const teams = [
-            { name: "Спартак", id: "spartak" },
-            { name: "ЦСКА", id: "cska" },
-            { name: " Зенит", id: "zenit" },
-            { name: "Динамо", id: "dinamo" },
-            { name: "Ростов", id: "rostov" },
-            { name: "Локомотив", id: "loko" },
-            { name: "Крылья", id: "krylya" },
-            { name: "Краснодар", id: "krasnodar" }
-        ];
-        const STORAGE_KEY = 'fan_votes';
-        function loadVotes() {
-            const data = localStorage.getItem(STORAGE_KEY);
-            if (data) {
-                return JSON.parse(data);
-            }
-            const initial = {};
-            teams.forEach(t => initial[t.id] = Math.floor(Math.random() * 20) + 5);
-            return initial;
-        }
-
-        function saveVotes(votes) {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(votes));
-        }
-        function render() {
-            const votes = loadVotes();
-            const container = document.getElementById('teams-container');
-            container.innerHTML = '';
-            const sorted = [...teams].sort((a, b) => votes[b.id] - votes[a.id]);
-            const maxVotes = Math.max(...teams.map(t => votes[t.id]), 1);
-
-            sorted.forEach(team => {
-                const count = votes[team.id] || 0;
-                const percent = Math.max((count / maxVotes) * 100, 5);
-                const votedKey = `voted_${team.id}`;
-                const alreadyVoted = localStorage.getItem(votedKey) === 'true';
-
-                const div = document.createElement('div');
-                div.className = 'team';
-                div.innerHTML = `
-                    <div class="team-name">${team.name}</div>
-                    <div class="team-bar">
-                        <div class="team-bar-fill" style="width: ${percent}%;"></div>
-                    </div>
-                    <div class="team-votes">${count} 🗳️</div>
-                    <button class="vote-btn" id="btn-${team.id}" ${alreadyVoted ? 'disabled' : ''}>
-                        ${alreadyVoted ? '✅ Готово' : 'ЗА!'}
-                    </button>
-                `;
-                container.appendChild(div);
-                if (!alreadyVoted) {
-                    document.getElementById(`btn-${team.id}`).onclick = function() {
-                        const newVotes = loadVotes();
-                        newVotes[team.id] = (newVotes[team.id] || 0) + 1;
-                        saveVotes(newVotes);
-                        localStorage.setItem(`voted_${team.id}`, 'true');
-                        render();
-                    };
-                }
-            });
-        }
-        function shareLink() {
-            const url = window.location.href;
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Фанатская битва!',
-                    text: 'Голосуй за свой клуб! ⚽',
-                    url: url
-                });
-            } else {
-                // Копируем в буфер
-                navigator.clipboard.writeText(url).then(() => {
-                    alert('Ссылка скопирована! Кидай друзьям в чат 😉');
-                });
-            }
-        }
-        render();
-    </script>
 </body>
 </html>
