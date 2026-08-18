@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Музыка</title>
+    <style>
+        /* СБРАСЫВАЕМ ВСЁ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* КНОПКА МУЗЫКИ (пиксельный стиль, чёрно-серо-красный) */
+        #music-btn {
+            padding: 12px 22px;
+            background: #0a0a0a;
+            color: #888;
+            border: 2px solid #333;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: 0.25s;
+            user-select: none;
+            box-shadow: none;
+            text-transform: uppercase;
+        }
+
+        #music-btn:hover {
+            border-color: #666;
+            color: #ccc;
+            background: #111;
+        }
+
+        /* СОСТОЯНИЕ "ИГРАЕТ" — КРАСНАЯ РАМКА */
+        #music-btn.playing {
+            border-color: #cc2222;
+            color: #cc2222;
+            background: #1a0a0a;
+            box-shadow: 0 0 30px rgba(204, 34, 34, 0.15);
+        }
+
+        #music-btn.playing:hover {
+            border-color: #ff3333;
+            color: #ff3333;
+            background: #1f0a0a;
+        }
+
+        /* МАЛЕНЬКАЯ ПОДПИСЬ */
+        .status-text {
+            position: fixed;
+            bottom: 85px;
+            right: 20px;
+            font-size: 9px;
+            color: #333;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            opacity: 0.4;
+            font-family: 'Courier New', monospace;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- КНОПКА -->
+    <button id="music-btn">🎵 МУЗЫКА</button>
+
+    <!-- СТАТУС (мелкий текст) -->
+    <div class="status-text" id="status-text">выкл</div>
+
+    <!-- АУДИО -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="music.mp3" type="audio/mpeg">
+        <!-- Если музыки нет — браузер покажет это -->
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        (function() {
+            const audio = document.getElementById('bg-music');
+            const btn = document.getElementById('music-btn');
+            const statusText = document.getElementById('status-text');
+            let isPlaying = false;
+
+            // ГРОМКОСТЬ (0.0 — 1.0)
+            audio.volume = 0.2;
+
+            // ПРОВЕРЯЕМ СОСТОЯНИЕ В localStorage
+            try {
+                const savedState = localStorage.getItem('murakot_music');
+                if (savedState === 'playing') {
+                    audio.play().then(() => {
+                        setPlayingState(true);
+                    }).catch(() => {
+                        setPlayingState(false);
+                    });
+                }
+            } catch (_) {}
+
+            // ФУНКЦИЯ ОБНОВЛЕНИЯ ВИДА
+            function setPlayingState(state) {
+                isPlaying = state;
+                if (state) {
+                    btn.textContent = '🔇 ВЫКЛ';
+                    btn.classList.add('playing');
+                    statusText.textContent = 'играет';
+                    statusText.style.color = '#cc2222';
+                    localStorage.setItem('murakot_music', 'playing');
+                } else {
+                    btn.textContent = '🎵 МУЗЫКА';
+                    btn.classList.remove('playing');
+                    statusText.textContent = 'выкл';
+                    statusText.style.color = '#333';
+                    localStorage.setItem('murakot_music', 'stopped');
+                }
+            }
+
+            // ОБРАБОТЧИК КНОПКИ
+            btn.addEventListener('click', function() {
+                if (isPlaying) {
+                    audio.pause();
+                    setPlayingState(false);
+                } else {
+                    audio.play().then(() => {
+                        setPlayingState(true);
+                    }).catch(function(err) {
+                        console.warn('Не удалось включить музыку:', err);
+                        alert('Нажми на страницу, а потом снова на кнопку.');
+                    });
+                }
+            });
+
+            // ЕСЛИ МУЗЫКА ЗАКОНЧИЛАСЬ — НЕ ОСТАНАВЛИВАЕМ (loop)
+            // НО ЕСЛИ ОШИБКА — ВЫКЛЮЧАЕМ СОСТОЯНИЕ
+            audio.addEventListener('error', function() {
+                setPlayingState(false);
+            });
+
+            // СОХРАНЯЕМ СОСТОЯНИЕ ПРИ ЗАКРЫТИИ
+            window.addEventListener('beforeunload', function() {
+                if (isPlaying) {
+                    localStorage.setItem('murakot_music', 'playing');
+                }
+            });
+        })();
+    </script>
+
+</body>
+</html>
