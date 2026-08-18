@@ -3,12 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Пиксельный тест</title>
-    <!-- Подключаем пиксельный шрифт -->
+    <title>пиксель</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-
     <style>
-        /* СБРАСЫВАЕМ ОТСТУПЫ */
         * {
             margin: 0;
             padding: 0;
@@ -17,69 +14,177 @@
 
         body {
             min-height: 100vh;
+            background-color: #0a0a0a;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+            background-size: 24px 24px;
+            font-family: 'Press Start 2P', monospace;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Press Start 2P', monospace; /* ПИКСЕЛЬНЫЙ ШРИФТ */
-
-            /* ПИКСЕЛЬНЫЙ ФОН (паттерн "квадратики") */
-            background-color: #1a1a2e;
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 20px 20px; /* размер "пикселя" */
+            position: relative;
+            overflow: hidden;
         }
 
-        /* КОНТЕЙНЕР ДЛЯ КАРТИНКИ И ТЕКСТА */
         .container {
             text-align: center;
-            padding: 40px;
-            border: 4px solid #00ffcc;
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 8px;
-            box-shadow: 0 0 40px rgba(0, 255, 204, 0.2);
+            padding: 40px 50px;
+            border: 3px solid #888;
+            background: #111;
+            border-radius: 4px;
+            z-index: 1;
+            position: relative;
         }
 
-        /* КАРТИНКА */
         .container img {
             display: block;
-            margin: 0 auto 30px auto;
-            max-width: 300px;
-            border: 4px solid #00ffcc;
-            image-rendering: pixelated; /* делаем картинку "пиксельной" */
+            margin: 0 auto 25px auto;
+            max-width: 260px;
+            border: 3px solid #555;
+            image-rendering: pixelated;
         }
 
-        /* ТЕКСТ ПИКСЕЛЬНЫМ ШРИФТОМ */
         h1 {
-            font-size: 24px;
-            color: #00ffcc;
-            text-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
-            line-height: 1.6;
+            font-size: 22px;
+            color: #ddd;
+            letter-spacing: 1px;
         }
 
         p {
-            font-size: 14px;
-            color: #aaa;
-            margin-top: 15px;
-            line-height: 1.8;
+            font-size: 13px;
+            color: #777;
+            margin-top: 14px;
+            line-height: 1.7;
         }
 
-        .highlight {
-            color: #ff6b6b;
-            font-size: 18px;
+        .red {
+            color: #cc2222;
+        }
+
+        /* --- ПОЛНОЭКРАННЫЙ СЛАЙДЕР --- */
+        #fullscreen-slider {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 9999;
+            pointer-events: none; /* чтобы клики проходили сквозь */
+            background: #000;
+        }
+
+        #fullscreen-slider img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;    /* картинка растягивается на весь экран */
+            image-rendering: pixelated;
+            opacity: 0;
+            transition: none;
+            display: block;
+        }
+
+        /* Контейнер с контентом должен быть поверх слайдера */
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            pointer-events: auto; /* чтобы можно было кликать по кнопкам */
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- ВСТАВЛЯЕМ КАРТИНКУ "1" -->
-        <img src="1.png" alt="Картинка 1">
-
-        <h1>ПИКСЕЛЬНЫЙ ТЕСТ</h1>
-        <p>Этот шрифт — <span class="highlight">Press Start 2P</span></p>
-        <p style="font-size: 12px; color: #666;">Фон сделан "пиксельным" с помощью CSS</p>
+    <!-- ПОЛНОЭКРАННЫЙ СЛАЙДЕР (поверх всего) -->
+    <div id="fullscreen-slider">
+        <img id="slide-img" src="1.png" alt="slide">
     </div>
+
+    <!-- ОСНОВНОЙ КОНТЕНТ (поверх слайдера) -->
+    <div class="content-wrapper">
+        <div class="container">
+            <img src="1.png" alt="картинка 1">
+            <h1>ПИКСЕЛЬНЫЙ ТЕСТ</h1>
+            <p>шрифт — <span class="red">PRESS START 2P</span></p>
+            <p style="font-size: 11px; color: #444;">каждые 10 сек — полноэкранное мелькание</p>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const img = document.getElementById('slide-img');
+            // Список картинок (должны лежать в корне сайта)
+            const imageNames = ['1.png', '2.png', '3.png', '4.png', '5.png'];
+            let currentIndex = 0;
+            let intervalId = null;
+
+            // Функция, которая показывает следующую картинку
+            function showNextImage() {
+                // Меняем src
+                img.src = imageNames[currentIndex];
+                img.style.opacity = '1';
+
+                // Переключаем индекс на следующий
+                currentIndex = (currentIndex + 1) % imageNames.length;
+
+                // Через 0.25 секунды показываем следующую
+                // НО! Если это последняя картинка в цикле — делаем паузу 10 секунд
+                // if (currentIndex === 0) {
+                //     // Если дошли до конца — делаем паузу 10 секунд
+                //     clearInterval(intervalId);
+                //     setTimeout(() => {
+                //         img.style.opacity = '0';
+                //         setTimeout(() => {
+                //             startSlideshow();
+                //         }, 100);
+                //     }, 250);
+                //     return;
+                // }
+
+                // Если не последняя — продолжаем без паузы
+                // setTimeout(showNextImage, 250);
+            }
+
+            // Запускаем бесконечную смену картинок
+            function startSlideshow() {
+                // Показываем первую картинку
+                img.src = imageNames[0];
+                img.style.opacity = '1';
+                currentIndex = 1;
+
+                // Каждые 0.25 секунды меняем картинку
+                intervalId = setInterval(() => {
+                    img.src = imageNames[currentIndex];
+                    img.style.opacity = '1';
+                    currentIndex = (currentIndex + 1) % imageNames.length;
+                }, 250);
+            }
+
+            // Запускаем слайд-шоу сразу
+            startSlideshow();
+
+            // Останавливаем через 1.25 секунды (5 картинок × 0.25 сек)
+            // и делаем паузу 10 секунд
+            setInterval(() => {
+                // Останавливаем мелькание
+                clearInterval(intervalId);
+                // Прячем картинку
+                img.style.opacity = '0';
+                // Через 10 секунд запускаем заново
+                setTimeout(() => {
+                    startSlideshow();
+                }, 10000);
+            }, 1250); // 5 картинок * 250ms = 1250ms
+
+        })();
+    </script>
 
 </body>
 </html>
