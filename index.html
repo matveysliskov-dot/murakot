@@ -3,199 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Экскурсии Ростов-на-Дону. Набережная, Северный, Крепость, археологические раскопки</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <title>Фанатская битва</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            min-height: 100vh;
-            background-color: #0a0a0a;
-            background-image: 
-                linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-            background-size: 24px 24px;
-            font-family: 'Press Start 2P', monospace;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .container {
-            text-align: center;
-            padding: 40px 50px;
-            border: 3px solid #888;
-            background: #111;
-            border-radius: 4px;
-            z-index: 1;
-            position: relative;
-        }
-
-        .container img {
-            display: block;
-            margin: 0 auto 25px auto;
-            max-width: 260px;
-            border: 3px solid #555;
-            image-rendering: pixelated;
-        }
-
-        h1 {
-            font-size: 22px;
-            color: #ddd;
-            letter-spacing: 1px;
-        }
-
-        p {
-            font-size: 13px;
-            color: #777;
-            margin-top: 14px;
-            line-height: 1.7;
-        }
-
-        .red {
-            color: #cc2222;
-        }
-
-        /* --- ПОЛНОЭКРАННЫЙ СЛАЙДЕР --- */
-        #fullscreen-slider {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 9999;
-            pointer-events: none; /* чтобы клики проходили сквозь */
-            background: #000;
-        }
-
-        #fullscreen-slider img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover;    /* картинка растягивается на весь экран */
-            image-rendering: pixelated;
-            opacity: 0;
-            transition: none;
-            display: block;
-        }
-
-        /* Контейнер с контентом должен быть поверх слайдера */
-        .content-wrapper {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            pointer-events: auto; /* чтобы можно было кликать по кнопкам */
-        }
+        /* Твой CSS (оставь как есть) */
+        /* ... */
     </style>
 </head>
 <body>
-
-    <!-- ПОЛНОЭКРАННЫЙ СЛАЙДЕР (поверх всего) -->
-    <div id="fullscreen-slider">
-        <img id="slide-img" src="1.png" alt="slide">
-    </div>
-
-    <!-- ОСНОВНОЙ КОНТЕНТ (поверх слайдера) -->
-    <div class="content-wrapper">
-        <div class="container">
-            <img src="1.png" alt="картинка 1">
-            <h1>ПИКСЕЛЬНЫЙ ТЕСТ</h1>
-            <p>шрифт — <span class="red">PRESS START 2P</span></p>
-            <p style="font-size: 11px; color: #444;">каждые 10 сек — полноэкранное мелькание</p>
-        </div>
+    <!-- Твой HTML (оставь как есть) -->
+    <div class="container">
+        <h1>⚽ ФАНАТСКАЯ БИТВА</h1>
+        <p class="sub">Голосуй за свою команду.</p>
+        <div id="teams-container"></div>
+        <button class="share-btn" onclick="shareLink()">📤 Поделиться</button>
+        <button class="share-btn" onclick="resetAll()">Сбросить</button>
     </div>
 
     <script>
-        (function() {
-            const img = document.getElementById('slide-img');
-            // Список картинок (должны лежать в корне сайта)
-            const imageNames = ['1.png', '2.png', '3.png', '4.png', '5.png'];
-            let currentIndex = 0;
-            let intervalId = null;
+        // --- КОНФИГУРАЦИЯ ---
+        // Если бэкэнд локально:
+        const API_URL = 'http://localhost:5000/api';
+        // Если бэкэнд на сервере, поменяй на свой адрес:
+        // const API_URL = 'https://твой-бэкенд.onrender.com/api';
 
-            // Функция, которая показывает следующую картинку
-            function showNextImage() {
-                // Меняем src
-                img.src = imageNames[currentIndex];
-                img.style.opacity = '1';
+        const TEAMS = [
+            { id: 'spartak', name: 'Спартак' },
+            { id: 'cska', name: 'ЦСКА' },
+            { id: 'zenit', name: 'Зенит' },
+            { id: 'dinamo', name: 'Динамо' },
+            { id: 'rostov', name: 'Ростов' },
+            { id: 'loko', name: 'Локомотив' },
+            { id: 'krylya', name: 'Крылья' },
+            { id: 'krasnodar', name: 'Краснодар' }
+        ];
 
-                // Переключаем индекс на следующий
-                currentIndex = (currentIndex + 1) % imageNames.length;
+        const STORAGE_VOTED = 'fan_voted_team';
 
-                // Через 0.25 секунды показываем следующую
-                // НО! Если это последняя картинка в цикле — делаем паузу 10 секунд
-                // if (currentIndex === 0) {
-                //     // Если дошли до конца — делаем паузу 10 секунд
-                //     clearInterval(intervalId);
-                //     setTimeout(() => {
-                //         img.style.opacity = '0';
-                //         setTimeout(() => {
-                //             startSlideshow();
-                //         }, 100);
-                //     }, 250);
-                //     return;
-                // }
-
-                // Если не последняя — продолжаем без паузы
-                // setTimeout(showNextImage, 250);
+        // --- ЗАГРУЗКА ГОЛОСОВ С СЕРВЕРА ---
+        async function loadVotesFromServer() {
+            try {
+                const response = await fetch(`${API_URL}/votes`);
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Ошибка загрузки голосов:', error);
+                // Если ошибка — показываем заглушку
+                const fallback = {};
+                TEAMS.forEach(t => fallback[t.id] = 0);
+                return fallback;
             }
+        }
 
-            // Запускаем бесконечную смену картинок
-            function startSlideshow() {
-                // Показываем первую картинку
-                img.src = imageNames[0];
-                img.style.opacity = '1';
-                currentIndex = 1;
-
-                // Каждые 0.25 секунды меняем картинку
-                intervalId = setInterval(() => {
-                    img.src = imageNames[currentIndex];
-                    img.style.opacity = '1';
-                    currentIndex = (currentIndex + 1) % imageNames.length;
-                }, 250);
+        // --- ОТПРАВКА ГОЛОСА НА СЕРВЕР ---
+        async function sendVoteToServer(teamId) {
+            try {
+                const response = await fetch(`${API_URL}/vote`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ teamId: teamId })
+                });
+                const result = await response.json();
+                return result.success;
+            } catch (error) {
+                console.error('Ошибка отправки голоса:', error);
+                return false;
             }
+        }
 
-            // Запускаем слайд-шоу сразу
-            startSlideshow();
+        // --- ПОЛУЧИТЬ ID КОМАНДЫ, ЗА КОТОРУЮ УЖЕ ГОЛОСОВАЛИ ---
+        function getVotedTeam() {
+            return localStorage.getItem(STORAGE_VOTED) || null;
+        }
 
-            // Останавливаем через 1.25 секунды (5 картинок × 0.25 сек)
-            // и делаем паузу 10 секунд
-            setInterval(() => {
-                // Останавливаем мелькание
-                clearInterval(intervalId);
-                // Прячем картинку
-                img.style.opacity = '0';
-                // Через 10 секунд запускаем заново
-                setTimeout(() => {
-                    startSlideshow();
-                }, 10000);
-            }, 1250); // 5 картинок * 250ms = 1250ms
+        function setVotedTeam(teamId) {
+            localStorage.setItem(STORAGE_VOTED, teamId);
+        }
 
-        })();
+        // --- ОТРИСОВКА ---
+        async function render() {
+            const votes = await loadVotesFromServer();
+            const votedTeam = getVotedTeam();
+
+            // Сортируем по голосам
+            const sorted = [...TEAMS].sort((a, b) => (votes[b.id] || 0) - (votes[a.id] || 0));
+            const maxVotes = Math.max(...TEAMS.map(t => votes[t.id] || 0), 1);
+
+            const container = document.getElementById('teams-container');
+            container.innerHTML = '';
+
+            sorted.forEach((team, index) => {
+                const count = votes[team.id] || 0;
+                const percent = (count / maxVotes) * 100;
+
+                const isVoted = (votedTeam === team.id);
+                const isDisabled = (votedTeam !== null);
+
+                const div = document.createElement('div');
+                div.className = 'team';
+
+                // Ранг
+                const rankSpan = document.createElement('span');
+                rankSpan.className = 'team-rank';
+                rankSpan.textContent = index + 1;
+                div.appendChild(rankSpan);
+
+                // Название
+                const nameSpan = document.createElement('span');
+                nameSpan.className = 'team-name';
+                nameSpan.textContent = team.name;
+                div.appendChild(nameSpan);
+
+                // Бар
+                const barWrap = document.createElement('div');
+                barWrap.className = 'team-bar-wrap';
+                const barFill = document.createElement('div');
+                barFill.className = 'team-bar-fill';
+                barFill.style.width = Math.max(percent, 5) + '%';
+                barWrap.appendChild(barFill);
+                div.appendChild(barWrap);
+
+                // Голоса
+                const votesSpan = document.createElement('span');
+                votesSpan.className = 'team-votes';
+                votesSpan.textContent = count;
+                div.appendChild(votesSpan);
+
+                // Кнопка
+                const btn = document.createElement('button');
+                btn.className = 'vote-btn';
+                if (isVoted) {
+                    btn.textContent = '✅';
+                    btn.classList.add('voted');
+                    btn.disabled = true;
+                } else if (isDisabled) {
+                    btn.textContent = '—';
+                    btn.disabled = true;
+                } else {
+                    btn.textContent = '+';
+                }
+                btn.dataset.teamId = team.id;
+
+                btn.addEventListener('click', async function(e) {
+                    const tid = this.dataset.teamId;
+                    if (getVotedTeam() !== null) {
+                        alert('Ты уже проголосовал!');
+                        return;
+                    }
+                    // Отправляем голос на сервер
+                    const success = await sendVoteToServer(tid);
+                    if (success) {
+                        setVotedTeam(tid);
+                        render(); // обновляем страницу
+                    } else {
+                        alert('Ошибка при голосовании. Попробуй позже.');
+                    }
+                });
+
+                div.appendChild(btn);
+                container.appendChild(div);
+            });
+        }
+
+        // --- ПОДЕЛИТЬСЯ ---
+        window.shareLink = function() {
+            const url = window.location.href;
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Фанатская битва!',
+                    text: 'Голосуй за свою команду ⚽',
+                    url: url
+                });
+            } else {
+                navigator.clipboard.writeText(url).then(() => {
+                    alert('Ссылка скопирована!');
+                }).catch(() => {
+                    prompt('Скопируй ссылку:', url);
+                });
+            }
+        };
+
+        // --- СБРОС ---
+        window.resetAll = function() {
+            if (confirm('Сбросить твой голос? Ты сможешь проголосовать заново.')) {
+                localStorage.removeItem(STORAGE_VOTED);
+                render();
+            }
+        };
+
+        // --- ЗАПУСК ---
+        render();
     </script>
-<!-- ПОДКЛЮЧАЕМ МУЗЫКУ ЧЕРЕЗ IFRAME -->
-<iframe src="sound.html" style="
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 180px;
-    height: 60px;
-    border: none;
-    z-index: 9999;
-    pointer-events: auto;
-    background: transparent;
-"></iframe>
 </body>
 </html>
