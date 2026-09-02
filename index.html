@@ -6,8 +6,232 @@
 
     <title>Для тебя</title>
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+
+        /* Убираем стандартные отступы браузера */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* Основная страница */
+
+        body {
+            min-height: 100vh;
+
+            background: #0b0c12;
+
+            color: #ffffff;
+
+            font-family:
+                "Trebuchet MS",
+                Arial,
+                sans-serif;
+        }
+
+
+        /* Центрируем ВСЁ */
+
+        .page {
+            width: 100%;
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            padding: 30px;
+        }
+
+
+        /* Центральный контейнер */
+
+        .content {
+            width: 100%;
+            max-width: 850px;
+
+            text-align: center;
+        }
+
+
+        /* Верхняя надпись */
+
+        .small-text {
+            color: #8f9099;
+
+            font-size: 13px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 30px;
+
+            animation: fall-down 0.8s ease forwards;
+
+            opacity: 0;
+        }
+
+
+        /* Главный заголовок */
+
+        h1 {
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: clamp(50px, 7vw, 100px);
+
+            font-weight: 500;
+
+            line-height: 0.95;
+
+            letter-spacing: -4px;
+
+            margin-bottom: 35px;
+
+            animation: fall-down 1s ease forwards;
+
+            animation-delay: 0.2s;
+
+            opacity: 0;
+        }
+
+
+        /* Текст под заголовком */
+
+        .description {
+            color: #a7a8b0;
+
+            font-size: 19px;
+
+            line-height: 1.8;
+
+            letter-spacing: 0.2px;
+
+            margin-bottom: 50px;
+
+            animation: fall-down 1s ease forwards;
+
+            animation-delay: 0.4s;
+
+            opacity: 0;
+        }
+
+
+        /* Кнопка */
+
+        .open-button {
+            padding: 17px 42px;
+
+            background: transparent;
+
+            color: white;
+
+            border: 1px solid
+                rgba(255, 255, 255, 0.4);
+
+            border-radius: 50px;
+
+            font-size: 16px;
+
+            letter-spacing: 0.5px;
+
+            cursor: pointer;
+
+            transition:
+                0.3s ease;
+
+            animation: fall-down 1s ease forwards;
+
+            animation-delay: 0.6s;
+
+            opacity: 0;
+        }
+
+
+        /* Наведение */
+
+        .open-button:hover {
+            background: white;
+
+            color: black;
+
+            transform:
+                translateY(-3px);
+        }
+
+
+        /* Анимация выпадения */
+
+        @keyframes fall-down {
+
+            0% {
+                opacity: 0;
+
+                transform:
+                    translateY(-80px);
+
+                filter:
+                    blur(8px);
+            }
+
+
+            70% {
+                opacity: 1;
+
+                transform:
+                    translateY(8px);
+
+                filter:
+                    blur(0);
+            }
+
+
+            100% {
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+
+                filter:
+                    blur(0);
+            }
+
+        }
+
+
+        /* Телефоны */
+
+        @media (max-width: 600px) {
+
+            .page {
+                padding: 25px 20px;
+            }
+
+
+            h1 {
+                letter-spacing: -2px;
+
+                line-height: 1;
+            }
+
+
+            .description {
+                font-size: 16px;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
@@ -19,14 +243,17 @@
                 Сегодня произошло важное событие
             </p>
 
+
             <h1>
                 У тебя день рождения
             </h1>
+
 
             <p class="description">
                 И, кажется, обычного сообщения<br>
                 было бы недостаточно.
             </p>
+
 
             <button class="open-button">
                 Открыть
