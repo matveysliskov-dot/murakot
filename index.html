@@ -1,199 +1,103 @@
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Фанатская битва</title>
-    <style>
-        /* Твой CSS (оставь как есть) */
-        /* ... */
-    </style>
+
+```
+<title>Для тебя 🎂</title>
+
+<link rel="stylesheet" href="style.css">
+```
+
 </head>
+
 <body>
-    <!-- Твой HTML (оставь как есть) -->
-    <div class="container">
-        <h1>⚽ ФАНАТСКАЯ БИТВА</h1>
-        <p class="sub">Голосуй за свою команду.</p>
-        <div id="teams-container"></div>
-        <button class="share-btn" onclick="shareLink()">📤 Поделиться</button>
-        <button class="share-btn" onclick="resetAll()">Сбросить</button>
-    </div>
 
-    <script>
-        // --- КОНФИГУРАЦИЯ ---
-        // Если бэкэнд локально:
-        const API_URL = 'http://localhost:5000/api';
-        // Если бэкэнд на сервере, поменяй на свой адрес:
-        // const API_URL = 'https://твой-бэкенд.onrender.com/api';
+```
+<main class="page">
 
-        const TEAMS = [
-            { id: 'spartak', name: 'Спартак' },
-            { id: 'cska', name: 'ЦСКА' },
-            { id: 'zenit', name: 'Зенит' },
-            { id: 'dinamo', name: 'Динамо' },
-            { id: 'rostov', name: 'Ростов' },
-            { id: 'loko', name: 'Локомотив' },
-            { id: 'krylya', name: 'Крылья' },
-            { id: 'krasnodar', name: 'Краснодар' }
-        ];
+    <!-- Фоновое свечение -->
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
 
-        const STORAGE_VOTED = 'fan_voted_team';
 
-        // --- ЗАГРУЗКА ГОЛОСОВ С СЕРВЕРА ---
-        async function loadVotesFromServer() {
-            try {
-                const response = await fetch(`${API_URL}/votes`);
-                const data = await response.json();
-                return data;
-            } catch (error) {
-                console.error('Ошибка загрузки голосов:', error);
-                // Если ошибка — показываем заглушку
-                const fallback = {};
-                TEAMS.forEach(t => fallback[t.id] = 0);
-                return fallback;
-            }
-        }
+    <!-- Основной контент -->
+    <section class="content">
 
-        // --- ОТПРАВКА ГОЛОСА НА СЕРВЕР ---
-        async function sendVoteToServer(teamId) {
-            try {
-                const response = await fetch(`${API_URL}/vote`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ teamId: teamId })
-                });
-                const result = await response.json();
-                return result.success;
-            } catch (error) {
-                console.error('Ошибка отправки голоса:', error);
-                return false;
-            }
-        }
+        <p class="small-title">
+            Сегодня произошло важное событие
+        </p>
 
-        // --- ПОЛУЧИТЬ ID КОМАНДЫ, ЗА КОТОРУЮ УЖЕ ГОЛОСОВАЛИ ---
-        function getVotedTeam() {
-            return localStorage.getItem(STORAGE_VOTED) || null;
-        }
+        <h1>
+            🎂 У тебя день рождения
+        </h1>
 
-        function setVotedTeam(teamId) {
-            localStorage.setItem(STORAGE_VOTED, teamId);
-        }
+        <p class="subtitle">
+            И, кажется, обычного сообщения было бы недостаточно.
+        </p>
 
-        // --- ОТРИСОВКА ---
-        async function render() {
-            const votes = await loadVotesFromServer();
-            const votedTeam = getVotedTeam();
 
-            // Сортируем по голосам
-            const sorted = [...TEAMS].sort((a, b) => (votes[b.id] || 0) - (votes[a.id] || 0));
-            const maxVotes = Math.max(...TEAMS.map(t => votes[t.id] || 0), 1);
+        <!-- Карта расстояния -->
+        <div class="distance-card">
 
-            const container = document.getElementById('teams-container');
-            container.innerHTML = '';
+            <div class="cities">
 
-            sorted.forEach((team, index) => {
-                const count = votes[team.id] || 0;
-                const percent = (count / maxVotes) * 100;
+                <div class="city">
 
-                const isVoted = (votedTeam === team.id);
-                const isDisabled = (votedTeam !== null);
+                    <div class="location-dot"></div>
 
-                const div = document.createElement('div');
-                div.className = 'team';
+                    <span class="city-name">
+                        Ростов
+                    </span>
 
-                // Ранг
-                const rankSpan = document.createElement('span');
-                rankSpan.className = 'team-rank';
-                rankSpan.textContent = index + 1;
-                div.appendChild(rankSpan);
+                </div>
 
-                // Название
-                const nameSpan = document.createElement('span');
-                nameSpan.className = 'team-name';
-                nameSpan.textContent = team.name;
-                div.appendChild(nameSpan);
 
-                // Бар
-                const barWrap = document.createElement('div');
-                barWrap.className = 'team-bar-wrap';
-                const barFill = document.createElement('div');
-                barFill.className = 'team-bar-fill';
-                barFill.style.width = Math.max(percent, 5) + '%';
-                barWrap.appendChild(barFill);
-                div.appendChild(barWrap);
+                <div class="distance-line">
 
-                // Голоса
-                const votesSpan = document.createElement('span');
-                votesSpan.className = 'team-votes';
-                votesSpan.textContent = count;
-                div.appendChild(votesSpan);
+                    <div class="line"></div>
 
-                // Кнопка
-                const btn = document.createElement('button');
-                btn.className = 'vote-btn';
-                if (isVoted) {
-                    btn.textContent = '✅';
-                    btn.classList.add('voted');
-                    btn.disabled = true;
-                } else if (isDisabled) {
-                    btn.textContent = '—';
-                    btn.disabled = true;
-                } else {
-                    btn.textContent = '+';
-                }
-                btn.dataset.teamId = team.id;
+                    <span class="distance">
+                        ~960 км
+                    </span>
 
-                btn.addEventListener('click', async function(e) {
-                    const tid = this.dataset.teamId;
-                    if (getVotedTeam() !== null) {
-                        alert('Ты уже проголосовал!');
-                        return;
-                    }
-                    // Отправляем голос на сервер
-                    const success = await sendVoteToServer(tid);
-                    if (success) {
-                        setVotedTeam(tid);
-                        render(); // обновляем страницу
-                    } else {
-                        alert('Ошибка при голосовании. Попробуй позже.');
-                    }
-                });
+                </div>
 
-                div.appendChild(btn);
-                container.appendChild(div);
-            });
-        }
 
-        // --- ПОДЕЛИТЬСЯ ---
-        window.shareLink = function() {
-            const url = window.location.href;
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Фанатская битва!',
-                    text: 'Голосуй за свою команду ⚽',
-                    url: url
-                });
-            } else {
-                navigator.clipboard.writeText(url).then(() => {
-                    alert('Ссылка скопирована!');
-                }).catch(() => {
-                    prompt('Скопируй ссылку:', url);
-                });
-            }
-        };
+                <div class="city">
 
-        // --- СБРОС ---
-        window.resetAll = function() {
-            if (confirm('Сбросить твой голос? Ты сможешь проголосовать заново.')) {
-                localStorage.removeItem(STORAGE_VOTED);
-                render();
-            }
-        };
+                    <div class="location-dot"></div>
 
-        // --- ЗАПУСК ---
-        render();
-    </script>
+                    <span class="city-name">
+                        Москва
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <p class="distance-text">
+                Да, между нами немного километров.
+            </p>
+
+            <p class="distance-text second">
+                Но, к счастью, сообщения пока не измеряются в расстоянии.
+            </p>
+
+        </div>
+
+
+        <button class="start-button">
+            Открыть 👀
+        </button>
+
+    </section>
+
+</main>
+```
+
 </body>
 </html>
