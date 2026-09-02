@@ -1,103 +1,120 @@
 <!DOCTYPE html>
-
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-```
-<title>Для тебя 🎂</title>
+    <title>Для тебя</title>
 
-<link rel="stylesheet" href="style.css">
-```
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-```
-<main class="page">
+    <main class="page">
 
-    <!-- Фоновое свечение -->
-    <div class="glow glow-1"></div>
-    <div class="glow glow-2"></div>
-
-
-    <!-- Основной контент -->
-    <section class="content">
-
-        <p class="small-title">
-            Сегодня произошло важное событие
-        </p>
-
-        <h1>
-            🎂 У тебя день рождения
-        </h1>
-
-        <p class="subtitle">
-            И, кажется, обычного сообщения было бы недостаточно.
-        </p>
+        <!-- Фоновое свечение -->
+        <div class="glow glow-left"></div>
+        <div class="glow glow-right"></div>
 
 
-        <!-- Карта расстояния -->
-        <div class="distance-card">
+        <section class="content">
 
-            <div class="cities">
+            <p class="eyebrow">
+                Сегодня произошло важное событие
+            </p>
 
-                <div class="city">
+            <h1>
+                У тебя день рождения
+            </h1>
 
-                    <div class="location-dot"></div>
+            <p class="subtitle">
+                И, кажется, обычного сообщения было бы недостаточно.
+            </p>
 
-                    <span class="city-name">
-                        Ростов
-                    </span>
+
+            <!-- Расстояние -->
+            <div class="distance-card">
+
+                <div class="route">
+
+                    <!-- Ростов -->
+                    <div class="city city-left">
+                        <span class="city-dot"></span>
+
+                        <div>
+                            <div class="city-name">
+                                Ростов
+                            </div>
+
+                            <div class="city-description">
+                                Ростов-на-Дону
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Линия -->
+                    <div class="route-line">
+
+                        <div class="line"></div>
+
+                        <!-- Движущееся сообщение -->
+                        <div class="message-dot">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                        <div class="distance">
+                            ~960 км
+                        </div>
+
+                    </div>
+
+
+                    <!-- Москва -->
+                    <div class="city city-right">
+
+                        <div>
+                            <div class="city-name">
+                                Москва
+                            </div>
+
+                            <div class="city-description">
+                                Москва
+                            </div>
+                        </div>
+
+                        <span class="city-dot"></span>
+
+                    </div>
 
                 </div>
 
 
-                <div class="distance-line">
+                <div class="distance-message">
 
-                    <div class="line"></div>
+                    <p>
+                        Да, между нами немало километров.
+                    </p>
 
-                    <span class="distance">
-                        ~960 км
-                    </span>
-
-                </div>
-
-
-                <div class="city">
-
-                    <div class="location-dot"></div>
-
-                    <span class="city-name">
-                        Москва
-                    </span>
+                    <p class="highlight">
+                        Но, к счастью, сообщения пока не измеряются в расстоянии.
+                    </p>
 
                 </div>
 
             </div>
 
 
-            <p class="distance-text">
-                Да, между нами немного километров.
-            </p>
+            <button class="start-button">
+                Открыть
+            </button>
 
-            <p class="distance-text second">
-                Но, к счастью, сообщения пока не измеряются в расстоянии.
-            </p>
+        </section>
 
-        </div>
-
-
-        <button class="start-button">
-            Открыть 👀
-        </button>
-
-    </section>
-
-</main>
-```
+    </main>
 
 </body>
 </html>
