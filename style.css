@@ -1,0 +1,470 @@
+/* =========================
+БАЗОВЫЕ НАСТРОЙКИ
+========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+html,
+body {
+width: 100%;
+min-height: 100%;
+}
+
+body {
+background: #0b0b0f;
+color: white;
+
+```
+font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+overflow-x: hidden;
+```
+
+}
+
+/* =========================
+ОСНОВНАЯ СТРАНИЦА
+========================= */
+
+.page {
+min-height: 100vh;
+
+```
+display: flex;
+align-items: center;
+justify-content: center;
+
+position: relative;
+
+padding: 30px 20px;
+
+overflow: hidden;
+```
+
+}
+
+/* =========================
+ФОНОВОЕ СВЕЧЕНИЕ
+========================= */
+
+.glow {
+position: absolute;
+
+```
+width: 500px;
+height: 500px;
+
+border-radius: 50%;
+
+filter: blur(120px);
+
+opacity: 0.12;
+
+pointer-events: none;
+```
+
+}
+
+.glow-1 {
+background: #7c5cff;
+
+```
+top: -200px;
+left: -150px;
+```
+
+}
+
+.glow-2 {
+background: #ff5c8a;
+
+```
+bottom: -250px;
+right: -150px;
+```
+
+}
+
+/* =========================
+КОНТЕНТ
+========================= */
+
+.content {
+width: 100%;
+max-width: 850px;
+
+```
+text-align: center;
+
+position: relative;
+z-index: 2;
+```
+
+}
+
+/* =========================
+ТЕКСТ
+========================= */
+
+.small-title {
+color: #888;
+
+```
+font-size: 14px;
+
+letter-spacing: 1px;
+text-transform: uppercase;
+
+margin-bottom: 18px;
+
+animation: fadeUp 1s ease forwards;
+```
+
+}
+
+h1 {
+font-size: clamp(38px, 7vw, 76px);
+
+```
+font-weight: 700;
+
+letter-spacing: -3px;
+
+margin-bottom: 20px;
+
+animation: fadeUp 1s ease forwards;
+
+animation-delay: 0.15s;
+
+opacity: 0;
+```
+
+}
+
+.subtitle {
+color: #a0a0a8;
+
+```
+font-size: clamp(16px, 2vw, 20px);
+
+line-height: 1.6;
+
+max-width: 500px;
+
+margin: 0 auto;
+
+animation: fadeUp 1s ease forwards;
+
+animation-delay: 0.3s;
+
+opacity: 0;
+```
+
+}
+
+/* =========================
+КАРТОЧКА С ГОРОДАМИ
+========================= */
+
+.distance-card {
+
+```
+margin: 65px auto 45px;
+
+max-width: 700px;
+
+padding: 35px 25px;
+
+border: 1px solid rgba(255, 255, 255, 0.08);
+
+background: rgba(255, 255, 255, 0.03);
+
+border-radius: 24px;
+
+backdrop-filter: blur(10px);
+
+animation: fadeUp 1s ease forwards;
+
+animation-delay: 0.45s;
+
+opacity: 0;
+```
+
+}
+
+/* =========================
+ГОРОДА
+========================= */
+
+.cities {
+
+```
+display: flex;
+
+align-items: center;
+justify-content: center;
+
+gap: 25px;
+
+margin-bottom: 35px;
+```
+
+}
+
+.city {
+
+```
+display: flex;
+
+align-items: center;
+
+gap: 10px;
+
+white-space: nowrap;
+```
+
+}
+
+.location-dot {
+
+```
+width: 10px;
+height: 10px;
+
+background: white;
+
+border-radius: 50%;
+
+box-shadow:
+    0 0 10px rgba(255, 255, 255, 0.7);
+```
+
+}
+
+.city-name {
+
+```
+font-size: clamp(17px, 2vw, 22px);
+
+font-weight: 600;
+```
+
+}
+
+/* =========================
+ЛИНИЯ МЕЖДУ ГОРОДАМИ
+========================= */
+
+.distance-line {
+
+```
+flex: 1;
+
+min-width: 150px;
+
+position: relative;
+```
+
+}
+
+.line {
+
+```
+height: 1px;
+
+width: 100%;
+
+background:
+    linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.15),
+        rgba(255, 255, 255, 0.8),
+        rgba(255, 255, 255, 0.15)
+    );
+```
+
+}
+
+.distance {
+
+```
+position: absolute;
+
+left: 50%;
+top: -30px;
+
+transform: translateX(-50%);
+
+color: #888;
+
+font-size: 13px;
+
+white-space: nowrap;
+```
+
+}
+
+/* =========================
+ТЕКСТ ПОД РАССТОЯНИЕМ
+========================= */
+
+.distance-text {
+
+```
+color: #b8b8c0;
+
+font-size: clamp(16px, 2vw, 19px);
+
+line-height: 1.6;
+```
+
+}
+
+.distance-text.second {
+
+```
+margin-top: 8px;
+
+color: white;
+
+font-weight: 500;
+```
+
+}
+
+/* =========================
+КНОПКА
+========================= */
+
+.start-button {
+
+```
+border: none;
+
+padding: 17px 32px;
+
+border-radius: 100px;
+
+background: white;
+
+color: black;
+
+font-size: 16px;
+
+font-weight: 600;
+
+cursor: pointer;
+
+transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+
+animation: fadeUp 1s ease forwards;
+
+animation-delay: 0.65s;
+
+opacity: 0;
+```
+
+}
+
+.start-button:hover {
+
+```
+transform: translateY(-3px);
+
+box-shadow:
+    0 10px 40px
+    rgba(255, 255, 255, 0.18);
+```
+
+}
+
+.start-button:active {
+
+```
+transform: translateY(0) scale(0.97);
+```
+
+}
+
+/* =========================
+АНИМАЦИИ
+========================= */
+
+@keyframes fadeUp {
+
+```
+from {
+
+    opacity: 0;
+
+    transform:
+        translateY(25px);
+
+}
+
+to {
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+
+}
+```
+
+}
+
+/* =========================
+МОБИЛЬНАЯ ВЕРСИЯ
+========================= */
+
+@media (max-width: 600px) {
+
+```
+.distance-card {
+
+    margin-top: 45px;
+
+    padding: 30px 18px;
+
+}
+
+
+.cities {
+
+    gap: 12px;
+
+}
+
+
+.distance-line {
+
+    min-width: 60px;
+
+}
+
+
+.city-name {
+
+    font-size: 16px;
+
+}
+
+
+h1 {
+
+    letter-spacing: -2px;
+
+}
+```
+
+}
