@@ -1,4 +1,374 @@
 /* =========================
+   СБРОС СТИЛЕЙ
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   ОСНОВА СТРАНИЦЫ
+========================= */
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+
+body {
+    min-height: 100vh;
+
+    background: #0b0c12;
+    color: #ffffff;
+
+    font-family: "Trebuchet MS", Arial, sans-serif;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   ФОНОВАЯ САКУРА
+========================= */
+
+.sakura-background {
+    position: fixed;
+
+    top: -20px;
+    left: -20px;
+
+    width: calc(100% + 40px);
+    height: calc(100% + 40px);
+
+    background-image: url("sakura.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    z-index: 0;
+
+    animation: sakura-move 10s ease-in-out infinite;
+}
+
+
+/* =========================
+   ПОКАЧИВАНИЕ САКУРЫ
+========================= */
+
+@keyframes sakura-move {
+
+    0% {
+        transform:
+            scale(1.03)
+            translate(0, 0);
+    }
+
+    50% {
+        transform:
+            scale(1.06)
+            translate(8px, -6px);
+    }
+
+    100% {
+        transform:
+            scale(1.03)
+            translate(0, 0);
+    }
+
+}
+
+
+/* =========================
+   ОСНОВНАЯ СТРАНИЦА
+========================= */
+
+.page {
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px;
+}
+
+
+/* =========================
+   ЦЕНТРАЛЬНЫЙ КОНТЕНТ
+========================= */
+
+.content {
+    width: 100%;
+    max-width: 900px;
+
+    text-align: center;
+
+    position: relative;
+
+    z-index: 3;
+}
+
+
+/* =========================
+   МАЛЕНЬКИЙ ВЕРХНИЙ ТЕКСТ
+========================= */
+
+.small-text {
+    color: #9fa1aa;
+
+    font-size: 13px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 35px;
+
+    animation:
+        fall-down
+        0.8s
+        ease
+        forwards;
+
+    opacity: 0;
+}
+
+
+/* =========================
+   ГЛАВНЫЙ ЗАГОЛОВОК
+========================= */
+
+h1 {
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(60px, 7vw, 110px);
+
+    font-weight: 500;
+
+    line-height: 0.92;
+
+    letter-spacing: -5px;
+
+    margin-bottom: 35px;
+
+    text-shadow:
+        0 10px 50px
+        rgba(0, 0, 0, 0.5);
+
+    animation:
+        fall-down
+        1s
+        ease
+        forwards;
+
+    animation-delay: 0.2s;
+
+    opacity: 0;
+}
+
+
+/* =========================
+   ТЕКСТ ПОД ЗАГОЛОВКОМ
+========================= */
+
+.description {
+    color: #b4b5bd;
+
+    font-size: 19px;
+
+    line-height: 1.9;
+
+    letter-spacing: 0.3px;
+
+    margin-bottom: 55px;
+
+    animation:
+        fall-down
+        1s
+        ease
+        forwards;
+
+    animation-delay: 0.4s;
+
+    opacity: 0;
+}
+
+
+/* =========================
+   КНОПКА
+========================= */
+
+.open-button {
+    display: inline-block;
+
+    padding: 18px 45px;
+
+    background:
+        rgba(10, 11, 18, 0.5);
+
+    color: white;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.25);
+
+    border-radius: 50px;
+
+    text-decoration: none;
+
+    font-family:
+        "Trebuchet MS",
+        Arial,
+        sans-serif;
+
+    font-size: 16px;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(6px);
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+
+    animation:
+        fall-down
+        1s
+        ease
+        forwards;
+
+    animation-delay: 0.6s;
+
+    opacity: 0;
+}
+
+
+/* =========================
+   НАВЕДЕНИЕ НА КНОПКУ
+========================= */
+
+.open-button:hover {
+    background:
+        rgba(255, 255, 255, 0.9);
+
+    color: #111111;
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 15px 40px
+        rgba(0, 0, 0, 0.3);
+}
+
+
+.open-button:active {
+    transform:
+        translateY(-1px)
+        scale(0.97);
+}
+
+
+/* =========================
+   АНИМАЦИЯ ПОЯВЛЕНИЯ
+========================= */
+
+@keyframes fall-down {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(-80px);
+
+        filter:
+            blur(8px);
+    }
+
+
+    70% {
+        opacity: 1;
+
+        transform:
+            translateY(8px);
+
+        filter:
+            blur(0);
+    }
+
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+        filter:
+            blur(0);
+    }
+
+}
+
+
+/* =========================
+   МОБИЛЬНАЯ ВЕРСИЯ
+========================= */
+
+@media (max-width: 700px) {
+
+    body {
+        overflow-y: auto;
+    }
+
+
+    .page {
+        padding: 25px 20px;
+    }
+
+
+    h1 {
+        font-size:
+            clamp(52px, 15vw, 80px);
+
+        letter-spacing:
+            -3px;
+    }
+
+
+    .description {
+        font-size: 16px;
+
+        line-height: 1.7;
+    }
+
+
+    .small-text {
+        font-size: 11px;
+
+        letter-spacing: 2px;
+    }
+
+}/* =========================
    БАЗОВЫЕ НАСТРОЙКИ
 ========================= */
 
