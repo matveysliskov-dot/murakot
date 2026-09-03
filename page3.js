@@ -1,41 +1,31 @@
-const envelope =
-    document.getElementById("envelope");
+document.addEventListener("DOMContentLoaded", function () {
 
-const nextButton =
-    document.getElementById("nextButton");
+    const envelope = document.getElementById("envelope");
+    const nextButton = document.getElementById("nextButton");
 
-
-envelope.addEventListener(
-    "click",
-    function () {
-
-        if (
-            envelope.classList.contains(
-                "open"
-            )
-        ) {
-
-            return;
-
-        }
-
-
-        envelope.classList.add(
-            "open"
-        );
-
-
-        setTimeout(
-            function () {
-
-                nextButton.classList.add(
-                    "visible"
-                );
-
-            },
-
-            1800
-        );
-
+    if (!envelope || !nextButton) {
+        console.log("Не найден конверт или кнопка");
+        return;
     }
-);
+
+    let opened = false;
+
+    envelope.addEventListener("click", function () {
+
+        if (opened) return;
+
+        opened = true;
+
+        // Открываем конверт
+        envelope.classList.add("open");
+
+        // Через небольшую паузу показываем кнопку
+        setTimeout(function () {
+
+            nextButton.classList.add("visible");
+
+        }, 1000);
+
+    });
+
+});
