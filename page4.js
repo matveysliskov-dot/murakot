@@ -1,159 +1,266 @@
-const doorCards =
-    document.querySelectorAll(
-        ".door-card"
-    );
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
 
-const result =
-    document.getElementById(
-        "result"
-    );
+        const doors = document.querySelectorAll(
+            ".door-card"
+        );
 
 
-const nextButton =
-    document.getElementById(
-        "nextButton"
-    );
+        const result = document.getElementById(
+            "result"
+        );
 
 
-let opened = false;
+        const nextButton = document.getElementById(
+            "nextButton"
+        );
 
 
-/* =====================================
-   НАЖАТИЕ НА ДВЕРЬ
-===================================== */
-
-doorCards.forEach(
-    function (card) {
+        let opened = false;
 
 
-        const handle =
-            card.querySelector(
-                ".handle"
+        doors.forEach(
+            function (doorCard) {
+
+
+                const handle = doorCard.querySelector(
+                    ".handle"
+                );
+
+
+                handle.addEventListener(
+                    "click",
+                    function (event) {
+
+
+                        event.stopPropagation();
+
+
+                        // Если дверь уже была открыта
+
+                        if (opened) {
+
+                            return;
+
+                        }
+
+
+                        opened = true;
+
+
+                        // Открываем выбранную дверь
+
+                        doorCard.classList.add(
+                            "open"
+                        );
+
+
+                        // Затемняем остальные двери
+
+                        doors.forEach(
+                            function (otherDoor) {
+
+
+                                if (
+                                    otherDoor !== doorCard
+                                ) {
+
+                                    otherDoor.classList.add(
+                                        "disabled"
+                                    );
+
+                                }
+
+                            }
+                        );
+
+
+                        // Берём картинку выбранной двери
+
+                        const sourceImage =
+                            doorCard.querySelector(
+                                ".surprise img"
+                            );
+
+
+                        // Ждём начала открытия двери
+
+                        setTimeout(
+                            function () {
+
+
+                                showFullscreenSurprise(
+                                    sourceImage
+                                );
+
+
+                            },
+                            450
+                        );
+
+
+                    }
+                );
+
+
+            }
+        );
+
+
+
+        function showFullscreenSurprise(
+            sourceImage
+        ) {
+
+
+            // Получаем положение картинки
+            // внутри двери
+
+            const rect =
+                sourceImage.getBoundingClientRect();
+
+
+            // Создаём новый контейнер
+            // прямо внутри BODY
+
+            const fullscreen =
+                document.createElement(
+                    "div"
+                );
+
+
+            fullscreen.className =
+                "fullscreen-surprise";
+
+
+            // Ставим его точно на место двери
+
+            fullscreen.style.left =
+                rect.left + "px";
+
+
+            fullscreen.style.top =
+                rect.top + "px";
+
+
+            fullscreen.style.width =
+                rect.width + "px";
+
+
+            fullscreen.style.height =
+                rect.height + "px";
+
+
+            // Создаём копию картинки
+
+            const image =
+                document.createElement(
+                    "img"
+                );
+
+
+            image.src =
+                sourceImage.src;
+
+
+            image.alt =
+                sourceImage.alt;
+
+
+            fullscreen.appendChild(
+                image
             );
 
 
-        /* Нажатие на ручку */
-
-        handle.addEventListener(
-
-            "click",
-
-            function (event) {
-
-                event.stopPropagation();
-
-                openDoor(card);
-
-            }
-
-        );
+            document.body.appendChild(
+                fullscreen
+            );
 
 
-        /* Можно нажать на саму дверь */
+            // Небольшая задержка,
+            // чтобы браузер увидел
+            // начальную позицию
 
-        card.addEventListener(
-
-            "click",
-
-            function () {
-
-                openDoor(card);
-
-            }
-
-        );
+            requestAnimationFrame(
+                function () {
 
 
-    }
-);
+                    requestAnimationFrame(
+                        function () {
 
 
-/* =====================================
-   ОТКРЫТИЕ
-===================================== */
+                            // Картинка летит
+                            // на весь экран
 
-function openDoor(selectedDoor) {
+                            fullscreen.style.transition =
 
+                                "left 0.65s cubic-bezier(0.16, 1, 0.3, 1), " +
 
-    /* Если уже открыли */
+                                "top 0.65s cubic-bezier(0.16, 1, 0.3, 1), " +
 
-    if (opened) {
+                                "width 0.65s cubic-bezier(0.16, 1, 0.3, 1), " +
 
-        return;
-
-    }
+                                "height 0.65s cubic-bezier(0.16, 1, 0.3, 1)";
 
 
-    opened = true;
+                            fullscreen.style.left =
+                                "0px";
 
 
-    /* Открываем выбранную */
-
-    selectedDoor.classList.add(
-        "open"
-    );
+                            fullscreen.style.top =
+                                "0px";
 
 
-    /* Остальные затемняем */
-
-    doorCards.forEach(
-
-        function (door) {
+                            fullscreen.style.width =
+                                "100vw";
 
 
-            if (
-                door !== selectedDoor
-            ) {
+                            fullscreen.style.height =
+                                "100vh";
 
-                door.classList.add(
-                    "disabled"
-                );
 
-            }
+                            // Добавляем небольшой
+                            // эффект "бум"
+
+                            fullscreen.classList.add(
+                                "animate"
+                            );
+
+
+                        }
+                    );
+
+
+                }
+            );
+
+
+            // После анимации
+            // показываем текст
+
+            setTimeout(
+                function () {
+
+
+                    result.classList.add(
+                        "visible"
+                    );
+
+
+                    nextButton.classList.add(
+                        "visible"
+                    );
+
+
+                },
+                1100
+            );
 
 
         }
 
-    );
 
-
-    /* =================================
-       ПОЯВЛЯЕТСЯ ТЕКСТ
-    ================================= */
-
-    setTimeout(
-
-        function () {
-
-            result.classList.add(
-                "visible"
-            );
-
-        },
-
-        1300
-
-    );
-
-
-    /* =================================
-       ПОЯВЛЯЕТСЯ КНОПКА
-    ================================= */
-
-    setTimeout(
-
-        function () {
-
-            nextButton.classList.add(
-                "visible"
-            );
-
-        },
-
-        2200
-
-    );
-
-
-}
+    }
+);
