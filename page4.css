@@ -8,6 +8,1117 @@
     box-sizing: border-box;
 }
 
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+
+body {
+    min-height: 100vh;
+
+    overflow-x: hidden;
+
+    background: #07080d;
+
+    color: white;
+
+    font-family:
+        Arial,
+        sans-serif;
+}
+
+
+/* =========================================
+   ФОН
+========================================= */
+
+.background {
+    position: fixed;
+
+    inset: -25px;
+
+    z-index: -2;
+
+    background-image:
+        url("sakura.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+
+    opacity: 0.18;
+
+    animation:
+        backgroundMove
+        16s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes backgroundMove {
+
+    0% {
+
+        transform:
+
+            scale(1.02)
+            translate(0, 0);
+
+    }
+
+
+    50% {
+
+        transform:
+
+            scale(1.07)
+            translate(8px, -6px);
+
+    }
+
+
+    100% {
+
+        transform:
+
+            scale(1.02)
+            translate(0, 0);
+
+    }
+
+}
+
+
+/* =========================================
+   ЗАТЕМНЕНИЕ
+========================================= */
+
+.dark-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -1;
+
+    background:
+
+        radial-gradient(
+
+            circle at center,
+
+            rgba(10, 12, 20, 0.25),
+
+            rgba(3, 4, 8, 0.82)
+
+        );
+}
+
+
+/* =========================================
+   СТРАНИЦА
+========================================= */
+
+.page {
+    width: 100%;
+    min-height: 100vh;
+
+    padding:
+
+        35px
+        30px
+        60px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   ЗАГОЛОВОК
+========================================= */
+
+.intro {
+
+    margin-bottom: 55px;
+
+    animation:
+
+        introAppear
+        1s
+        ease
+        forwards;
+}
+
+
+.small-title {
+
+    margin-bottom: 18px;
+
+    color: #989aa5;
+
+    font-size: 11px;
+
+    letter-spacing: 5px;
+
+    text-transform: uppercase;
+}
+
+
+h1 {
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+
+        clamp(
+            48px,
+            6vw,
+            85px
+        );
+
+    font-weight: 400;
+
+    letter-spacing: -3px;
+
+    margin-bottom: 15px;
+}
+
+
+.subtitle {
+
+    color: #aaaeb8;
+
+    font-size: 16px;
+
+    letter-spacing: 0.3px;
+}
+
+
+/* =========================================
+   ДВЕРИ
+========================================= */
+
+.doors {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+    gap: 65px;
+
+    width: 100%;
+}
+
+
+/* =========================================
+   КАРТОЧКА ДВЕРИ
+========================================= */
+
+.door-card {
+
+    width: 230px;
+
+    position: relative;
+
+    cursor: pointer;
+
+    animation:
+
+        doorAppear
+        0.8s
+        ease
+        forwards;
+
+    transition:
+
+        opacity
+        0.5s
+        ease,
+
+        transform
+        0.4s
+        ease;
+}
+
+
+.door-card:nth-child(2) {
+
+    animation-delay: 0.15s;
+}
+
+
+.door-card:nth-child(3) {
+
+    animation-delay: 0.3s;
+}
+
+
+.door-card:hover:not(.disabled) {
+
+    transform:
+
+        translateY(-10px);
+}
+
+
+/* =========================================
+   РАМА
+========================================= */
+
+.door-frame {
+
+    width: 230px;
+
+    height: 350px;
+
+    position: relative;
+
+    padding: 12px;
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            #181920,
+            #343640,
+            #181920
+
+        );
+
+    box-shadow:
+
+        0 25px 55px
+        rgba(0, 0, 0, 0.6);
+}
+
+
+/* =========================================
+   ДВЕРЬ
+========================================= */
+
+.door {
+
+    position: relative;
+
+    width: 206px;
+
+    height: 326px;
+
+    transform-origin:
+
+        left
+        center;
+
+    transform-style:
+
+        preserve-3d;
+
+    transition:
+
+        transform
+        1s
+        cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        );
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            #4a2410,
+            #87481e,
+            #b06b32,
+            #693413,
+            #3d1d0c
+
+        );
+
+    box-shadow:
+
+        inset
+        0
+        0
+        30px
+        rgba(0, 0, 0, 0.4);
+}
+
+
+/* =========================================
+   ТЕКСТУРА ДЕРЕВА
+========================================= */
+
+.door::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: 0.4;
+
+    background:
+
+        repeating-linear-gradient(
+
+            90deg,
+
+            rgba(
+                255,
+                220,
+                150,
+                0.08
+            )
+            0px,
+
+            rgba(
+                255,
+                220,
+                150,
+                0.08
+            )
+            2px,
+
+            rgba(
+                40,
+                15,
+                5,
+                0.15
+            )
+            4px,
+
+            transparent
+            8px,
+
+            transparent
+            14px
+
+        );
+}
+
+
+/* =========================================
+   ПАНЕЛИ
+========================================= */
+
+.door-panel {
+
+    position: absolute;
+
+    left: 18px;
+
+    width: 170px;
+
+    border:
+
+        3px solid
+        rgba(
+            65,
+            28,
+            8,
+            0.8
+        );
+
+    box-shadow:
+
+        inset
+        0
+        0
+        20px
+        rgba(0, 0, 0, 0.35);
+}
+
+
+.panel-top {
+
+    top: 28px;
+
+    height: 115px;
+}
+
+
+.panel-bottom {
+
+    bottom: 28px;
+
+    height: 115px;
+}
+
+
+/* =========================================
+   НОМЕР
+========================================= */
+
+.door-number {
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform:
+
+        translate(
+            -50%,
+            -50%
+        );
+
+    width: 65px;
+
+    height: 45px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #f1f1ed;
+
+    color: #161616;
+
+    font-family:
+
+        Georgia,
+        serif;
+
+    font-size: 25px;
+
+    font-weight: bold;
+
+    border-radius: 2px;
+
+    box-shadow:
+
+        0
+        5px
+        12px
+        rgba(0, 0, 0, 0.3);
+}
+
+
+/* =========================================
+   РУЧКА
+========================================= */
+
+.handle {
+
+    position: absolute;
+
+    right: 18px;
+
+    top: 59%;
+
+    width: 25px;
+
+    height: 25px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    background:
+
+        radial-gradient(
+
+            circle at
+            30%
+            30%,
+
+            #ffffff,
+
+            #c9c9c9
+            45%,
+
+            #747474
+
+        );
+
+    box-shadow:
+
+        0
+        0
+        16px
+        rgba(
+            255,
+            255,
+            255,
+            0.35
+        );
+
+    transition:
+
+        transform
+        0.25s
+        ease;
+}
+
+
+.handle:hover {
+
+    transform:
+
+        scale(1.2);
+}
+
+
+/* =========================================
+   ПОДСКАЗКА
+========================================= */
+
+.door-hint {
+
+    margin-top: 18px;
+
+    color: #92949e;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    transition:
+
+        opacity
+        0.4s
+        ease;
+}
+
+
+/* =========================================
+   ОТКРЫТИЕ ДВЕРИ
+========================================= */
+
+.door-card.open .door {
+
+    transform:
+
+        rotateY(-108deg);
+}
+
+
+.door-card.open .door-hint {
+
+    opacity: 0;
+}
+
+
+/* =========================================
+   НЕВЫБРАННЫЕ ДВЕРИ
+========================================= */
+
+.door-card.disabled {
+
+    opacity: 0.18;
+
+    pointer-events: none;
+
+    transform:
+
+        scale(0.96);
+}
+
+
+/* =========================================
+   КАРТИНКА-СЮРПРИЗ
+
+   НАХОДИТСЯ ОТДЕЛЬНО
+   ОТ ДВЕРЕЙ
+========================================= */
+
+.surprise-layer {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 99999;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    pointer-events: none;
+
+    visibility: hidden;
+
+    opacity: 0;
+}
+
+
+/* =========================================
+   САМА КАРТИНКА
+========================================= */
+
+.surprise-layer img {
+
+    width:
+
+        min(
+            78vw,
+            1000px
+        );
+
+    max-height: 88vh;
+
+    object-fit: contain;
+
+    transform:
+
+        scale(0.05);
+
+    opacity: 0;
+
+    filter:
+
+        brightness(2);
+}
+
+
+/* =========================================
+   АКТИВНАЯ КАРТИНКА
+========================================= */
+
+.surprise-layer.active {
+
+    visibility: visible;
+
+    opacity: 1;
+}
+
+
+.surprise-layer.active img {
+
+    animation:
+
+        boomImage
+        0.6s
+        cubic-bezier(
+            0.16,
+            1.35,
+            0.3,
+            1
+        )
+        forwards;
+}
+
+
+/* =========================================
+   АНИМАЦИЯ ВЫЛЕТА
+========================================= */
+
+@keyframes boomImage {
+
+    0% {
+
+        transform:
+
+            scale(0.05);
+
+        opacity: 0;
+
+        filter:
+
+            brightness(3);
+    }
+
+
+    30% {
+
+        opacity: 1;
+    }
+
+
+    65% {
+
+        transform:
+
+            scale(1.12);
+
+        filter:
+
+            brightness(1.3);
+    }
+
+
+    82% {
+
+        transform:
+
+            scale(0.96);
+    }
+
+
+    100% {
+
+        transform:
+
+            scale(1);
+
+        opacity: 1;
+
+        filter:
+
+            brightness(1);
+    }
+
+}
+
+
+/* =========================================
+   ВСПЫШКА
+========================================= */
+
+.flash {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 99998;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    background:
+
+        radial-gradient(
+
+            circle at center,
+
+            rgba(
+                255,
+                255,
+                255,
+                0.85
+            ),
+
+            transparent
+            65%
+
+        );
+}
+
+
+.flash.active {
+
+    animation:
+
+        flashAnimation
+        0.45s
+        ease-out
+        forwards;
+}
+
+
+@keyframes flashAnimation {
+
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================================
+   ТРЯСКА
+========================================= */
+
+.shake {
+
+    animation:
+
+        screenShake
+        0.45s
+        ease-in-out;
+}
+
+
+@keyframes screenShake {
+
+    0% {
+
+        transform:
+
+            translate(0, 0);
+    }
+
+
+    20% {
+
+        transform:
+
+            translate(-8px, 4px);
+    }
+
+
+    40% {
+
+        transform:
+
+            translate(8px, -4px);
+    }
+
+
+    60% {
+
+        transform:
+
+            translate(-5px, -2px);
+    }
+
+
+    80% {
+
+        transform:
+
+            translate(4px, 2px);
+    }
+
+
+    100% {
+
+        transform:
+
+            translate(0, 0);
+    }
+
+}
+
+
+/* =========================================
+   РЕЗУЛЬТАТ
+========================================= */
+
+.result {
+
+    margin-top: 50px;
+
+    opacity: 0;
+
+    transform:
+
+        translateY(25px);
+
+    transition:
+
+        opacity
+        0.8s
+        ease,
+
+        transform
+        0.8s
+        ease;
+}
+
+
+.result.visible {
+
+    opacity: 1;
+
+    transform:
+
+        translateY(0);
+}
+
+
+.result p {
+
+    color: #b5b7c0;
+
+    font-size: 18px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================
+   АНИМАЦИИ ПОЯВЛЕНИЯ
+========================================= */
+
+@keyframes introAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+
+            translateY(-25px);
+    }
+
+
+    to {
+
+        opacity: 1;
+
+        transform:
+
+            translateY(0);
+    }
+
+}
+
+
+@keyframes doorAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+
+            translateY(60px)
+            scale(0.9);
+    }
+
+
+    to {
+
+        opacity: 1;
+
+        transform:
+
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* =========================================
+   АДАПТАЦИЯ
+========================================= */
+
+@media (max-width: 900px) {
+
+    .doors {
+
+        gap: 25px;
+
+        flex-wrap: wrap;
+    }
+
+
+    .door-card {
+
+        width: 190px;
+    }
+
+
+    .door-frame {
+
+        width: 190px;
+
+        height: 300px;
+    }
+
+
+    .door {
+
+        width: 166px;
+
+        height: 276px;
+    }
+
+
+    .door-panel {
+
+        width: 135px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .page {
+
+        padding-top: 50px;
+    }
+
+
+    .intro {
+
+        margin-bottom: 35px;
+    }
+
+
+    .doors {
+
+        flex-direction: column;
+
+        align-items: center;
+    }
+
+
+    .door-card {
+
+        transform:
+
+            scale(0.9);
+
+        margin-bottom: -20px;
+    }
+
+
+    .surprise-layer img {
+
+        width: 95vw;
+
+        max-height: 80vh;
+    }
+
+}/* =========================================
+   СБРОС
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 html,
 body {
     width: 100%;
