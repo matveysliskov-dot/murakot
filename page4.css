@@ -1,202 +1,140 @@
-/* =====================================
+/* =========================================
    СБРОС
-===================================== */
+========================================= */
 
 * {
-
     margin: 0;
     padding: 0;
-
     box-sizing: border-box;
-
 }
-
 
 html,
 body {
-
     width: 100%;
     min-height: 100%;
-
 }
-
-
-/* =====================================
-   BODY
-===================================== */
 
 body {
-
     min-height: 100vh;
-
     background: #07080d;
-
     color: white;
-
-    font-family:
-        Arial,
-        sans-serif;
-
+    font-family: Arial, sans-serif;
     overflow-x: hidden;
-
 }
 
 
-/* =====================================
-   ФОН
-===================================== */
+/* =========================================
+   ФОН САКУРЫ
+========================================= */
 
 .background {
-
     position: fixed;
-
     inset: -30px;
 
-    background-image:
-        url("sakura.jpg");
-
+    background-image: url("sakura.jpg");
     background-size: cover;
-
     background-position: center;
-
     background-repeat: no-repeat;
 
     opacity: 0.20;
 
     z-index: 0;
 
-    animation:
-        backgroundMove
-        15s
-        ease-in-out
-        infinite;
-
+    animation: backgroundMove 15s ease-in-out infinite;
 }
-
 
 @keyframes backgroundMove {
 
     0% {
-
         transform:
             scale(1.03)
             translate(0, 0);
-
     }
 
-
     50% {
-
         transform:
             scale(1.07)
             translate(8px, -8px);
-
     }
 
-
     100% {
-
         transform:
             scale(1.03)
             translate(0, 0);
-
     }
 
 }
 
 
-/* =====================================
+/* =========================================
    ЗАТЕМНЕНИЕ
-===================================== */
+========================================= */
 
 .overlay {
-
     position: fixed;
-
     inset: 0;
 
     background:
-
         radial-gradient(
             circle at center,
-            rgba(15, 17, 25, 0.35),
+            rgba(15, 17, 25, 0.30),
             rgba(4, 5, 10, 0.88)
         );
 
     z-index: 1;
-
 }
 
 
-/* =====================================
+/* =========================================
    ОСНОВНАЯ СТРАНИЦА
-===================================== */
+========================================= */
 
 .page {
-
     position: relative;
-
     z-index: 2;
 
     min-height: 100vh;
-
     width: 100%;
 
     display: flex;
-
     flex-direction: column;
 
     align-items: center;
-
     justify-content: center;
 
     text-align: center;
 
-    padding:
-
-        40px
-        30px;
-
+    padding: 40px 30px;
 }
 
 
-/* =====================================
-   ТЕКСТ
-===================================== */
+/* =========================================
+   ВЕРХНИЙ ТЕКСТ
+========================================= */
 
 .intro {
-
     margin-bottom: 45px;
 
     animation:
-
         introAppear
         1s
         ease
         forwards;
-
 }
 
-
 .small-text {
-
     color: #999ba5;
 
     text-transform: uppercase;
-
     letter-spacing: 4px;
 
     font-size: 11px;
 
     margin-bottom: 18px;
-
 }
 
-
 h1 {
-
     font-family:
-
         Georgia,
         "Times New Roman",
         serif;
@@ -204,7 +142,6 @@ h1 {
     font-weight: 400;
 
     font-size:
-
         clamp(
             45px,
             6vw,
@@ -214,44 +151,35 @@ h1 {
     letter-spacing: -2px;
 
     margin-bottom: 18px;
-
 }
-
 
 .subtitle {
-
     color: #b1b2ba;
-
     font-size: 16px;
-
 }
 
 
-/* =====================================
+/* =========================================
    ДВЕРИ
-===================================== */
+========================================= */
 
 .doors {
-
     display: flex;
 
     align-items: flex-end;
-
     justify-content: center;
 
     gap: 65px;
 
     margin-bottom: 35px;
-
 }
 
 
-/* =====================================
-   КАРТОЧКА
-===================================== */
+/* =========================================
+   КАРТОЧКА ДВЕРИ
+========================================= */
 
 .door-card {
-
     width: 230px;
 
     cursor: pointer;
@@ -259,197 +187,138 @@ h1 {
     position: relative;
 
     transition:
-
-        transform
-        0.4s
-        ease,
-
-        opacity
-        0.6s
-        ease;
+        transform 0.4s ease,
+        opacity 0.6s ease;
 
     animation:
-
         doorAppear
         0.8s
         ease
         forwards;
-
 }
-
 
 .door-card:nth-child(2) {
-
     animation-delay: 0.15s;
-
 }
-
 
 .door-card:nth-child(3) {
-
     animation-delay: 0.3s;
-
 }
 
-
-.door-card:hover {
-
+.door-card:hover:not(.disabled) {
     transform:
-
         translateY(-10px);
-
 }
 
 
-/* =====================================
+/* =========================================
    3D СЦЕНА
-===================================== */
+========================================= */
 
 .door-scene {
-
     perspective: 1400px;
-
 }
 
 
-/* =====================================
+/* =========================================
    РАМА ДВЕРИ
-===================================== */
+========================================= */
 
 .door-frame {
-
     width: 230px;
-
     height: 350px;
 
     position: relative;
 
-    overflow: visible;
+    overflow: hidden;
 
     padding: 12px;
 
     background:
-
         linear-gradient(
-
             90deg,
-
             #1a1b22,
-
             #363841,
-
             #1b1c23
-
         );
 
     box-shadow:
-
         0 25px 60px
         rgba(0, 0, 0, 0.6);
-
 }
 
 
-/* =====================================
-   СЮРПРИЗ ЗА ДВЕРЬЮ
-===================================== */
+/* =========================================
+   КАРТИНКА ЗА ДВЕРЬЮ
+
+   ВАЖНО:
+   ОНА ПОЛНОСТЬЮ СКРЫТА ДО НАЖАТИЯ
+========================================= */
 
 .surprise {
-
     position: absolute;
 
     top: 12px;
-
     left: 12px;
 
     width: 206px;
-
     height: 326px;
+
+    z-index: 1;
 
     overflow: hidden;
 
-    z-index: 2;
-
     background: #111;
 
-    display: flex;
+    opacity: 0;
+    visibility: hidden;
 
-    align-items: center;
-
-    justify-content: center;
-
+    pointer-events: none;
 }
 
-
 .surprise img {
-
     width: 100%;
-
     height: 100%;
 
+    display: block;
+
     object-fit: cover;
-
     object-position: center;
-
-
-    /* ИЗНАЧАЛЬНО СПРЯТАНА */
 
     opacity: 0;
 
     transform:
+        scale(0.7);
 
-        scale(0.25)
-        translateY(120px);
-
-    transition:
-
-        transform
-        1.2s
-        cubic-bezier(
-            0.16,
-            1,
-            0.3,
-            1
-        ),
-
-        opacity
-        0.6s
-        ease;
-
+    transition: none;
 }
 
 
-/* =====================================
-   ДВЕРЬ
-===================================== */
+/* =========================================
+   ДЕРЕВЯННАЯ ДВЕРЬ
+========================================= */
 
 .door {
-
     position: absolute;
 
     top: 12px;
-
     left: 12px;
 
     width: 206px;
-
     height: 326px;
 
     z-index: 5;
 
     transform-origin:
-
         left
         center;
 
     transform-style:
-
         preserve-3d;
 
     transition:
-
         transform
-        1.2s
+        1s
         cubic-bezier(
             0.16,
             1,
@@ -457,13 +326,9 @@ h1 {
             1
         );
 
-
-    /* ДЕРЕВО */
-
     background:
 
         linear-gradient(
-
             90deg,
 
             rgba(60, 28, 12, 0.4),
@@ -475,23 +340,16 @@ h1 {
             rgba(50, 20, 8, 0.18) 60%,
 
             transparent 85%
-
         ),
 
         linear-gradient(
-
             90deg,
 
-            #5a2f17,
-
+            #4e2814,
             #8b4c24,
-
             #633416,
-
             #9b5b2c,
-
             #4e2814
-
         );
 
     box-shadow:
@@ -501,20 +359,17 @@ h1 {
 
         inset 4px 0 10px
         rgba(255, 210, 140, 0.12);
-
 }
 
 
-/* =====================================
-   ДОБАВЛЯЕМ ТЕКСТУРУ ДЕРЕВА
-===================================== */
+/* =========================================
+   ТЕКСТУРА ДЕРЕВА
+========================================= */
 
 .door::before {
-
     content: "";
 
     position: absolute;
-
     inset: 0;
 
     pointer-events: none;
@@ -524,38 +379,25 @@ h1 {
     background:
 
         repeating-linear-gradient(
-
             90deg,
 
-            rgba(255, 220, 160, 0.05)
-            0px,
+            rgba(255, 220, 160, 0.05) 0px,
+            rgba(255, 220, 160, 0.05) 2px,
 
-            rgba(255, 220, 160, 0.05)
-            2px,
+            rgba(40, 15, 5, 0.12) 3px,
+            rgba(40, 15, 5, 0.12) 5px,
 
-            rgba(40, 15, 5, 0.12)
-            3px,
-
-            rgba(40, 15, 5, 0.12)
-            5px,
-
-            transparent
-            7px,
-
-            transparent
-            14px
-
+            transparent 7px,
+            transparent 14px
         );
-
 }
 
 
-/* =====================================
+/* =========================================
    ПАНЕЛИ ДВЕРИ
-===================================== */
+========================================= */
 
 .door-panel {
-
     position: absolute;
 
     left: 18px;
@@ -563,7 +405,6 @@ h1 {
     width: 170px;
 
     border:
-
         3px solid
         rgba(50, 22, 8, 0.7);
 
@@ -574,78 +415,49 @@ h1 {
 
         0 0 0 2px
         rgba(190, 120, 60, 0.18);
-
 }
-
 
 .panel-top {
-
     top: 25px;
-
     height: 115px;
-
 }
-
 
 .panel-bottom {
-
     bottom: 25px;
-
     height: 115px;
-
 }
 
 
-/* =====================================
-   НОМЕР ДВЕРИ
-===================================== */
+/* =========================================
+   ТАБЛИЧКА С НОМЕРОМ
+========================================= */
 
 .door-number {
-
     position: absolute;
 
     top: 50%;
-
     left: 50%;
 
     transform:
-
-        translate(
-            -50%,
-            -50%
-        );
+        translate(-50%, -50%);
 
     width: 65px;
-
     height: 45px;
 
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
+    background: #f4f4f0;
 
-    /* БЕЛАЯ ТАБЛИЧКА */
-
-    background:
-
-        #f4f4f0;
-
-    color:
-
-        #111;
-
-
-    /* ЧЁРНАЯ ЦИФРА */
+    color: #111;
 
     font-family:
-
         Georgia,
         serif;
 
     font-size: 25px;
-
     font-weight: bold;
 
     z-index: 10;
@@ -653,27 +465,22 @@ h1 {
     border-radius: 2px;
 
     box-shadow:
-
         0 4px 10px
         rgba(0, 0, 0, 0.3);
-
 }
 
 
-/* =====================================
+/* =========================================
    РУЧКА
-===================================== */
+========================================= */
 
 .handle {
-
     position: absolute;
 
     right: 20px;
-
     top: 58%;
 
     width: 22px;
-
     height: 22px;
 
     border-radius: 50%;
@@ -687,7 +494,6 @@ h1 {
     background:
 
         radial-gradient(
-
             circle at 30% 30%,
 
             #fff,
@@ -695,7 +501,6 @@ h1 {
             #c7c8ca 45%,
 
             #74777c
-
         );
 
     box-shadow:
@@ -705,37 +510,27 @@ h1 {
 
     transition:
 
-        transform
-        0.25s
-        ease,
+        transform 0.25s ease,
 
-        box-shadow
-        0.25s
-        ease;
-
+        box-shadow 0.25s ease;
 }
 
-
 .handle:hover {
-
     transform:
-
         scale(1.25);
 
     box-shadow:
 
         0 0 28px
         rgba(255, 255, 255, 0.85);
-
 }
 
 
-/* =====================================
+/* =========================================
    ПОДСКАЗКА
-===================================== */
+========================================= */
 
 .door-hint {
-
     margin-top: 18px;
 
     color: #9698a2;
@@ -747,168 +542,325 @@ h1 {
     letter-spacing: 3px;
 
     transition:
-
         opacity
         0.4s
         ease;
-
 }
 
 
-/* =====================================
-   ОТКРЫТАЯ ДВЕРЬ
-===================================== */
+/* =========================================
+   ОТКРЫТИЕ ДВЕРИ
+========================================= */
 
 .door-card.open .door {
-
     transform:
-
-        rotateY(-112deg);
-
+        rotateY(-108deg);
 }
-
-
-/* =====================================
-   ПОЯВЛЕНИЕ КАРТИНКИ
-===================================== */
-
-.door-card.open .surprise img {
-
-    opacity: 1;
-
-    transform:
-
-        scale(1.35)
-        translateY(0);
-
-}
-
-
-/* =====================================
-   КАРТИНКА ВЫЛЕЗАЕТ ЗА РАМКУ
-===================================== */
-
-.door-card.open .surprise {
-
-    overflow: visible;
-
-}
-
-
-/* =====================================
-   УБИРАЕМ ПОДСКАЗКУ
-===================================== */
 
 .door-card.open .door-hint {
-
     opacity: 0;
-
 }
 
 
-/* =====================================
+/* =========================================
    НЕВЫБРАННЫЕ ДВЕРИ
-===================================== */
+========================================= */
 
 .door-card.disabled {
-
     opacity: 0.22;
 
     pointer-events: none;
 
     transform:
-
         scale(0.95);
+}
+
+
+/* =========================================
+   ВЫЛЕТ КАРТИНКИ
+
+   ЭТОТ КЛАСС ДОБАВЛЯЕТ JS
+   ТОЛЬКО ПОСЛЕ НАЖАТИЯ
+========================================= */
+
+.door-card.boom .surprise {
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+
+    width:
+        min(
+            78vw,
+            1000px
+        );
+
+    height:
+        min(
+            88vh,
+            800px
+        );
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
+
+    z-index: 1000;
+
+    background: transparent;
+
+    overflow: visible;
+
+    opacity: 1;
+    visibility: visible;
+}
+
+.door-card.boom .surprise img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    opacity: 1;
+
+    animation:
+
+        imageBoom
+        0.55s
+        cubic-bezier(
+            0.16,
+            1.35,
+            0.3,
+            1
+        )
+        forwards;
+}
+
+
+/* =========================================
+   АНИМАЦИЯ БУМ
+========================================= */
+
+@keyframes imageBoom {
+
+    0% {
+
+        transform:
+            scale(0.05);
+
+        opacity: 0;
+
+        filter:
+            brightness(2.5);
+
+    }
+
+    25% {
+
+        opacity: 1;
+
+    }
+
+    65% {
+
+        transform:
+            scale(1.12);
+
+        filter:
+            brightness(1.3);
+
+    }
+
+    82% {
+
+        transform:
+            scale(0.96);
+
+        filter:
+            brightness(1);
+
+    }
+
+    100% {
+
+        transform:
+            scale(1);
+
+        opacity: 1;
+
+        filter:
+            brightness(1);
+
+    }
 
 }
 
 
-/* =====================================
+/* =========================================
+   ВСПЫШКА
+========================================= */
+
+.flash {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 900;
+
+    pointer-events: none;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+
+            rgba(255, 255, 255, 0.85),
+
+            rgba(255, 255, 255, 0)
+            65%
+        );
+
+    animation:
+        flashBoom
+        0.45s
+        ease-out
+        forwards;
+}
+
+@keyframes flashBoom {
+
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================================
+   ТРЯСКА
+========================================= */
+
+.screen-shake {
+    animation:
+        screenShake
+        0.45s
+        ease-in-out;
+}
+
+@keyframes screenShake {
+
+    0% {
+        transform:
+            translate(0, 0);
+    }
+
+    15% {
+        transform:
+            translate(-7px, 4px);
+    }
+
+    30% {
+        transform:
+            translate(7px, -4px);
+    }
+
+    45% {
+        transform:
+            translate(-5px, -3px);
+    }
+
+    60% {
+        transform:
+            translate(5px, 3px);
+    }
+
+    75% {
+        transform:
+            translate(-2px, 1px);
+    }
+
+    100% {
+        transform:
+            translate(0, 0);
+    }
+
+}
+
+
+/* =========================================
    РЕЗУЛЬТАТ
-===================================== */
+========================================= */
 
 .result {
-
     margin-top: 10px;
 
     opacity: 0;
 
     transform:
-
         translateY(25px);
 
     transition:
 
-        opacity
-        0.8s
-        ease,
+        opacity 0.8s ease,
 
-        transform
-        0.8s
-        ease;
-
+        transform 0.8s ease;
 }
 
-
 .result.visible {
-
     opacity: 1;
 
     transform:
-
         translateY(0);
-
 }
 
-
 .result p {
-
     color: #aeb0b9;
 
     margin-bottom: 12px;
 
     letter-spacing: 2px;
-
 }
 
-
 .result h2 {
-
     font-family:
-
         Georgia,
         serif;
 
     font-weight: 400;
 
     font-size:
-
         clamp(
             28px,
             4vw,
             50px
         );
-
 }
 
 
-/* =====================================
+/* =========================================
    КНОПКА
-===================================== */
+========================================= */
 
 .next-button {
-
     display: inline-block;
 
     margin-top: 28px;
 
     padding:
-
         15px
         38px;
 
     border:
-
         1px solid
         rgba(255, 255, 255, 0.35);
 
@@ -927,55 +879,38 @@ h1 {
     pointer-events: none;
 
     transform:
-
         translateY(20px);
 
     transition:
 
-        opacity
-        0.7s
-        ease,
+        opacity 0.7s ease,
 
-        transform
-        0.7s
-        ease,
+        transform 0.7s ease,
 
-        background
-        0.3s
-        ease,
+        background 0.3s ease,
 
-        color
-        0.3s
-        ease;
-
+        color 0.3s ease;
 }
 
-
 .next-button.visible {
-
     opacity: 1;
 
     pointer-events: auto;
 
     transform:
-
         translateY(0);
-
 }
 
-
 .next-button:hover {
-
     background: white;
 
     color: #111;
-
 }
 
 
-/* =====================================
-   АНИМАЦИИ
-===================================== */
+/* =========================================
+   АНИМАЦИИ ПОЯВЛЕНИЯ
+========================================= */
 
 @keyframes introAppear {
 
@@ -984,24 +919,20 @@ h1 {
         opacity: 0;
 
         transform:
-
             translateY(-25px);
 
     }
-
 
     to {
 
         opacity: 1;
 
         transform:
-
             translateY(0);
 
     }
 
 }
-
 
 @keyframes doorAppear {
 
@@ -1015,7 +946,6 @@ h1 {
             scale(0.9);
 
     }
-
 
     to {
 
@@ -1031,376 +961,78 @@ h1 {
 }
 
 
-/* =====================================
-   МОБИЛЬНАЯ ВЕРСИЯ
-===================================== */
+/* =========================================
+   ПЛАНШЕТ
+========================================= */
 
 @media (max-width: 900px) {
 
     .doors {
-
         gap: 25px;
-
         flex-wrap: wrap;
-
     }
-
 
     .door-card {
-
         width: 190px;
-
     }
-
 
     .door-frame {
-
         width: 190px;
-
         height: 300px;
-
     }
-
 
     .door {
-
         width: 166px;
-
         height: 276px;
-
     }
-
 
     .surprise {
-
         width: 166px;
-
         height: 276px;
-
     }
 
-
     .door-panel {
-
         width: 135px;
-
     }
 
 }
 
+
+/* =========================================
+   ТЕЛЕФОН
+========================================= */
 
 @media (max-width: 600px) {
 
     .page {
-
         justify-content: flex-start;
-
         padding-top: 60px;
-
     }
-
 
     .doors {
-
         flex-direction: column;
-
         align-items: center;
-
     }
-
 
     .door-card {
-
-        transform: scale(0.9);
+        transform:
+            scale(0.9);
 
         margin-bottom: -15px;
-
     }
 
-
-    .door-card:hover {
-
+    .door-card:hover:not(.disabled) {
         transform:
 
             translateY(-8px)
             scale(0.9);
-
     }
 
-}
-/* =====================================
-   РЕЗКИЙ ВЫЛЕТ КАРТИНКИ
-===================================== */
+    .door-card.boom .surprise {
 
-.door-card.boom {
+        width: 95vw;
 
-    z-index: 100;
-
-}
-
-
-/* КОНТЕЙНЕР КАРТИНКИ */
-
-.door-card.boom .surprise {
-
-    position: fixed;
-
-    top: 50%;
-
-    left: 50%;
-
-    width: min(75vw, 900px);
-
-    height: min(85vh, 750px);
-
-    transform:
-
-        translate(
-            -50%,
-            -50%
-        );
-
-    z-index: 1000;
-
-    overflow: visible;
-
-    background: transparent;
-
-}
-
-
-/* САМА КАРТИНКА */
-
-.door-card.boom .surprise img {
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: contain;
-
-    opacity: 1;
-
-    transform:
-
-        scale(0.1);
-
-    animation:
-
-        imageBoom
-        0.55s
-        cubic-bezier(
-            0.16,
-            1.5,
-            0.3,
-            1
-        )
-        forwards;
-
-}
-
-
-/* =====================================
-   АНИМАЦИЯ ВЫЛЕТА
-===================================== */
-
-@keyframes imageBoom {
-
-    0% {
-
-        transform:
-
-            scale(0.1);
-
-        filter:
-
-            brightness(2.5);
-
-    }
-
-
-    55% {
-
-        transform:
-
-            scale(1.12);
-
-        filter:
-
-            brightness(1.5);
-
-    }
-
-
-    75% {
-
-        transform:
-
-            scale(0.96);
-
-        filter:
-
-            brightness(1);
-
-    }
-
-
-    100% {
-
-        transform:
-
-            scale(1);
-
-        filter:
-
-            brightness(1);
-
-    }
-
-}
-
-
-/* =====================================
-   ВСПЫШКА ПРИ БУМЕ
-===================================== */
-
-.door-card.boom::after {
-
-    content: "";
-
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 900;
-
-    pointer-events: none;
-
-    background:
-
-        radial-gradient(
-
-            circle,
-
-            rgba(255, 255, 255, 0.8),
-
-            rgba(255, 255, 255, 0)
-
-            60%
-
-        );
-
-    animation:
-
-        flashBoom
-        0.5s
-        ease-out
-        forwards;
-
-}
-
-
-@keyframes flashBoom {
-
-    0% {
-
-        opacity: 0;
-
-    }
-
-
-    20% {
-
-        opacity: 1;
-
-    }
-
-
-    100% {
-
-        opacity: 0;
-
-    }
-
-}
-
-
-/* =====================================
-   ТРЯСКА ЭКРАНА
-===================================== */
-
-.screen-shake {
-
-    animation:
-
-        screenShake
-        0.5s
-        ease-in-out;
-
-}
-
-
-@keyframes screenShake {
-
-    0% {
-
-        transform:
-
-            translate(0, 0);
-
-    }
-
-
-    15% {
-
-        transform:
-
-            translate(-8px, 5px);
-
-    }
-
-
-    30% {
-
-        transform:
-
-            translate(8px, -5px);
-
-    }
-
-
-    45% {
-
-        transform:
-
-            translate(-6px, -4px);
-
-    }
-
-
-    60% {
-
-        transform:
-
-            translate(6px, 4px);
-
-    }
-
-
-    75% {
-
-        transform:
-
-            translate(-3px, 2px);
-
-    }
-
-
-    100% {
-
-        transform:
-
-            translate(0, 0);
+        height: 80vh;
 
     }
 
