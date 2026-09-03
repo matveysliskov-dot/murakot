@@ -4,6 +4,460 @@
     box-sizing: border-box;
 }
 
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+
+    background: #090b12;
+    color: white;
+
+    font-family: Arial, sans-serif;
+}
+
+
+/* =====================
+   ФОН
+===================== */
+
+.background {
+    position: fixed;
+    inset: 0;
+
+    background-image: url("sakura.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    opacity: 0.2;
+
+    transform: scale(1.05);
+
+    animation: backgroundMove 14s ease-in-out infinite alternate;
+
+    z-index: -2;
+}
+
+.background::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background: rgba(5, 7, 12, 0.55);
+}
+
+
+@keyframes backgroundMove {
+
+    from {
+        transform:
+            scale(1.05)
+            translateX(-8px);
+    }
+
+    to {
+        transform:
+            scale(1.1)
+            translateX(8px)
+            translateY(-5px);
+    }
+}
+
+
+/* =====================
+   СТРАНИЦА
+===================== */
+
+.page {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 30px;
+}
+
+
+/* =====================
+   ТЕКСТ
+===================== */
+
+h1 {
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(38px, 5vw, 70px);
+
+    font-weight: normal;
+
+    margin-bottom: 15px;
+}
+
+
+.subtitle {
+    color: #b7b9c2;
+
+    font-size: 16px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 70px;
+
+    animation: pulseText 2s ease-in-out infinite;
+}
+
+
+@keyframes pulseText {
+
+    0% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
+}
+
+
+/* =====================
+   КОНВЕРТ
+===================== */
+
+.envelope-wrapper {
+    width: 420px;
+    height: 280px;
+
+    max-width: 90vw;
+
+    perspective: 1200px;
+
+    position: relative;
+}
+
+
+/* САМ КОНВЕРТ */
+
+.envelope {
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+
+    cursor: pointer;
+
+    transition: transform 0.3s ease;
+}
+
+
+.envelope:not(.open):hover {
+    transform: translateY(-8px);
+}
+
+
+/* =====================
+   ПИСЬМО
+===================== */
+
+.letter {
+    position: absolute;
+
+    width: 82%;
+    height: 250px;
+
+    left: 9%;
+    bottom: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fffaf0,
+            #e8dfd0
+        );
+
+    color: #252525;
+
+    z-index: 1;
+
+    transform: translateY(90px);
+
+    transition:
+        transform 1s cubic-bezier(.2,.8,.2,1);
+
+    box-shadow:
+        0 15px 35px
+        rgba(0,0,0,0.35);
+}
+
+
+.letter-content {
+    padding: 30px;
+
+    text-align: left;
+
+    font-family: Georgia, serif;
+}
+
+
+.letter h2 {
+    font-size: 28px;
+
+    margin-bottom: 18px;
+}
+
+
+.letter p {
+    font-size: 15px;
+
+    line-height: 1.55;
+
+    margin-bottom: 12px;
+}
+
+
+/* =====================
+   ЗАДНЯЯ ЧАСТЬ
+===================== */
+
+.envelope-back {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d8c5ad,
+            #b79a7b
+        );
+
+    z-index: 2;
+}
+
+
+/* =====================
+   НИЖНИЙ ТРЕУГОЛЬНИК
+===================== */
+
+.envelope-back::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: #c7ad90;
+
+    clip-path:
+        polygon(
+            0 100%,
+            50% 42%,
+            100% 100%
+        );
+}
+
+
+/* =====================
+   ЛЕВАЯ ЧАСТЬ
+===================== */
+
+.envelope-left {
+    position: absolute;
+
+    inset: 0;
+
+    background: #d0b89c;
+
+    z-index: 4;
+
+    clip-path:
+        polygon(
+            0 0,
+            50% 55%,
+            0 100%
+        );
+}
+
+
+/* =====================
+   ПРАВАЯ ЧАСТЬ
+===================== */
+
+.envelope-right {
+    position: absolute;
+
+    inset: 0;
+
+    background: #c2a488;
+
+    z-index: 4;
+
+    clip-path:
+        polygon(
+            100% 0,
+            50% 55%,
+            100% 100%
+        );
+}
+
+
+/* =====================
+   КРЫШКА
+===================== */
+
+.envelope-flap {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e0cdb5,
+            #b99b7e
+        );
+
+    z-index: 5;
+
+    clip-path:
+        polygon(
+            0 0,
+            50% 55%,
+            100% 0
+        );
+
+    transform-origin: top center;
+
+    transition:
+        transform 0.8s ease;
+
+    backface-visibility: hidden;
+}
+
+
+/* =====================
+   ОТКРЫТИЕ
+===================== */
+
+.envelope.open .envelope-flap {
+    transform: rotateX(180deg);
+
+    z-index: 0;
+}
+
+
+.envelope.open .letter {
+    transform: translateY(-150px);
+
+    z-index: 10;
+}
+
+
+/* =====================
+   КНОПКА ДАЛЬШЕ
+===================== */
+
+.next-button {
+    margin-top: 90px;
+
+    padding:
+        14px
+        35px;
+
+    border-radius: 50px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.35);
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    letter-spacing: 2px;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transform: translateY(20px);
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease,
+        background 0.3s ease;
+}
+
+
+.next-button.visible {
+    opacity: 1;
+
+    pointer-events: auto;
+
+    transform: translateY(0);
+}
+
+
+.next-button:hover {
+    background: white;
+
+    color: #111;
+}
+
+
+/* =====================
+   МОБИЛЬНАЯ ВЕРСИЯ
+===================== */
+
+@media (max-width: 600px) {
+
+    .envelope-wrapper {
+        transform: scale(0.8);
+
+        margin-top: -20px;
+        margin-bottom: -20px;
+    }
+
+
+    .subtitle {
+        margin-bottom: 30px;
+    }
+
+
+    .next-button {
+        margin-top: 40px;
+    }
+
+}* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 
 body {
     min-height: 100vh;
