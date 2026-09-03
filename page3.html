@@ -9,9 +9,9 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Сообщение</title>
+    <title>Три двери</title>
 
-    <link rel="stylesheet" href="page3.css">
+    <link rel="stylesheet" href="page4.css">
 
 </head>
 
@@ -19,113 +19,78 @@
 <body>
 
 
-    <!-- Фон -->
+    <!-- ФОН -->
+
     <div class="background"></div>
 
-
-    <!-- Затемнение -->
     <div class="overlay"></div>
 
 
     <main class="page">
 
 
-        <div class="content">
+        <!-- ВЕРХНИЙ ТЕКСТ -->
+
+        <section class="intro">
+
+            <p class="small-text">
+                Небольшой выбор
+            </p>
 
 
-            <!-- ВЕРХНИЙ ТЕКСТ -->
-
-            <div class="intro">
-
-                <p class="small-text">
-                    Но есть одна вещь...
-                </p>
+            <h1>
+                А теперь открой<br>
+                одну из дверей.
+            </h1>
 
 
-                <h1>
-                    расстояние не умеет<br>
-                    останавливать сообщения.
-                </h1>
+            <p class="subtitle">
+                Интересно, что тебя ждёт?
+            </p>
 
-            </div>
+        </section>
 
 
-            <!-- КОНВЕРТ -->
+
+        <!-- ДВЕРИ -->
+
+        <section class="doors">
+
+
+
+            <!-- РОЗОВАЯ ДВЕРЬ -->
 
             <div
-                class="envelope-wrapper"
-                id="envelope"
+                class="door-card pink-card"
+                data-message="Побольше уютных вечеров."
             >
 
 
-                <!-- Подсказка -->
-
-                <p class="click-text">
-                    нажми на конверт
-                </p>
+                <div class="door-scene">
 
 
-                <div class="envelope">
+                    <div class="door-frame">
 
 
-                    <!-- ЗАДНЯЯ ЧАСТЬ -->
-
-                    <div class="envelope-back"></div>
+                        <div class="door pink-door">
 
 
-                    <!-- ПИСЬМО -->
-
-                    <div class="letter">
+                            <div class="door-panel"></div>
 
 
-                        <div class="letter-content">
-
-
-                            <p class="letter-text">
-
-                                Иногда расстояние —
-                                это просто цифры.
-
-                            </p>
-
-
-                            <p class="letter-text second">
-
-                                Потому что если захочется
-                                поговорить —
-
-                                <br><br>
-
-                                я всегда где-то
-                                на другом конце сообщения.
-
-                            </p>
-
-
-                            <p class="signature">
-                                Из Ростова 🌸
-                            </p>
+                            <button
+                                class="handle"
+                                aria-label="Открыть дверь"
+                            ></button>
 
 
                         </div>
 
-                    </div>
 
+                        <!-- СВЕТ ЗА ДВЕРЬЮ -->
 
-                    <!-- КЛАПАН -->
+                        <div class="light pink-light"></div>
 
-                    <div class="envelope-flap"></div>
-
-
-                    <!-- ПЕРЕДНЯЯ ЧАСТЬ -->
-
-                    <div class="envelope-front">
-
-                        <div class="left-fold"></div>
-
-                        <div class="right-fold"></div>
-
-                        <div class="bottom-fold"></div>
 
                     </div>
 
@@ -133,109 +98,162 @@
                 </div>
 
 
+                <p class="door-hint">
+                    потяни за ручку
+                </p>
+
+
             </div>
 
 
-            <!-- КНОПКА ДАЛЬШЕ -->
 
-            <a
-                href="#"
-                class="next-button"
-                id="nextButton"
+            <!-- СИНЯЯ ДВЕРЬ -->
+
+            <div
+                class="door-card blue-card"
+                data-message="Побольше новых впечатлений."
             >
-                дальше
-            </a>
 
 
-        </div>
+                <div class="door-scene">
 
 
-    </main>
+                    <div class="door-frame">
 
 
-    <script src="page3.js"></script>
+                        <div class="door blue-door">
 
 
-</body>
-
-</html><!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Письмо</title>
-
-    <link rel="stylesheet" href="page3.css">
-</head>
-
-<body>
-
-    <div class="background"></div>
-
-    <main class="page">
-
-        <h1>У меня для тебя кое-что есть</h1>
-
-        <p class="subtitle">
-            Нажми на конверт
-        </p>
+                            <div class="door-panel"></div>
 
 
-        <div class="envelope-wrapper">
+                            <button
+                                class="handle"
+                                aria-label="Открыть дверь"
+                            ></button>
 
-            <div class="envelope" id="envelope">
 
-                <!-- Письмо -->
-                <div class="letter">
+                        </div>
 
-                    <div class="letter-content">
 
-                        <h2>Привет.</h2>
+                        <div class="light blue-light"></div>
 
-                        <p>
-                            Здесь можешь написать свой текст.
-                        </p>
-
-                        <p>
-                            Любое поздравление, которое хочешь
-                            оставить для неё.
-                        </p>
-
-                        <p>
-                            А дальше будет ещё кое-что.
-                        </p>
 
                     </div>
+
 
                 </div>
 
 
-                <!-- Основа конверта -->
-                <div class="envelope-back"></div>
+                <p class="door-hint">
+                    потяни за ручку
+                </p>
 
-                <!-- Левая часть -->
-                <div class="envelope-left"></div>
-
-                <!-- Правая часть -->
-                <div class="envelope-right"></div>
-
-                <!-- Крышка -->
-                <div class="envelope-flap"></div>
 
             </div>
 
-        </div>
 
 
-        <a href="page4.html" class="next-button" id="nextButton">
-            Продолжить
+            <!-- ЗОЛОТАЯ ДВЕРЬ -->
+
+            <div
+                class="door-card gold-card"
+                data-message="Побольше счастливых случайностей."
+            >
+
+
+                <div class="door-scene">
+
+
+                    <div class="door-frame">
+
+
+                        <div class="door gold-door">
+
+
+                            <div class="door-panel"></div>
+
+
+                            <button
+                                class="handle"
+                                aria-label="Открыть дверь"
+                            ></button>
+
+
+                        </div>
+
+
+                        <div class="light gold-light"></div>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <p class="door-hint">
+                    потяни за ручку
+                </p>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ФРАЗА ПОСЛЕ ОТКРЫТИЯ -->
+
+        <section
+            class="result"
+            id="result"
+        >
+
+
+            <p
+                class="result-small"
+                id="resultSmall"
+            >
+                За этой дверью...
+            </p>
+
+
+            <h2
+                id="resultText"
+            >
+                Побольше хорошего.
+            </h2>
+
+
+            <p class="result-bottom">
+                Хороший выбор.
+            </p>
+
+
+        </section>
+
+
+
+        <!-- КНОПКА -->
+
+        <a
+            href="#"
+            class="next-button"
+            id="nextButton"
+        >
+            дальше
         </a>
 
+
     </main>
 
 
-    <script src="page3.js"></script>
+
+    <script src="page4.js"></script>
+
 
 </body>
+
 </html>
