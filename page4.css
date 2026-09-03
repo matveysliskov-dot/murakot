@@ -1,43 +1,50 @@
-/* ==============================
+/* =====================================
    СБРОС
-============================== */
+===================================== */
 
 * {
+
     margin: 0;
     padding: 0;
+
     box-sizing: border-box;
+
 }
 
-
-/* ==============================
-   ОСНОВА
-============================== */
 
 html,
 body {
+
     width: 100%;
     min-height: 100%;
+
 }
 
+
+/* =====================================
+   BODY
+===================================== */
 
 body {
 
     min-height: 100vh;
 
-    background: #08090f;
+    background: #07080d;
 
-    color: #ffffff;
+    color: white;
 
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        sans-serif;
 
     overflow-x: hidden;
 
 }
 
 
-/* ==============================
+/* =====================================
    ФОН
-============================== */
+===================================== */
 
 .background {
 
@@ -45,7 +52,8 @@ body {
 
     inset: -30px;
 
-    background-image: url("sakura.jpg");
+    background-image:
+        url("sakura.jpg");
 
     background-size: cover;
 
@@ -53,11 +61,15 @@ body {
 
     background-repeat: no-repeat;
 
-    opacity: 0.22;
+    opacity: 0.20;
 
     z-index: 0;
 
-    animation: backgroundMove 14s ease-in-out infinite;
+    animation:
+        backgroundMove
+        15s
+        ease-in-out
+        infinite;
 
 }
 
@@ -65,23 +77,37 @@ body {
 @keyframes backgroundMove {
 
     0% {
-        transform: scale(1.03) translate(0, 0);
+
+        transform:
+            scale(1.03)
+            translate(0, 0);
+
     }
+
 
     50% {
-        transform: scale(1.07) translate(8px, -8px);
+
+        transform:
+            scale(1.07)
+            translate(8px, -8px);
+
     }
 
+
     100% {
-        transform: scale(1.03) translate(0, 0);
+
+        transform:
+            scale(1.03)
+            translate(0, 0);
+
     }
 
 }
 
 
-/* ==============================
+/* =====================================
    ЗАТЕМНЕНИЕ
-============================== */
+===================================== */
 
 .overlay {
 
@@ -90,10 +116,11 @@ body {
     inset: 0;
 
     background:
+
         radial-gradient(
             circle at center,
-            rgba(15, 17, 27, 0.45),
-            rgba(4, 5, 10, 0.82)
+            rgba(15, 17, 25, 0.35),
+            rgba(4, 5, 10, 0.88)
         );
 
     z-index: 1;
@@ -101,9 +128,9 @@ body {
 }
 
 
-/* ==============================
-   СТРАНИЦА
-============================== */
+/* =====================================
+   ОСНОВНАЯ СТРАНИЦА
+===================================== */
 
 .page {
 
@@ -123,70 +150,86 @@ body {
 
     justify-content: center;
 
-    padding: 50px 25px;
-
     text-align: center;
+
+    padding:
+
+        40px
+        30px;
 
 }
 
 
-/* ==============================
-   ВЕРХНИЙ БЛОК
-============================== */
+/* =====================================
+   ТЕКСТ
+===================================== */
 
 .intro {
 
     margin-bottom: 45px;
 
-    animation: appearTop 1s ease forwards;
+    animation:
+
+        introAppear
+        1s
+        ease
+        forwards;
 
 }
 
 
 .small-text {
 
-    color: #9ea0aa;
+    color: #999ba5;
 
     text-transform: uppercase;
 
     letter-spacing: 4px;
 
-    font-size: 12px;
+    font-size: 11px;
 
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 
 }
 
 
 h1 {
 
-    font-family: Georgia, "Times New Roman", serif;
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
 
     font-weight: 400;
 
-    font-size: clamp(42px, 5vw, 76px);
+    font-size:
 
-    line-height: 1.05;
+        clamp(
+            45px,
+            6vw,
+            78px
+        );
 
     letter-spacing: -2px;
 
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 
 }
 
 
 .subtitle {
 
-    color: #aeb0b9;
+    color: #b1b2ba;
 
-    font-size: 17px;
+    font-size: 16px;
 
 }
 
 
-/* ==============================
+/* =====================================
    ДВЕРИ
-============================== */
+===================================== */
 
 .doors {
 
@@ -196,193 +239,212 @@ h1 {
 
     justify-content: center;
 
-    gap: 55px;
+    gap: 65px;
 
     margin-bottom: 35px;
 
 }
 
 
-/* ==============================
-   КАРТОЧКА ДВЕРИ
-============================== */
+/* =====================================
+   КАРТОЧКА
+===================================== */
 
 .door-card {
 
-    width: 220px;
-
-    position: relative;
+    width: 230px;
 
     cursor: pointer;
 
+    position: relative;
+
     transition:
-        transform 0.4s ease,
-        opacity 0.5s ease;
+
+        transform
+        0.4s
+        ease,
+
+        opacity
+        0.6s
+        ease;
 
     animation:
+
         doorAppear
-        0.8s ease forwards;
+        0.8s
+        ease
+        forwards;
 
 }
 
 
 .door-card:nth-child(2) {
+
     animation-delay: 0.15s;
+
 }
 
 
 .door-card:nth-child(3) {
+
     animation-delay: 0.3s;
+
 }
 
 
 .door-card:hover {
 
     transform:
-        translateY(-12px);
+
+        translateY(-10px);
 
 }
 
 
-/* ==============================
-   СЦЕНА
-============================== */
+/* =====================================
+   3D СЦЕНА
+===================================== */
 
 .door-scene {
 
-    perspective: 1000px;
+    perspective: 1400px;
 
 }
 
 
-/* ==============================
-   РАМА
-============================== */
+/* =====================================
+   РАМА ДВЕРИ
+===================================== */
 
 .door-frame {
 
-    width: 220px;
+    width: 230px;
 
-    height: 330px;
+    height: 350px;
 
     position: relative;
 
-    padding: 10px;
+    overflow: visible;
+
+    padding: 12px;
 
     background:
 
         linear-gradient(
+
             90deg,
-            #242630,
-            #3a3d48,
-            #242630
+
+            #1a1b22,
+
+            #363841,
+
+            #1b1c23
+
         );
 
     box-shadow:
 
-        0 20px 50px
-        rgba(0, 0, 0, 0.5);
+        0 25px 60px
+        rgba(0, 0, 0, 0.6);
 
 }
 
 
-/* ==============================
-   СВЕТ
-============================== */
+/* =====================================
+   СЮРПРИЗ ЗА ДВЕРЬЮ
+===================================== */
 
-.light {
+.surprise {
 
     position: absolute;
 
-    inset: 10px;
+    top: 12px;
+
+    left: 12px;
+
+    width: 206px;
+
+    height: 326px;
+
+    overflow: hidden;
+
+    z-index: 2;
+
+    background: #111;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+.surprise img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+
+
+    /* ИЗНАЧАЛЬНО СПРЯТАНА */
 
     opacity: 0;
 
+    transform:
+
+        scale(0.25)
+        translateY(120px);
+
     transition:
 
-        opacity 1s ease;
+        transform
+        1.2s
+        cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        ),
 
-    filter:
-
-        blur(5px);
-
-}
-
-
-/* ==============================
-   РОЗОВЫЙ СВЕТ
-============================== */
-
-.pink-light {
-
-    background:
-
-        radial-gradient(
-            circle at center,
-            #fff6fa 0%,
-            #ffb9d2 35%,
-            #ff6f9f 65%,
-            transparent 100%
-        );
+        opacity
+        0.6s
+        ease;
 
 }
 
 
-/* ==============================
-   СИНИЙ СВЕТ
-============================== */
-
-.blue-light {
-
-    background:
-
-        radial-gradient(
-            circle at center,
-            #f5fbff 0%,
-            #a8d8ff 35%,
-            #4b8dff 65%,
-            transparent 100%
-        );
-
-}
-
-
-/* ==============================
-   ЗОЛОТОЙ СВЕТ
-============================== */
-
-.gold-light {
-
-    background:
-
-        radial-gradient(
-            circle at center,
-            #fffbea 0%,
-            #ffe28a 35%,
-            #ffb52e 65%,
-            transparent 100%
-        );
-
-}
-
-
-/* ==============================
+/* =====================================
    ДВЕРЬ
-============================== */
+===================================== */
 
 .door {
 
     position: absolute;
 
-    top: 10px;
-    left: 10px;
+    top: 12px;
 
-    width: 200px;
-    height: 310px;
+    left: 12px;
 
-    z-index: 3;
+    width: 206px;
 
-    transform-origin: left center;
+    height: 326px;
+
+    z-index: 5;
+
+    transform-origin:
+
+        left
+        center;
+
+    transform-style:
+
+        preserve-3d;
 
     transition:
 
@@ -395,127 +457,261 @@ h1 {
             1
         );
 
-    transform-style: preserve-3d;
+
+    /* ДЕРЕВО */
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            rgba(60, 28, 12, 0.4),
+
+            transparent 15%,
+
+            rgba(255, 220, 150, 0.08) 35%,
+
+            rgba(50, 20, 8, 0.18) 60%,
+
+            transparent 85%
+
+        ),
+
+        linear-gradient(
+
+            90deg,
+
+            #5a2f17,
+
+            #8b4c24,
+
+            #633416,
+
+            #9b5b2c,
+
+            #4e2814
+
+        );
+
+    box-shadow:
+
+        inset 0 0 35px
+        rgba(0, 0, 0, 0.45),
+
+        inset 4px 0 10px
+        rgba(255, 210, 140, 0.12);
 
 }
 
 
-/* ==============================
-   ПАНЕЛЬ ДВЕРИ
-============================== */
+/* =====================================
+   ДОБАВЛЯЕМ ТЕКСТУРУ ДЕРЕВА
+===================================== */
 
-.door-panel {
+.door::before {
+
+    content: "";
 
     position: absolute;
 
     inset: 0;
 
+    pointer-events: none;
+
+    opacity: 0.45;
+
+    background:
+
+        repeating-linear-gradient(
+
+            90deg,
+
+            rgba(255, 220, 160, 0.05)
+            0px,
+
+            rgba(255, 220, 160, 0.05)
+            2px,
+
+            rgba(40, 15, 5, 0.12)
+            3px,
+
+            rgba(40, 15, 5, 0.12)
+            5px,
+
+            transparent
+            7px,
+
+            transparent
+            14px
+
+        );
+
+}
+
+
+/* =====================================
+   ПАНЕЛИ ДВЕРИ
+===================================== */
+
+.door-panel {
+
+    position: absolute;
+
+    left: 18px;
+
+    width: 170px;
+
     border:
 
-        4px solid
-        rgba(255, 255, 255, 0.15);
+        3px solid
+        rgba(50, 22, 8, 0.7);
 
     box-shadow:
 
-        inset 0 0 40px
-        rgba(0, 0, 0, 0.35);
+        inset 0 0 20px
+        rgba(0, 0, 0, 0.3),
+
+        0 0 0 2px
+        rgba(190, 120, 60, 0.18);
 
 }
 
 
-/* ==============================
-   РОЗОВАЯ ДВЕРЬ
-============================== */
+.panel-top {
 
-.pink-door {
+    top: 25px;
+
+    height: 115px;
+
+}
+
+
+.panel-bottom {
+
+    bottom: 25px;
+
+    height: 115px;
+
+}
+
+
+/* =====================================
+   НОМЕР ДВЕРИ
+===================================== */
+
+.door-number {
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 50%;
+
+    transform:
+
+        translate(
+            -50%,
+            -50%
+        );
+
+    width: 65px;
+
+    height: 45px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+
+    /* БЕЛАЯ ТАБЛИЧКА */
 
     background:
 
-        linear-gradient(
-            135deg,
-            #9f496d,
-            #e782a6
-        );
+        #f4f4f0;
+
+    color:
+
+        #111;
+
+
+    /* ЧЁРНАЯ ЦИФРА */
+
+    font-family:
+
+        Georgia,
+        serif;
+
+    font-size: 25px;
+
+    font-weight: bold;
+
+    z-index: 10;
+
+    border-radius: 2px;
+
+    box-shadow:
+
+        0 4px 10px
+        rgba(0, 0, 0, 0.3);
 
 }
 
 
-/* ==============================
-   СИНЯЯ ДВЕРЬ
-============================== */
-
-.blue-door {
-
-    background:
-
-        linear-gradient(
-            135deg,
-            #234b7b,
-            #4f90cf
-        );
-
-}
-
-
-/* ==============================
-   ЗОЛОТАЯ ДВЕРЬ
-============================== */
-
-.gold-door {
-
-    background:
-
-        linear-gradient(
-            135deg,
-            #8c6320,
-            #d8a84d
-        );
-
-}
-
-
-/* ==============================
+/* =====================================
    РУЧКА
-============================== */
+===================================== */
 
 .handle {
 
     position: absolute;
 
-    right: 22px;
+    right: 20px;
 
-    top: 50%;
+    top: 58%;
 
-    transform:
-        translateY(-50%);
+    width: 22px;
 
-    width: 20px;
-
-    height: 20px;
-
-    border: none;
+    height: 22px;
 
     border-radius: 50%;
 
+    border: none;
+
     cursor: pointer;
+
+    z-index: 20;
 
     background:
 
-        linear-gradient(
-            135deg,
-            #ffffff,
-            #a8abb5
+        radial-gradient(
+
+            circle at 30% 30%,
+
+            #fff,
+
+            #c7c8ca 45%,
+
+            #74777c
+
         );
 
     box-shadow:
 
         0 0 15px
-        rgba(255, 255, 255, 0.45);
+        rgba(255, 255, 255, 0.35);
 
     transition:
 
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
+        transform
+        0.25s
+        ease,
+
+        box-shadow
+        0.25s
+        ease;
 
 }
 
@@ -524,108 +720,132 @@ h1 {
 
     transform:
 
-        translateY(-50%)
         scale(1.25);
 
     box-shadow:
 
-        0 0 25px
-        rgba(255, 255, 255, 0.9);
+        0 0 28px
+        rgba(255, 255, 255, 0.85);
 
 }
 
 
-/* ==============================
+/* =====================================
    ПОДСКАЗКА
-============================== */
+===================================== */
 
 .door-hint {
 
     margin-top: 18px;
 
-    color: #989aa4;
+    color: #9698a2;
 
-    font-size: 12px;
+    font-size: 11px;
 
-    letter-spacing: 1.5px;
+    text-transform: uppercase;
+
+    letter-spacing: 3px;
 
     transition:
 
-        opacity 0.4s ease;
+        opacity
+        0.4s
+        ease;
 
 }
 
 
-/* ==============================
-   ОТКРЫТИЕ ДВЕРИ
-============================== */
+/* =====================================
+   ОТКРЫТАЯ ДВЕРЬ
+===================================== */
 
-.door-card.open
-.door {
+.door-card.open .door {
 
     transform:
 
-        rotateY(-105deg);
+        rotateY(-112deg);
 
 }
 
 
-/* СВЕТ */
+/* =====================================
+   ПОЯВЛЕНИЕ КАРТИНКИ
+===================================== */
 
-.door-card.open
-.light {
+.door-card.open .surprise img {
 
     opacity: 1;
 
+    transform:
+
+        scale(1.35)
+        translateY(0);
+
 }
 
 
-/* Исчезает подсказка */
+/* =====================================
+   КАРТИНКА ВЫЛЕЗАЕТ ЗА РАМКУ
+===================================== */
 
-.door-card.open
-.door-hint {
+.door-card.open .surprise {
+
+    overflow: visible;
+
+}
+
+
+/* =====================================
+   УБИРАЕМ ПОДСКАЗКУ
+===================================== */
+
+.door-card.open .door-hint {
 
     opacity: 0;
 
 }
 
 
-/* ==============================
+/* =====================================
    НЕВЫБРАННЫЕ ДВЕРИ
-============================== */
+===================================== */
 
 .door-card.disabled {
 
-    opacity: 0.28;
+    opacity: 0.22;
 
     pointer-events: none;
 
     transform:
-        scale(0.96);
+
+        scale(0.95);
 
 }
 
 
-/* ==============================
+/* =====================================
    РЕЗУЛЬТАТ
-============================== */
+===================================== */
 
 .result {
 
-    max-width: 700px;
+    margin-top: 10px;
 
     opacity: 0;
 
     transform:
 
-        translateY(30px);
-
-    pointer-events: none;
+        translateY(25px);
 
     transition:
 
-        opacity 0.8s ease,
-        transform 0.8s ease;
+        opacity
+        0.8s
+        ease,
+
+        transform
+        0.8s
+        ease;
 
 }
 
@@ -638,82 +858,67 @@ h1 {
 
         translateY(0);
 
-    pointer-events: auto;
-
 }
 
 
-.result-small {
+.result p {
 
-    color: #a5a7b0;
+    color: #aeb0b9;
 
-    text-transform: uppercase;
+    margin-bottom: 12px;
 
-    font-size: 11px;
-
-    letter-spacing: 4px;
-
-    margin-bottom: 15px;
+    letter-spacing: 2px;
 
 }
 
 
 .result h2 {
 
-    font-family: Georgia, serif;
+    font-family:
+
+        Georgia,
+        serif;
 
     font-weight: 400;
 
     font-size:
 
         clamp(
-            30px,
+            28px,
             4vw,
-            52px
+            50px
         );
 
-    line-height: 1.15;
-
-    margin-bottom: 15px;
-
 }
 
 
-.result-bottom {
-
-    color: #b0b2bb;
-
-    font-size: 16px;
-
-}
-
-
-/* ==============================
+/* =====================================
    КНОПКА
-============================== */
+===================================== */
 
 .next-button {
 
     display: inline-block;
 
-    margin-top: 30px;
+    margin-top: 28px;
 
     padding:
 
-        15px 38px;
+        15px
+        38px;
 
     border:
 
         1px solid
-        rgba(255, 255, 255, 0.3);
+        rgba(255, 255, 255, 0.35);
 
     border-radius: 50px;
 
-    color: white;
-
     text-decoration: none;
 
-    font-size: 13px;
+    color: white;
+
+    font-size: 12px;
 
     letter-spacing: 2px;
 
@@ -727,10 +932,21 @@ h1 {
 
     transition:
 
-        opacity 0.7s ease,
-        transform 0.7s ease,
-        background 0.3s ease,
-        color 0.3s ease;
+        opacity
+        0.7s
+        ease,
+
+        transform
+        0.7s
+        ease,
+
+        background
+        0.3s
+        ease,
+
+        color
+        0.3s
+        ease;
 
 }
 
@@ -752,31 +968,34 @@ h1 {
 
     background: white;
 
-    color: #08090f;
+    color: #111;
 
 }
 
 
-/* ==============================
+/* =====================================
    АНИМАЦИИ
-============================== */
+===================================== */
 
-@keyframes appearTop {
+@keyframes introAppear {
 
     from {
 
         opacity: 0;
 
         transform:
+
             translateY(-25px);
 
     }
+
 
     to {
 
         opacity: 1;
 
         transform:
+
             translateY(0);
 
     }
@@ -797,6 +1016,7 @@ h1 {
 
     }
 
+
     to {
 
         opacity: 1;
@@ -811,16 +1031,65 @@ h1 {
 }
 
 
-/* ==============================
+/* =====================================
    МОБИЛЬНАЯ ВЕРСИЯ
-============================== */
+===================================== */
 
-@media (max-width: 850px) {
+@media (max-width: 900px) {
 
-    body {
-        overflow-y: auto;
+    .doors {
+
+        gap: 25px;
+
+        flex-wrap: wrap;
+
     }
 
+
+    .door-card {
+
+        width: 190px;
+
+    }
+
+
+    .door-frame {
+
+        width: 190px;
+
+        height: 300px;
+
+    }
+
+
+    .door {
+
+        width: 166px;
+
+        height: 276px;
+
+    }
+
+
+    .surprise {
+
+        width: 166px;
+
+        height: 276px;
+
+    }
+
+
+    .door-panel {
+
+        width: 135px;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
 
     .page {
 
@@ -833,89 +1102,18 @@ h1 {
 
     .doors {
 
-        gap: 20px;
+        flex-direction: column;
 
-        flex-wrap: wrap;
-
-    }
-
-
-    .door-card {
-
-        width: 160px;
-
-    }
-
-
-    .door-frame {
-
-        width: 160px;
-
-        height: 250px;
-
-    }
-
-
-    .door {
-
-        width: 140px;
-
-        height: 230px;
-
-    }
-
-
-    .handle {
-
-        right: 15px;
-
-        width: 16px;
-
-        height: 16px;
-
-    }
-
-
-    .intro {
-
-        margin-bottom: 35px;
-
-    }
-
-
-    h1 {
-
-        font-size:
-
-            clamp(
-                38px,
-                10vw,
-                60px
-            );
-
-    }
-
-}
-
-
-@media (max-width: 520px) {
-
-    .doors {
-
-        display: grid;
-
-        grid-template-columns:
-
-            1fr
-            1fr;
+        align-items: center;
 
     }
 
 
     .door-card {
 
-        transform:
-            scale(0.85);
+        transform: scale(0.9);
+
+        margin-bottom: -15px;
 
     }
 
@@ -925,20 +1123,7 @@ h1 {
         transform:
 
             translateY(-8px)
-            scale(0.85);
-
-    }
-
-
-    .door-card:last-child {
-
-        grid-column:
-
-            1 / 3;
-
-        margin:
-
-            0 auto;
+            scale(0.9);
 
     }
 
