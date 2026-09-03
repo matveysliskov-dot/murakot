@@ -1,157 +1,81 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Сообщение</title>
+    <title>Письмо</title>
 
     <link rel="stylesheet" href="page3.css">
-
 </head>
-
 
 <body>
 
-
-    <!-- Фон -->
     <div class="background"></div>
-
-
-    <!-- Затемнение -->
-    <div class="overlay"></div>
-
 
     <main class="page">
 
+        <h1>У меня для тебя кое-что есть</h1>
 
-        <div class="content">
-
-
-            <!-- ВЕРХНИЙ ТЕКСТ -->
-
-            <div class="intro">
-
-                <p class="small-text">
-                    Но есть одна вещь...
-                </p>
+        <p class="subtitle">
+            Нажми на конверт
+        </p>
 
 
-                <h1>
-                    расстояние не умеет<br>
-                    останавливать сообщения.
-                </h1>
+        <div class="envelope-wrapper">
 
-            </div>
+            <div class="envelope" id="envelope">
 
+                <!-- Письмо -->
+                <div class="letter">
 
-            <!-- КОНВЕРТ -->
+                    <div class="letter-content">
 
-            <div
-                class="envelope-wrapper"
-                id="envelope"
-            >
+                        <h2>Привет.</h2>
 
+                        <p>
+                            Здесь можешь написать свой текст.
+                        </p>
 
-                <!-- Подсказка -->
+                        <p>
+                            Любое поздравление, которое хочешь
+                            оставить для неё.
+                        </p>
 
-                <p class="click-text">
-                    нажми на конверт
-                </p>
-
-
-                <div class="envelope">
-
-
-                    <!-- ЗАДНЯЯ ЧАСТЬ -->
-
-                    <div class="envelope-back"></div>
-
-
-                    <!-- ПИСЬМО -->
-
-                    <div class="letter">
-
-
-                        <div class="letter-content">
-
-
-                            <p class="letter-text">
-
-                                Иногда расстояние —
-                                это просто цифры.
-
-                            </p>
-
-
-                            <p class="letter-text second">
-
-                                Потому что если захочется
-                                поговорить —
-
-                                <br><br>
-
-                                я всегда где-то
-                                на другом конце сообщения.
-
-                            </p>
-
-
-                            <p class="signature">
-                                Из Ростова 🌸
-                            </p>
-
-
-                        </div>
+                        <p>
+                            А дальше будет ещё кое-что.
+                        </p>
 
                     </div>
-
-
-                    <!-- КЛАПАН -->
-
-                    <div class="envelope-flap"></div>
-
-
-                    <!-- ПЕРЕДНЯЯ ЧАСТЬ -->
-
-                    <div class="envelope-front">
-
-                        <div class="left-fold"></div>
-
-                        <div class="right-fold"></div>
-
-                        <div class="bottom-fold"></div>
-
-                    </div>
-
 
                 </div>
 
 
+                <!-- Основа конверта -->
+                <div class="envelope-back"></div>
+
+                <!-- Левая часть -->
+                <div class="envelope-left"></div>
+
+                <!-- Правая часть -->
+                <div class="envelope-right"></div>
+
+                <!-- Крышка -->
+                <div class="envelope-flap"></div>
+
             </div>
-
-
-            <!-- КНОПКА ДАЛЬШЕ -->
-
-            <a href="page4.html" class="next-button" id="nextButton">
-                дальше
-            </a>
-
 
         </div>
 
+
+        <a href="page4.html" class="next-button" id="nextButton">
+            Продолжить
+        </a>
 
     </main>
 
 
     <script src="page3.js"></script>
 
-
 </body>
-
 </html>
