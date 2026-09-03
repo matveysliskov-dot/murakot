@@ -1,4 +1,127 @@
-/* =========================================
+const doors =
+    document.querySelectorAll(".door-container");
+
+
+const surpriseLayer =
+    document.getElementById("surpriseLayer");
+
+
+const surpriseImage =
+    document.getElementById("surpriseImage");
+
+
+const finalText =
+    document.getElementById("finalText");
+
+
+const nextButton =
+    document.getElementById("nextButton");
+
+
+let opened = false;
+
+
+/* =========================
+   КЛИК ПО ДВЕРИ
+========================= */
+
+doors.forEach(
+    (container) => {
+
+        const door =
+            container.querySelector(".door");
+
+
+        door.addEventListener(
+            "click",
+            () => {
+
+                /* Если уже открывали дверь —
+                   больше ничего не происходит */
+
+                if (opened) {
+
+                    return;
+
+                }
+
+
+                opened = true;
+
+
+                /* Открываем дверь */
+
+                door.classList.add("open");
+
+
+                /* Убираем hover */
+
+                doors.forEach(
+                    (otherContainer) => {
+
+                        const otherDoor =
+                            otherContainer.querySelector(".door");
+
+
+                        if (
+                            otherDoor !== door
+                        ) {
+
+                            otherDoor.style.pointerEvents =
+                                "none";
+
+                        }
+
+                    }
+                );
+
+
+                /* Ждём открытие двери */
+
+                setTimeout(
+                    () => {
+
+                        showSurprise();
+
+                    },
+                    700
+                );
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================
+   ПОКАЗАТЬ СЮРПРИЗ
+========================= */
+
+function showSurprise() {
+
+    surpriseLayer.classList.add("show");
+
+
+    /* После вылета картинки */
+
+    setTimeout(
+        () => {
+
+            finalText.classList.add(
+                "visible"
+            );
+
+
+            nextButton.classList.add(
+                "visible"
+            );
+
+        },
+        900
+    );
+
+}/* =========================================
    ПОЛУЧАЕМ ЭЛЕМЕНТЫ
 ========================================= */
 
