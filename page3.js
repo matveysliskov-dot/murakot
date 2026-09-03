@@ -1,4 +1,27 @@
-const envelope =
+const envelope = document.getElementById("envelope");
+const nextButton = document.getElementById("nextButton");
+
+let opened = false;
+
+
+envelope.addEventListener("click", function () {
+
+    if (opened) {
+        return;
+    }
+
+    opened = true;
+
+    envelope.classList.add("open");
+
+
+    setTimeout(function () {
+
+        nextButton.classList.add("visible");
+
+    }, 900);
+
+});const envelope =
     document.getElementById("envelope");
 
 const openButton =
