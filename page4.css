@@ -1,4 +1,1240 @@
-/* =========================================
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    overflow-x: hidden;
+
+    background:
+
+        #070910;
+
+    color:
+
+        white;
+
+    font-family:
+
+        Arial,
+        sans-serif;
+
+}
+
+
+/* =========================
+   ФОН
+========================= */
+
+.background {
+
+    position:
+
+        fixed;
+
+    inset:
+
+        0;
+
+    background-image:
+
+        url("sakura.jpg");
+
+    background-size:
+
+        cover;
+
+    background-position:
+
+        center;
+
+    opacity:
+
+        0.2;
+
+    transform:
+
+        scale(1.05);
+
+    animation:
+
+        backgroundMove
+        15s
+        ease-in-out
+        infinite
+        alternate;
+
+    z-index:
+
+        -2;
+
+}
+
+
+.background::after {
+
+    content:
+
+        "";
+
+    position:
+
+        absolute;
+
+    inset:
+
+        0;
+
+    background:
+
+        rgba(
+            5,
+            7,
+            12,
+            0.55
+        );
+
+}
+
+
+@keyframes backgroundMove {
+
+    from {
+
+        transform:
+
+            scale(1.05)
+            translateX(-8px);
+
+    }
+
+
+    to {
+
+        transform:
+
+            scale(1.1)
+            translateX(8px)
+            translateY(-5px);
+
+    }
+
+}
+
+
+/* =========================
+   СТРАНИЦА
+========================= */
+
+.page {
+
+    min-height:
+
+        100vh;
+
+    width:
+
+        100%;
+
+    padding:
+
+        50px
+        20px;
+
+    display:
+
+        flex;
+
+    flex-direction:
+
+        column;
+
+    align-items:
+
+        center;
+
+    position:
+
+        relative;
+
+    overflow:
+
+        hidden;
+
+}
+
+
+/* =========================
+   ЗАГОЛОВОК
+========================= */
+
+.intro {
+
+    text-align:
+
+        center;
+
+    margin-bottom:
+
+        55px;
+
+    z-index:
+
+        2;
+
+}
+
+
+.small-title {
+
+    font-size:
+
+        12px;
+
+    letter-spacing:
+
+        7px;
+
+    color:
+
+        #a8aab5;
+
+    margin-bottom:
+
+        15px;
+
+}
+
+
+h1 {
+
+    font-family:
+
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-weight:
+
+        normal;
+
+    font-size:
+
+        clamp(
+            55px,
+            7vw,
+            100px
+        );
+
+    margin-bottom:
+
+        15px;
+
+}
+
+
+.subtitle {
+
+    color:
+
+        #aeb0ba;
+
+    font-size:
+
+        17px;
+
+}
+
+
+/* =========================
+   ДВЕРИ
+========================= */
+
+.doors {
+
+    width:
+
+        100%;
+
+    max-width:
+
+        1200px;
+
+    display:
+
+        flex;
+
+    justify-content:
+
+        center;
+
+    align-items:
+
+        flex-start;
+
+    gap:
+
+        70px;
+
+    position:
+
+        relative;
+
+    z-index:
+
+        5;
+
+}
+
+
+/* =========================
+   КОНТЕЙНЕР ДВЕРИ
+========================= */
+
+.door-container {
+
+    width:
+
+        270px;
+
+    display:
+
+        flex;
+
+    flex-direction:
+
+        column;
+
+    align-items:
+
+        center;
+
+    perspective:
+
+        1200px;
+
+}
+
+
+/* =========================
+   ДВЕРЬ
+========================= */
+
+.door {
+
+    position:
+
+        relative;
+
+    width:
+
+        270px;
+
+    height:
+
+        410px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+
+            #54290f 0%,
+
+            #8a481d 18%,
+
+            #b66a2d 50%,
+
+            #7b3b16 82%,
+
+            #45200c 100%
+        );
+
+    border:
+
+        12px solid
+        #292d39;
+
+    box-shadow:
+
+        0
+        20px
+        40px
+        rgba(
+            0,
+            0,
+            0,
+            0.5
+        );
+
+    transform-origin:
+
+        left center;
+
+    transition:
+
+        transform
+        1s
+        cubic-bezier(
+            .2,
+            .8,
+            .2,
+            1
+        );
+
+    cursor:
+
+        pointer;
+
+}
+
+
+/* =========================
+   ТЕКСТУРА ДЕРЕВА
+========================= */
+
+.door::before {
+
+    content:
+
+        "";
+
+    position:
+
+        absolute;
+
+    inset:
+
+        0;
+
+    background:
+
+        repeating-linear-gradient(
+
+            90deg,
+
+            transparent
+            0px,
+
+            rgba(
+                255,
+                255,
+                255,
+                0.04
+            )
+            2px,
+
+            transparent
+            5px,
+
+            rgba(
+                0,
+                0,
+                0,
+                0.12
+            )
+            9px
+
+        );
+
+    pointer-events:
+
+        none;
+
+}
+
+
+/* =========================
+   ПАНЕЛИ
+========================= */
+
+.door-panels {
+
+    position:
+
+        absolute;
+
+    inset:
+
+        30px;
+
+    display:
+
+        flex;
+
+    flex-direction:
+
+        column;
+
+    justify-content:
+
+        space-between;
+
+}
+
+
+.panel {
+
+    width:
+
+        100%;
+
+    height:
+
+        42%;
+
+    border:
+
+        4px solid
+        rgba(
+            55,
+            25,
+            10,
+            0.65
+        );
+
+    box-shadow:
+
+        inset
+        0
+        0
+        25px
+        rgba(
+            0,
+            0,
+            0,
+            0.35
+        );
+
+}
+
+
+/* =========================
+   НОМЕР
+========================= */
+
+.number {
+
+    position:
+
+        absolute;
+
+    left:
+
+        50%;
+
+    top:
+
+        50%;
+
+    transform:
+
+        translate(
+            -50%,
+            -50%
+        );
+
+    width:
+
+        85px;
+
+    height:
+
+        58px;
+
+    display:
+
+        flex;
+
+    justify-content:
+
+        center;
+
+    align-items:
+
+        center;
+
+    background:
+
+        #f1eee8;
+
+    color:
+
+        #161616;
+
+    font-family:
+
+        Georgia,
+        serif;
+
+    font-size:
+
+        28px;
+
+    font-weight:
+
+        bold;
+
+    border-radius:
+
+        3px;
+
+    z-index:
+
+        5;
+
+    box-shadow:
+
+        0
+        5px
+        15px
+        rgba(
+            0,
+            0,
+            0,
+            0.35
+        );
+
+}
+
+
+/* =========================
+   РУЧКА
+========================= */
+
+.handle {
+
+    position:
+
+        absolute;
+
+    width:
+
+        28px;
+
+    height:
+
+        28px;
+
+    right:
+
+        22px;
+
+    top:
+
+        53%;
+
+    border-radius:
+
+        50%;
+
+    background:
+
+        radial-gradient(
+
+            circle at
+            30%
+            30%,
+
+            white,
+
+            #b9bec5 45%,
+
+            #666b72
+
+        );
+
+    box-shadow:
+
+        0
+        0
+        20px
+        rgba(
+            255,
+            255,
+            255,
+            0.35
+        );
+
+    z-index:
+
+        10;
+
+}
+
+
+/* =========================
+   ТЕКСТ ПОД ДВЕРЬЮ
+========================= */
+
+.door-text {
+
+    margin-top:
+
+        24px;
+
+    font-size:
+
+        11px;
+
+    letter-spacing:
+
+        5px;
+
+    color:
+
+        #9699a3;
+
+}
+
+
+/* =========================
+   HOVER
+========================= */
+
+.door:hover {
+
+    transform:
+
+        translateY(-10px);
+
+}
+
+
+.door.open {
+
+    transform:
+
+        rotateY(-75deg);
+
+}
+
+
+/* =========================
+   СЛОЙ С КАРТИНКОЙ
+========================= */
+
+.surprise-layer {
+
+    position:
+
+        fixed;
+
+    inset:
+
+        0;
+
+    display:
+
+        flex;
+
+    justify-content:
+
+        center;
+
+    align-items:
+
+        center;
+
+    pointer-events:
+
+        none;
+
+    z-index:
+
+        9999;
+
+    opacity:
+
+        0;
+
+    visibility:
+
+        hidden;
+
+}
+
+
+/* =========================
+   КАРТИНКА
+========================= */
+
+.surprise-image {
+
+    max-width:
+
+        min(
+            80vw,
+            850px
+        );
+
+    max-height:
+
+        80vh;
+
+    object-fit:
+
+        contain;
+
+    transform:
+
+        scale(
+            0.1
+        );
+
+    opacity:
+
+        0;
+
+    box-shadow:
+
+        0
+        30px
+        100px
+        rgba(
+            0,
+            0,
+            0,
+            0.8
+        );
+
+}
+
+
+/* =========================
+   ПОЯВЛЕНИЕ
+========================= */
+
+.surprise-layer.show {
+
+    opacity:
+
+        1;
+
+    visibility:
+
+        visible;
+
+}
+
+
+.surprise-layer.show
+.surprise-image {
+
+    animation:
+
+        surpriseBoom
+        0.75s
+        cubic-bezier(
+            .15,
+            .9,
+            .2,
+            1
+        )
+        forwards;
+
+}
+
+
+/* =========================
+   АНИМАЦИЯ ВЫЛЕТА
+========================= */
+
+@keyframes surpriseBoom {
+
+    0% {
+
+        transform:
+
+            scale(
+                0.1
+            );
+
+        opacity:
+
+            0;
+
+    }
+
+
+    45% {
+
+        transform:
+
+            scale(
+                1.12
+            );
+
+        opacity:
+
+            1;
+
+    }
+
+
+    70% {
+
+        transform:
+
+            scale(
+                0.95
+            );
+
+    }
+
+
+    100% {
+
+        transform:
+
+            scale(
+                1
+            );
+
+        opacity:
+
+            1;
+
+    }
+
+}
+
+
+/* =========================
+   БУМ
+========================= */
+
+.boom {
+
+    position:
+
+        absolute;
+
+    font-family:
+
+        Arial,
+        sans-serif;
+
+    font-weight:
+
+        bold;
+
+    font-size:
+
+        clamp(
+            80px,
+            15vw,
+            180px
+        );
+
+    color:
+
+        white;
+
+    text-shadow:
+
+        0
+        0
+        40px
+        rgba(
+            255,
+            255,
+            255,
+            0.7
+        );
+
+    opacity:
+
+        0;
+
+    transform:
+
+        scale(
+            0.5
+        );
+
+    z-index:
+
+        -1;
+
+}
+
+
+.surprise-layer.show
+.boom {
+
+    animation:
+
+        boomEffect
+        0.5s
+        ease-out
+        forwards;
+
+}
+
+
+@keyframes boomEffect {
+
+    0% {
+
+        opacity:
+
+            0;
+
+        transform:
+
+            scale(
+                0.5
+            );
+
+    }
+
+
+    30% {
+
+        opacity:
+
+            1;
+
+        transform:
+
+            scale(
+                1.3
+            );
+
+    }
+
+
+    100% {
+
+        opacity:
+
+            0;
+
+        transform:
+
+            scale(
+                2
+            );
+
+    }
+
+}
+
+
+/* =========================
+   ФИНАЛЬНЫЙ ТЕКСТ
+========================= */
+
+.final-text {
+
+    margin-top:
+
+        50px;
+
+    font-size:
+
+        22px;
+
+    letter-spacing:
+
+        3px;
+
+    color:
+
+        #d7d7dc;
+
+    opacity:
+
+        0;
+
+    transform:
+
+        translateY(
+            20px
+        );
+
+    transition:
+
+        1s;
+
+}
+
+
+.final-text.visible {
+
+    opacity:
+
+        1;
+
+    transform:
+
+        translateY(
+            0
+        );
+
+}
+
+
+/* =========================
+   КНОПКА ДАЛЬШЕ
+========================= */
+
+.next-button {
+
+    margin-top:
+
+        25px;
+
+    padding:
+
+        15px
+        35px;
+
+    border:
+
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.3
+        );
+
+    border-radius:
+
+        50px;
+
+    color:
+
+        white;
+
+    text-decoration:
+
+        none;
+
+    opacity:
+
+        0;
+
+    pointer-events:
+
+        none;
+
+    transform:
+
+        translateY(
+            20px
+        );
+
+    transition:
+
+        0.6s;
+
+}
+
+
+.next-button.visible {
+
+    opacity:
+
+        1;
+
+    pointer-events:
+
+        auto;
+
+    transform:
+
+        translateY(
+            0
+        );
+
+}
+
+
+.next-button:hover {
+
+    background:
+
+        white;
+
+    color:
+
+        black;
+
+}
+
+
+/* =========================
+   МОБИЛЬНАЯ ВЕРСИЯ
+========================= */
+
+@media (
+    max-width: 950px
+) {
+
+    .doors {
+
+        flex-wrap:
+
+            wrap;
+
+        gap:
+
+            40px;
+
+    }
+
+}
+
+
+@media (
+    max-width: 600px
+) {
+
+    .page {
+
+        padding-top:
+
+            40px;
+
+    }
+
+
+    .intro {
+
+        margin-bottom:
+
+            35px;
+
+    }
+
+
+    .door-container {
+
+        transform:
+
+            scale(
+                0.9
+            );
+
+        margin-bottom:
+
+            -30px;
+
+    }
+
+}/* =========================================
    СБРОС
 ========================================= */
 
