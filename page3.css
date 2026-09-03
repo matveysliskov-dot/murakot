@@ -1,61 +1,56 @@
-/* =================================
-   СБРОС
-================================= */
-
 * {
-
     margin: 0;
     padding: 0;
-
     box-sizing: border-box;
-
-}
-
-
-/* =================================
-   ОСНОВА
-================================= */
-
-html,
-body {
-
-    width: 100%;
-    min-height: 100%;
-
 }
 
 
 body {
-
     min-height: 100vh;
 
-    background: #090a10;
+    overflow-x: hidden;
+
+    background: #090b12;
 
     color: white;
 
     font-family:
-
         Arial,
         sans-serif;
-
-    overflow: hidden;
-
 }
 
 
-/* =================================
-   ФОН
-================================= */
+/* =========================
+   ОСНОВНАЯ СТРАНИЦА
+========================= */
+
+.page {
+    position: relative;
+
+    width: 100%;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   ФОН С САКУРОЙ
+========================= */
 
 .background {
-
     position: fixed;
 
-    inset: -20px;
+    inset: 0;
 
-    background-image:
-
-        url("sakura.jpg");
+    background-image: url("sakura.jpg");
 
     background-size: cover;
 
@@ -63,103 +58,62 @@ body {
 
     background-repeat: no-repeat;
 
-    opacity: 0.4;
+    opacity: 0.22;
 
-    z-index: 0;
+    transform: scale(1.05);
 
-    animation:
+    animation: backgroundMove 14s ease-in-out infinite alternate;
 
-        backgroundMove
-        12s
-        ease-in-out
-        infinite;
-
+    z-index: -2;
 }
 
 
-/* =================================
-   ДВИЖЕНИЕ ФОНА
-================================= */
+.background::after {
+    content: "";
 
-@keyframes backgroundMove {
-
-    0% {
-
-        transform:
-
-            scale(1.03)
-            translate(0, 0);
-
-    }
-
-
-    50% {
-
-        transform:
-
-            scale(1.07)
-            translate(8px, -5px);
-
-    }
-
-
-    100% {
-
-        transform:
-
-            scale(1.03)
-            translate(0, 0);
-
-    }
-
-}
-
-
-/* =================================
-   ЗАТЕМНЕНИЕ
-================================= */
-
-.overlay {
-
-    position: fixed;
+    position: absolute;
 
     inset: 0;
 
     background:
 
-        rgba(5, 6, 12, 0.55);
+        radial-gradient(
+            circle at center,
+            rgba(9, 11, 18, 0.25),
+            rgba(9, 11, 18, 0.8)
+        );
+}
 
-    z-index: 1;
+
+/* =========================
+   АНИМАЦИЯ ФОНА
+========================= */
+
+@keyframes backgroundMove {
+
+    from {
+
+        transform:
+            scale(1.05)
+            translateX(-10px);
+
+    }
+
+    to {
+
+        transform:
+            scale(1.1)
+            translateX(10px)
+            translateY(-5px);
+
+    }
 
 }
 
 
-/* =================================
-   СТРАНИЦА
-================================= */
-
-.page {
-
-    position: relative;
-
-    z-index: 2;
-
-    width: 100%;
-    min-height: 100vh;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    padding: 30px;
-
-}
-
-
-/* =================================
+/* =========================
    КОНТЕНТ
-================================= */
+========================= */
 
 .content {
 
@@ -167,51 +121,38 @@ body {
 
     max-width: 900px;
 
+    padding:
+
+        40px
+        20px;
+
     text-align: center;
 
-}
+    display: flex;
 
+    flex-direction: column;
 
-/* =================================
-   ВЕРХНИЙ ТЕКСТ
-================================= */
-
-.intro {
-
-    margin-bottom: 45px;
-
-    animation:
-
-        introAppear
-        1s
-        ease
-        forwards;
+    align-items: center;
 
 }
 
 
-/* =================================
-   МАЛЕНЬКИЙ ТЕКСТ
-================================= */
+/* =========================
+   ТЕКСТ
+========================= */
 
-.small-text {
-
-    color: #9fa1aa;
-
-    text-transform: uppercase;
+.small-title {
 
     font-size: 12px;
 
-    letter-spacing: 4px;
+    letter-spacing: 7px;
 
-    margin-bottom: 25px;
+    color: #a8aab5;
+
+    margin-bottom: 18px;
 
 }
 
-
-/* =================================
-   ЗАГОЛОВОК
-================================= */
 
 h1 {
 
@@ -221,278 +162,296 @@ h1 {
         "Times New Roman",
         serif;
 
-    font-weight: 400;
-
     font-size:
 
         clamp(
-            38px,
-            5vw,
-            70px
+            60px,
+            8vw,
+            110px
         );
 
-    line-height: 1.05;
+    font-weight: normal;
 
-    letter-spacing: -2px;
+    line-height: 0.9;
+
+    margin-bottom: 25px;
 
 }
 
 
-/* =================================
-   ОБЁРТКА КОНВЕРТА
-================================= */
+.description {
 
-.envelope-wrapper {
+    max-width: 500px;
+
+    color: #b9bac3;
+
+    font-size: 18px;
+
+    line-height: 1.7;
+
+    margin-bottom: 55px;
+
+}
+
+
+/* =========================
+   КОНВЕРТ
+========================= */
+
+.envelope-area {
 
     width: 420px;
 
-    height: 350px;
+    max-width: 90vw;
 
-    margin:
-
-        0 auto;
+    height: 280px;
 
     position: relative;
 
-    cursor: pointer;
+    perspective: 1200px;
 
-    animation:
-
-        envelopeFloat
-        4s
-        ease-in-out
-        infinite;
+    margin-bottom: 35px;
 
 }
 
-
-/* =================================
-   ПОДСКАЗКА
-================================= */
-
-.click-text {
-
-    position: absolute;
-
-    top: -30px;
-
-    left: 50%;
-
-    transform:
-
-        translateX(-50%);
-
-    color: #a5a7af;
-
-    font-size: 13px;
-
-    letter-spacing: 2px;
-
-    white-space: nowrap;
-
-    transition:
-
-        opacity
-        0.4s
-        ease;
-
-}
-
-
-/* =================================
-   ОСНОВА КОНВЕРТА
-================================= */
 
 .envelope {
 
-    width: 420px;
-
-    height: 270px;
-
     position: absolute;
+
+    width: 100%;
+
+    height: 100%;
 
     bottom: 0;
 
     left: 0;
 
-}
+    cursor: pointer;
 
+    transition:
 
-/* =================================
-   ЗАДНЯЯ ЧАСТЬ
-================================= */
-
-.envelope-back {
-
-    position: absolute;
-
-    inset: 0;
-
-    background:
-
-        linear-gradient(
-
-            135deg,
-
-            #d7c6bc,
-
-            #bfa79a
-
-        );
-
-    border-radius:
-
-        4px;
-
-    box-shadow:
-
-        0 20px 60px
-        rgba(0, 0, 0, 0.4);
+        transform
+        0.7s
+        ease;
 
 }
 
 
-/* =================================
+.envelope:hover {
+
+    transform:
+
+        translateY(-8px);
+
+}
+
+
+/* =========================
    ПИСЬМО
-================================= */
+========================= */
 
 .letter {
 
     position: absolute;
 
-    width: 350px;
+    width: 82%;
 
-    height: 230px;
+    height: 240px;
 
-    left: 35px;
+    left: 9%;
 
-    bottom: 20px;
+    bottom: 25px;
 
     background:
 
-        #f3ede6;
+        linear-gradient(
+            135deg,
+            #f7f1e8,
+            #e8dfd0
+        );
 
-    color:
-
-        #24242a;
-
-    z-index: 2;
+    color: #242424;
 
     padding:
 
-        30px;
+        30px
+        28px;
+
+    text-align: left;
+
+    box-shadow:
+
+        0 20px 50px
+        rgba(0,0,0,0.5);
+
+    z-index: 1;
+
+    transform:
+
+        translateY(90px);
 
     transition:
 
         transform
-        1.2s
+        1s
         cubic-bezier(
-            0.16,
-            1,
-            0.3,
+            .2,
+            .8,
+            .2,
             1
         );
 
-    box-shadow:
+}
 
-        0 15px 40px
-        rgba(0, 0, 0, 0.25);
+
+.letter h2 {
+
+    font-family: Georgia;
+
+    font-size: 30px;
+
+    margin-bottom: 15px;
 
 }
 
 
-/* =================================
-   ТЕКСТ ПИСЬМА
-================================= */
+.letter p {
 
-.letter-content {
-
-    opacity: 0;
-
-    transition:
-
-        opacity
-        0.6s
-        ease;
-
-    transition-delay:
-
-        0.8s;
-
-}
-
-
-.letter-text {
-
-    font-family:
-
-        Georgia,
-        serif;
-
-    font-size: 16px;
-
-    line-height: 1.5;
-
-    margin-bottom: 18px;
-
-}
-
-
-.second {
+    font-family: Georgia;
 
     font-size: 14px;
 
-    color:
+    line-height: 1.5;
 
-        #4a4745;
+    margin-bottom: 12px;
 
 }
 
 
 .signature {
 
-    font-family:
-
-        Georgia,
-        serif;
+    margin-top: 15px;
 
     font-style: italic;
-
-    font-size: 15px;
-
-    margin-top: 15px;
 
 }
 
 
-/* =================================
-   КЛАПАН КОНВЕРТА
-================================= */
+/* =========================
+   САМ КОНВЕРТ
+========================= */
 
-.envelope-flap {
+.envelope-bottom {
 
     position: absolute;
 
-    top: 0;
+    width: 100%;
 
-    left: 0;
+    height: 100%;
 
-    width: 0;
-    height: 0;
+    background:
 
-    border-left:
+        linear-gradient(
+            135deg,
+            #d8c7b2,
+            #b89f84
+        );
 
-        210px solid transparent;
+    z-index: 3;
 
-    border-right:
+    clip-path:
 
-        210px solid transparent;
+        polygon(
+            0 0,
+            50% 55%,
+            100% 0,
+            100% 100%,
+            0 100%
+        );
 
-    border-top:
+}
 
-        140px solid #cbb4a8;
+
+.envelope-left {
+
+    position: absolute;
+
+    width: 100%;
+
+    height: 100%;
+
+    background:
+
+        #c7ad91;
 
     z-index: 4;
+
+    clip-path:
+
+        polygon(
+            0 0,
+            50% 55%,
+            0 100%
+        );
+
+}
+
+
+.envelope-right {
+
+    position: absolute;
+
+    width: 100%;
+
+    height: 100%;
+
+    background:
+
+        #bda084;
+
+    z-index: 4;
+
+    clip-path:
+
+        polygon(
+            100% 0,
+            50% 55%,
+            100% 100%
+        );
+
+}
+
+
+/* =========================
+   ВЕРХНЯЯ КРЫШКА
+========================= */
+
+.envelope-top {
+
+    position: absolute;
+
+    width: 100%;
+
+    height: 100%;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #e0cfb9,
+            #bda084
+        );
+
+    z-index: 5;
+
+    clip-path:
+
+        polygon(
+            0 0,
+            50% 55%,
+            100% 0
+        );
 
     transform-origin:
 
@@ -502,277 +461,159 @@ h1 {
 
         transform
         0.9s
-        cubic-bezier(
-            0.16,
-            1,
-            0.3,
-            1
-        );
+        ease;
 
 }
 
 
-/* =================================
-   ПЕРЕДНЯЯ ЧАСТЬ
-================================= */
+/* =========================
+   ОТКРЫТЫЙ КОНВЕРТ
+========================= */
 
-.envelope-front {
+.envelope.open {
 
-    position: absolute;
+    transform:
 
-    left: 0;
-    bottom: 0;
+        translateY(-10px);
 
-    width: 100%;
-    height: 100%;
+}
 
-    z-index: 3;
+
+.envelope.open:hover {
+
+    transform:
+
+        translateY(-10px);
+
+}
+
+
+.envelope.open .envelope-top {
+
+    transform:
+
+        rotateX(180deg);
+
+    z-index: 0;
+
+}
+
+
+.envelope.open .letter {
+
+    transform:
+
+        translateY(-120px);
+
+    z-index: 6;
+
+}
+
+
+/* =========================
+   КНОПКА
+========================= */
+
+.open-button {
+
+    border:
+
+        1px solid
+        rgba(255,255,255,0.3);
+
+    background:
+
+        rgba(
+            10,
+            12,
+            20,
+            0.7
+        );
+
+    color:
+
+        #f2f2f2;
+
+    padding:
+
+        15px
+        38px;
+
+    border-radius:
+
+        50px;
+
+    font-size:
+
+        14px;
+
+    letter-spacing:
+
+        2px;
+
+    cursor:
+
+        pointer;
+
+    transition:
+
+        0.3s;
+
+}
+
+
+.open-button:hover {
+
+    background:
+
+        white;
+
+    color:
+
+        #111;
+
+    transform:
+
+        scale(1.05);
+
+}
+
+
+.open-button.hidden {
+
+    opacity: 0;
 
     pointer-events: none;
 
 }
 
 
-/* =================================
-   ЛЕВАЯ СКЛАДКА
-================================= */
-
-.left-fold {
-
-    position: absolute;
-
-    bottom: 0;
-    left: 0;
-
-    width: 0;
-    height: 0;
-
-    border-top:
-
-        135px solid transparent;
-
-    border-bottom:
-
-        135px solid transparent;
-
-    border-left:
-
-        210px solid #cfb8ab;
-
-}
-
-
-/* =================================
-   ПРАВАЯ СКЛАДКА
-================================= */
-
-.right-fold {
-
-    position: absolute;
-
-    bottom: 0;
-    right: 0;
-
-    width: 0;
-    height: 0;
-
-    border-top:
-
-        135px solid transparent;
-
-    border-bottom:
-
-        135px solid transparent;
-
-    border-right:
-
-        210px solid #d9c4b9;
-
-}
-
-
-/* =================================
-   НИЖНЯЯ СКЛАДКА
-================================= */
-
-.bottom-fold {
-
-    position: absolute;
-
-    bottom: 0;
-    left: 0;
-
-    width: 0;
-    height: 0;
-
-    border-left:
-
-        210px solid transparent;
-
-    border-right:
-
-        210px solid transparent;
-
-    border-bottom:
-
-        135px solid #e0ccc1;
-
-}
-
-
-/* =================================
-   ОТКРЫТЫЙ КОНВЕРТ
-================================= */
-
-.envelope-wrapper.open {
-
-    animation:
-
-        none;
-
-}
-
-
-/* Клапан открывается */
-
-.envelope-wrapper.open
-.envelope-flap {
-
-    transform:
-
-        rotateX(
-            180deg
-        );
-
-    z-index: 1;
-
-}
-
-
-/* Письмо выезжает */
-
-.envelope-wrapper.open
-.letter {
-
-    transform:
-
-        translateY(
-            -170px
-        );
-
-}
-
-
-/* Появляется текст */
-
-.envelope-wrapper.open
-.letter-content {
-
-    opacity: 1;
-
-}
-
-
-/* Подсказка исчезает */
-
-.envelope-wrapper.open
-.click-text {
-
-    opacity: 0;
-
-}
-
-
-/* =================================
-   АНИМАЦИЯ ПОКАЧИВАНИЯ
-================================= */
-
-@keyframes envelopeFloat {
-
-    0% {
-
-        transform:
-
-            translateY(0)
-            rotate(-1deg);
-
-    }
-
-
-    50% {
-
-        transform:
-
-            translateY(-12px)
-            rotate(1deg);
-
-    }
-
-
-    100% {
-
-        transform:
-
-            translateY(0)
-            rotate(-1deg);
-
-    }
-
-}
-
-
-/* =================================
-   ПОЯВЛЕНИЕ СТРАНИЦЫ
-================================= */
-
-@keyframes introAppear {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-
-            translateY(30px);
-
-        filter:
-
-            blur(8px);
-
-    }
-
-
-    to {
-
-        opacity: 1;
-
-        transform:
-
-            translateY(0);
-
-        filter:
-
-            blur(0);
-
-    }
-
-}
-
-
-/* =================================
-   КНОПКА
-================================= */
+/* =========================
+   КНОПКА ДАЛЬШЕ
+========================= */
 
 .next-button {
 
-    display: inline-block;
+    margin-top:
 
-    margin-top: 30px;
+        30px;
 
     padding:
 
-        15px
+        14px
         35px;
+
+    border-radius:
+
+        50px;
+
+    color:
+
+        white;
+
+    text-decoration:
+
+        none;
 
     border:
 
@@ -784,48 +625,20 @@ h1 {
             0.3
         );
 
-    border-radius:
-
-        50px;
-
-    color: white;
-
-    text-decoration: none;
-
-    font-size: 14px;
-
-    letter-spacing: 2px;
-
     opacity: 0;
 
     pointer-events: none;
 
     transform:
 
-        translateY(20px);
+        translateY(15px);
 
     transition:
 
-        opacity
-        0.7s
-        ease,
-
-        transform
-        0.7s
-        ease,
-
-        background
-        0.3s
-        ease,
-
-        color
-        0.3s
-        ease;
+        0.6s;
 
 }
 
-
-/* Кнопка появляется */
 
 .next-button.visible {
 
@@ -840,83 +653,54 @@ h1 {
 }
 
 
-/* Наведение */
-
 .next-button:hover {
 
-    background: white;
+    background:
 
-    color: #08090d;
+        white;
 
-    transform:
+    color:
 
-        translateY(-3px);
+        #111;
 
 }
 
 
-/* =================================
+/* =========================
    МОБИЛЬНАЯ ВЕРСИЯ
-================================= */
+========================= */
 
-@media
-(max-width: 600px) {
+@media (
+    max-width: 600px
+) {
 
+    .envelope-area {
 
-    body {
+        height:
 
-        overflow-y: auto;
+            240px;
 
     }
 
 
-    .page {
+    .letter {
+
+        height:
+
+            210px;
 
         padding:
 
-            30px
-            15px;
+            22px;
 
     }
 
 
-    h1 {
+    .letter p {
 
         font-size:
 
-            clamp(
-                34px,
-                10vw,
-                50px
-            );
-
-    }
-
-
-    .envelope-wrapper {
-
-        width: 330px;
-
-        height: 300px;
-
-        transform:
-
-            scale(
-                0.78
-            );
-
-        transform-origin:
-
-            center;
-
-    }
-
-
-    .next-button {
-
-        margin-top:
-
-            0;
+            12px;
 
     }
 
