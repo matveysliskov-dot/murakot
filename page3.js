@@ -1,31 +1,38 @@
-document.addEventListener("DOMContentLoaded", function () {
+const envelope = document.getElementById("envelope");
 
-    const envelope = document.getElementById("envelope");
-    const nextButton = document.getElementById("nextButton");
+const nextButton =
+    document.getElementById("nextButton");
 
-    if (!envelope || !nextButton) {
-        console.log("Не найден конверт или кнопка");
-        return;
-    }
 
-    let opened = false;
+envelope.addEventListener(
+    "click",
 
-    envelope.addEventListener("click", function () {
+    function () {
 
-        if (opened) return;
+        if (
+            envelope.classList.contains("open")
+        ) {
 
-        opened = true;
+            return;
 
-        // Открываем конверт
+        }
+
+
         envelope.classList.add("open");
 
-        // Через небольшую паузу показываем кнопку
-        setTimeout(function () {
 
-            nextButton.classList.add("visible");
+        setTimeout(
 
-        }, 1000);
+            function () {
 
-    });
+                nextButton.classList.add("show");
 
-});
+            },
+
+            2800
+
+        );
+
+    }
+
+);
