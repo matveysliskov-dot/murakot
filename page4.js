@@ -1,183 +1,18 @@
 const doorCards =
-    document.querySelectorAll(
-        ".door-card"
-    );
-
-
-const result =
-    document.getElementById(
-        "result"
-    );
-
-
-const nextButton =
-    document.getElementById(
-        "nextButton"
-    );
-
-
-let opened = false;
-
-
-/* =====================================
-   НАЖАТИЕ НА ДВЕРЬ
-===================================== */
-
-doorCards.forEach(
-    function (card) {
-
-
-        const handle =
-            card.querySelector(
-                ".handle"
-            );
-
-
-        /* Нажатие на ручку */
-
-        handle.addEventListener(
-
-            "click",
-
-            function (event) {
-
-                event.stopPropagation();
-
-                openDoor(card);
-
-            }
-
-        );
-
-
-        /* Можно нажать на саму дверь */
-
-        card.addEventListener(
-
-            "click",
-
-            function () {
-
-                openDoor(card);
-
-            }
-
-        );
-
-
-    }
-);
-
-
-/* =====================================
-   ОТКРЫТИЕ
-===================================== */
-
-function openDoor(selectedDoor) {
-
-
-    /* Если уже открыли */
-
-    if (opened) {
-
-        return;
-
-    }
-
-
-    opened = true;
-
-
-    /* Открываем выбранную */
-
-    selectedDoor.classList.add(
-        "open"
-    );
-
-
-    /* Остальные затемняем */
-
-    doorCards.forEach(
-
-        function (door) {
-
-
-            if (
-                door !== selectedDoor
-            ) {
-
-                door.classList.add(
-                    "disabled"
-                );
-
-            }
-
-
-        }
-
-    );
-
-
-    /* =================================
-       ПОЯВЛЯЕТСЯ ТЕКСТ
-    ================================= */
-
-    setTimeout(
-
-        function () {
-
-            result.classList.add(
-                "visible"
-            );
-
-        },
-
-        1300
-
-    );
-
-
-    /* =================================
-       ПОЯВЛЯЕТСЯ КНОПКА
-    ================================= */
-
-    setTimeout(
-
-        function () {
-
-            nextButton.classList.add(
-                "visible"
-            );
-
-        },
-
-        2200
-
-    );
-
-
-}const doorCards =
     document.querySelectorAll(".door-card");
 
 const result =
     document.getElementById("result");
 
-const resultText =
-    document.getElementById("resultText");
-
 const nextButton =
     document.getElementById("nextButton");
-
 
 let opened = false;
 
 
-/* ==========================
-   ОТКРЫТИЕ ДВЕРИ
-========================== */
+/* ОТКРЫТИЕ ДВЕРИ */
 
 doorCards.forEach(function (card) {
-
 
     const handle =
         card.querySelector(".handle");
@@ -204,14 +39,10 @@ doorCards.forEach(function (card) {
         }
     );
 
-
 });
 
 
 function openDoor(selectedDoor) {
-
-
-    /* Уже выбрана дверь */
 
     if (opened) {
 
@@ -223,70 +54,70 @@ function openDoor(selectedDoor) {
     opened = true;
 
 
-    /* Открываем выбранную */
+    /* ОТКРЫВАЕМ ДВЕРЬ */
 
-    selectedDoor.classList.add(
-        "open"
-    );
+    selectedDoor.classList.add("open");
 
 
-    /* Остальные затемняются */
+    /* ОСТАЛЬНЫЕ ДВЕРИ ТЕМНЕЮТ */
 
     doorCards.forEach(function (door) {
 
-        if (
-            door !== selectedDoor
-        ) {
+        if (door !== selectedDoor) {
 
-            door.classList.add(
-                "disabled"
-            );
+            door.classList.add("disabled");
 
         }
 
     });
 
 
-    /* Получаем фразу двери */
+    /*
+       ПОСЛЕ ОТКРЫТИЯ —
+       КАРТИНКА РЕЗКО ВЫЛЕТАЕТ
+    */
 
-    const message =
-        selectedDoor.dataset.message;
+    setTimeout(function () {
 
+        selectedDoor.classList.add("boom");
 
-    /* Появление текста */
+        document.body.classList.add("screen-shake");
 
-    setTimeout(
-
-        function () {
-
-            resultText.textContent =
-                message;
-
-            result.classList.add(
-                "visible"
-            );
-
-        },
-
-        1000
-
-    );
+    }, 850);
 
 
-    /* Появление кнопки */
+    /*
+       УБИРАЕМ ТРЯСКУ
+    */
 
-    setTimeout(
+    setTimeout(function () {
 
-        function () {
+        document.body.classList.remove(
+            "screen-shake"
+        );
 
-            nextButton.classList.add(
-                "visible"
-            );
+    }, 1450);
 
-        },
 
-        1700
+    /*
+       ПОЯВЛЯЕТСЯ ТЕКСТ
+    */
 
-    );
+    setTimeout(function () {
+
+        result.classList.add("visible");
+
+    }, 1900);
+
+
+    /*
+       ПОЯВЛЯЕТСЯ КНОПКА
+    */
+
+    setTimeout(function () {
+
+        nextButton.classList.add("visible");
+
+    }, 2600);
 
 }
