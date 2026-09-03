@@ -5,6 +5,7 @@
 * {
 
     margin: 0;
+
     padding: 0;
 
     box-sizing: border-box;
@@ -16,6 +17,7 @@ html,
 body {
 
     width: 100%;
+
     min-height: 100%;
 
 }
@@ -66,6 +68,7 @@ body {
     z-index: 0;
 
     animation:
+
         backgroundMove
         15s
         ease-in-out
@@ -79,6 +82,7 @@ body {
     0% {
 
         transform:
+
             scale(1.03)
             translate(0, 0);
 
@@ -88,6 +92,7 @@ body {
     50% {
 
         transform:
+
             scale(1.07)
             translate(8px, -8px);
 
@@ -97,6 +102,7 @@ body {
     100% {
 
         transform:
+
             scale(1.03)
             translate(0, 0);
 
@@ -118,9 +124,13 @@ body {
     background:
 
         radial-gradient(
+
             circle at center,
+
             rgba(15, 17, 25, 0.35),
+
             rgba(4, 5, 10, 0.88)
+
         );
 
     z-index: 1;
@@ -254,9 +264,9 @@ h1 {
 
     width: 230px;
 
-    cursor: pointer;
-
     position: relative;
+
+    cursor: default;
 
     transition:
 
@@ -296,7 +306,7 @@ h1 {
 
     transform:
 
-        translateY(-10px);
+        translateY(-8px);
 
 }
 
@@ -313,7 +323,7 @@ h1 {
 
 
 /* =====================================
-   РАМА ДВЕРИ
+   РАМА
 ===================================== */
 
 .door-frame {
@@ -323,8 +333,6 @@ h1 {
     height: 350px;
 
     position: relative;
-
-    overflow: visible;
 
     padding: 12px;
 
@@ -351,7 +359,7 @@ h1 {
 
 
 /* =====================================
-   СЮРПРИЗ ЗА ДВЕРЬЮ
+   КАРТИНКА ЗА ДВЕРЬЮ
 ===================================== */
 
 .surprise {
@@ -372,12 +380,6 @@ h1 {
 
     background: #111;
 
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
 }
 
 
@@ -387,34 +389,11 @@ h1 {
 
     height: 100%;
 
+    display: block;
+
     object-fit: cover;
 
     object-position: center;
-
-
-    /* ИЗНАЧАЛЬНО СПРЯТАНА */
-
-    opacity: 0;
-
-    transform:
-
-        scale(0.25)
-        translateY(120px);
-
-    transition:
-
-        transform
-        1.2s
-        cubic-bezier(
-            0.16,
-            1,
-            0.3,
-            1
-        ),
-
-        opacity
-        0.6s
-        ease;
 
 }
 
@@ -456,9 +435,6 @@ h1 {
             0.3,
             1
         );
-
-
-    /* ДЕРЕВО */
 
     background:
 
@@ -506,7 +482,7 @@ h1 {
 
 
 /* =====================================
-   ДОБАВЛЯЕМ ТЕКСТУРУ ДЕРЕВА
+   ТЕКСТУРА ДЕРЕВА
 ===================================== */
 
 .door::before {
@@ -551,7 +527,7 @@ h1 {
 
 
 /* =====================================
-   ПАНЕЛИ ДВЕРИ
+   ПАНЕЛИ
 ===================================== */
 
 .door-panel {
@@ -615,18 +591,15 @@ h1 {
             -50%
         );
 
-    width: 65px;
+    width: 75px;
 
-    height: 45px;
+    height: 50px;
 
     display: flex;
 
     align-items: center;
 
     justify-content: center;
-
-
-    /* БЕЛАЯ ТАБЛИЧКА */
 
     background:
 
@@ -636,15 +609,12 @@ h1 {
 
         #111;
 
-
-    /* ЧЁРНАЯ ЦИФРА */
-
     font-family:
 
         Georgia,
         serif;
 
-    font-size: 25px;
+    font-size: 26px;
 
     font-weight: bold;
 
@@ -672,9 +642,9 @@ h1 {
 
     top: 58%;
 
-    width: 22px;
+    width: 28px;
 
-    height: 22px;
+    height: 28px;
 
     border-radius: 50%;
 
@@ -690,7 +660,7 @@ h1 {
 
             circle at 30% 30%,
 
-            #fff,
+            #ffffff,
 
             #c7c8ca 45%,
 
@@ -756,7 +726,7 @@ h1 {
 
 
 /* =====================================
-   ОТКРЫТАЯ ДВЕРЬ
+   ОТКРЫТИЕ ДВЕРИ
 ===================================== */
 
 .door-card.open .door {
@@ -767,37 +737,6 @@ h1 {
 
 }
 
-
-/* =====================================
-   ПОЯВЛЕНИЕ КАРТИНКИ
-===================================== */
-
-.door-card.open .surprise img {
-
-    opacity: 1;
-
-    transform:
-
-        scale(1.35)
-        translateY(0);
-
-}
-
-
-/* =====================================
-   КАРТИНКА ВЫЛЕЗАЕТ ЗА РАМКУ
-===================================== */
-
-.door-card.open .surprise {
-
-    overflow: visible;
-
-}
-
-
-/* =====================================
-   УБИРАЕМ ПОДСКАЗКУ
-===================================== */
 
 .door-card.open .door-hint {
 
@@ -812,7 +751,7 @@ h1 {
 
 .door-card.disabled {
 
-    opacity: 0.22;
+    opacity: 0.20;
 
     pointer-events: none;
 
@@ -824,12 +763,103 @@ h1 {
 
 
 /* =====================================
+   ПОЛНОЭКРАННЫЙ СЮРПРИЗ
+===================================== */
+
+.fullscreen-surprise {
+
+    position: fixed;
+
+    z-index: 99999;
+
+    overflow: hidden;
+
+    background: transparent;
+
+    pointer-events: none;
+
+}
+
+
+.fullscreen-surprise img {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: contain;
+
+    object-position: center;
+
+}
+
+
+.fullscreen-surprise.animate {
+
+    animation:
+
+        surpriseBoom
+        1s
+        cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        )
+        forwards;
+
+}
+
+
+@keyframes surpriseBoom {
+
+    0% {
+
+        transform:
+
+            scale(1);
+
+    }
+
+
+    60% {
+
+        transform:
+
+            scale(1.08);
+
+    }
+
+
+    80% {
+
+        transform:
+
+            scale(0.97);
+
+    }
+
+
+    100% {
+
+        transform:
+
+            scale(1);
+
+    }
+
+}
+
+
+/* =====================================
    РЕЗУЛЬТАТ
 ===================================== */
 
 .result {
 
-    margin-top: 10px;
+    margin-top: 25px;
 
     opacity: 0;
 
@@ -1032,7 +1062,7 @@ h1 {
 
 
 /* =====================================
-   МОБИЛЬНАЯ ВЕРСИЯ
+   АДАПТАЦИЯ
 ===================================== */
 
 @media (max-width: 900px) {
@@ -1111,7 +1141,9 @@ h1 {
 
     .door-card {
 
-        transform: scale(0.9);
+        transform:
+
+            scale(0.9);
 
         margin-bottom: -15px;
 
