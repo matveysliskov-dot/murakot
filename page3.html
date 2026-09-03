@@ -9,9 +9,9 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Три двери</title>
+    <title>Сообщение</title>
 
-    <link rel="stylesheet" href="page4.css">
+    <link rel="stylesheet" href="page3.css">
 
 </head>
 
@@ -19,78 +19,113 @@
 <body>
 
 
-    <!-- ФОН -->
-
+    <!-- Фон -->
     <div class="background"></div>
 
+
+    <!-- Затемнение -->
     <div class="overlay"></div>
 
 
     <main class="page">
 
 
-        <!-- ВЕРХНИЙ ТЕКСТ -->
-
-        <section class="intro">
-
-            <p class="small-text">
-                Небольшой выбор
-            </p>
+        <div class="content">
 
 
-            <h1>
-                А теперь открой<br>
-                одну из дверей.
-            </h1>
+            <!-- ВЕРХНИЙ ТЕКСТ -->
+
+            <div class="intro">
+
+                <p class="small-text">
+                    Но есть одна вещь...
+                </p>
 
 
-            <p class="subtitle">
-                Интересно, что тебя ждёт?
-            </p>
+                <h1>
+                    расстояние не умеет<br>
+                    останавливать сообщения.
+                </h1>
 
-        </section>
-
-
-
-        <!-- ДВЕРИ -->
-
-        <section class="doors">
+            </div>
 
 
-
-            <!-- РОЗОВАЯ ДВЕРЬ -->
+            <!-- КОНВЕРТ -->
 
             <div
-                class="door-card pink-card"
-                data-message="Побольше уютных вечеров."
+                class="envelope-wrapper"
+                id="envelope"
             >
 
 
-                <div class="door-scene">
+                <!-- Подсказка -->
+
+                <p class="click-text">
+                    нажми на конверт
+                </p>
 
 
-                    <div class="door-frame">
+                <div class="envelope">
 
 
-                        <div class="door pink-door">
+                    <!-- ЗАДНЯЯ ЧАСТЬ -->
+
+                    <div class="envelope-back"></div>
 
 
-                            <div class="door-panel"></div>
+                    <!-- ПИСЬМО -->
+
+                    <div class="letter">
 
 
-                            <button
-                                class="handle"
-                                aria-label="Открыть дверь"
-                            ></button>
+                        <div class="letter-content">
+
+
+                            <p class="letter-text">
+
+                                Иногда расстояние —
+                                это просто цифры.
+
+                            </p>
+
+
+                            <p class="letter-text second">
+
+                                Потому что если захочется
+                                поговорить —
+
+                                <br><br>
+
+                                я всегда где-то
+                                на другом конце сообщения.
+
+                            </p>
+
+
+                            <p class="signature">
+                                Из Ростова 🌸
+                            </p>
 
 
                         </div>
 
+                    </div>
 
-                        <!-- СВЕТ ЗА ДВЕРЬЮ -->
 
-                        <div class="light pink-light"></div>
+                    <!-- КЛАПАН -->
 
+                    <div class="envelope-flap"></div>
+
+
+                    <!-- ПЕРЕДНЯЯ ЧАСТЬ -->
+
+                    <div class="envelope-front">
+
+                        <div class="left-fold"></div>
+
+                        <div class="right-fold"></div>
+
+                        <div class="bottom-fold"></div>
 
                     </div>
 
@@ -98,160 +133,27 @@
                 </div>
 
 
-                <p class="door-hint">
-                    потяни за ручку
-                </p>
-
-
             </div>
 
 
+            <!-- КНОПКА ДАЛЬШЕ -->
 
-            <!-- СИНЯЯ ДВЕРЬ -->
-
-            <div
-                class="door-card blue-card"
-                data-message="Побольше новых впечатлений."
+            <a
+                href="#"
+                class="next-button"
+                id="nextButton"
             >
+                дальше
+            </a>
 
 
-                <div class="door-scene">
-
-
-                    <div class="door-frame">
-
-
-                        <div class="door blue-door">
-
-
-                            <div class="door-panel"></div>
-
-
-                            <button
-                                class="handle"
-                                aria-label="Открыть дверь"
-                            ></button>
-
-
-                        </div>
-
-
-                        <div class="light blue-light"></div>
-
-
-                    </div>
-
-
-                </div>
-
-
-                <p class="door-hint">
-                    потяни за ручку
-                </p>
-
-
-            </div>
-
-
-
-            <!-- ЗОЛОТАЯ ДВЕРЬ -->
-
-            <div
-                class="door-card gold-card"
-                data-message="Побольше счастливых случайностей."
-            >
-
-
-                <div class="door-scene">
-
-
-                    <div class="door-frame">
-
-
-                        <div class="door gold-door">
-
-
-                            <div class="door-panel"></div>
-
-
-                            <button
-                                class="handle"
-                                aria-label="Открыть дверь"
-                            ></button>
-
-
-                        </div>
-
-
-                        <div class="light gold-light"></div>
-
-
-                    </div>
-
-
-                </div>
-
-
-                <p class="door-hint">
-                    потяни за ручку
-                </p>
-
-
-            </div>
-
-
-        </section>
-
-
-
-        <!-- ФРАЗА ПОСЛЕ ОТКРЫТИЯ -->
-
-        <section
-            class="result"
-            id="result"
-        >
-
-
-            <p
-                class="result-small"
-                id="resultSmall"
-            >
-                За этой дверью...
-            </p>
-
-
-            <h2
-                id="resultText"
-            >
-                Побольше хорошего.
-            </h2>
-
-
-            <p class="result-bottom">
-                Хороший выбор.
-            </p>
-
-
-        </section>
-
-
-
-        <!-- КНОПКА -->
-
-        <a
-            href="#"
-            class="next-button"
-            id="nextButton"
-        >
-            дальше
-        </a>
+        </div>
 
 
     </main>
 
 
-
-    <script src="page4.js"></script>
+    <script src="page3.js"></script>
 
 
 </body>
