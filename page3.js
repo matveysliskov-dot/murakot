@@ -1,4 +1,39 @@
-const doorCards =
+const envelope =
+    document.getElementById("envelope");
+
+const openButton =
+    document.getElementById("openButton");
+
+const nextButton =
+    document.getElementById("nextButton");
+
+
+function openEnvelope() {
+
+    envelope.classList.add("open");
+
+    openButton.classList.add("hidden");
+
+
+    setTimeout(() => {
+
+        nextButton.classList.add("visible");
+
+    }, 1000);
+
+}
+
+
+openButton.addEventListener(
+    "click",
+    openEnvelope
+);
+
+
+envelope.addEventListener(
+    "click",
+    openEnvelope
+);const doorCards =
     document.querySelectorAll(".door-card");
 
 const result =
