@@ -1,4 +1,197 @@
-const doorCards =
+/* =========================================
+   ПОЛУЧАЕМ ЭЛЕМЕНТЫ
+========================================= */
+
+const doors =
+    document.querySelectorAll(".door-card");
+
+
+const surpriseLayer =
+    document.getElementById("surpriseLayer");
+
+
+const flash =
+    document.getElementById("flash");
+
+
+const result =
+    document.getElementById("result");
+
+
+/* =========================================
+   СОСТОЯНИЕ
+========================================= */
+
+let doorOpened = false;
+
+
+/* =========================================
+   КАЖДАЯ ДВЕРЬ
+========================================= */
+
+doors.forEach(function (door) {
+
+    const handle =
+        door.querySelector(".handle");
+
+
+    /*
+        Клик по всей двери
+    */
+
+    door.addEventListener(
+
+        "click",
+
+        function () {
+
+            openDoor(door);
+
+        }
+
+    );
+
+
+    /*
+        Клик конкретно по ручке
+    */
+
+    handle.addEventListener(
+
+        "click",
+
+        function (event) {
+
+            event.stopPropagation();
+
+            openDoor(door);
+
+        }
+
+    );
+
+});
+
+
+/* =========================================
+   ФУНКЦИЯ ОТКРЫТИЯ
+========================================= */
+
+function openDoor(selectedDoor) {
+
+
+    /*
+        Нельзя открыть
+        несколько дверей
+    */
+
+    if (doorOpened) {
+
+        return;
+
+    }
+
+
+    doorOpened = true;
+
+
+    /*
+        Открываем выбранную
+        дверь
+    */
+
+    selectedDoor.classList.add("open");
+
+
+    /*
+        Затемняем остальные
+    */
+
+    doors.forEach(function (door) {
+
+        if (door !== selectedDoor) {
+
+            door.classList.add("disabled");
+
+        }
+
+    });
+
+
+    /*
+        Через 800 миллисекунд
+        начинается БУМ
+    */
+
+    setTimeout(function () {
+
+
+        /*
+            Показываем
+            картинку
+        */
+
+        surpriseLayer.classList.add("active");
+
+
+        /*
+            ВСПЫШКА
+        */
+
+        flash.classList.add("active");
+
+
+        /*
+            ТРЯСКА
+        */
+
+        document.body.classList.add("shake");
+
+
+        /*
+            Через 500 мс
+            убираем тряску
+        */
+
+        setTimeout(function () {
+
+            document.body.classList.remove(
+                "shake"
+            );
+
+        }, 500);
+
+
+        /*
+            Убираем класс
+            вспышки
+        */
+
+        setTimeout(function () {
+
+            flash.classList.remove(
+                "active"
+            );
+
+        }, 500);
+
+
+    }, 800);
+
+
+    /*
+        Показываем текст
+    */
+
+    setTimeout(function () {
+
+        result.classList.add(
+            "visible"
+        );
+
+    }, 1700);
+
+}const doorCards =
     document.querySelectorAll(".door-card");
 
 const result =
