@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Сигнал получен</title>
+
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <link
+        rel="stylesheet"
+        href="page6.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ЗВЁЗДЫ -->
+
+    <div class="stars"></div>
+
+    <div class="stars stars-two"></div>
+
+
+    <!-- СВЕЧЕНИЕ -->
+
+    <div class="space-glow"></div>
+
+
+    <main class="page">
+
+
+        <!-- ВЕРХНИЙ ИНТЕРФЕЙС -->
+
+        <div class="system-bar">
+
+            <span>
+                SYSTEM ONLINE
+            </span>
+
+
+            <span>
+                SIGNAL: UNKNOWN
+            </span>
+
+
+            <span>
+                ◉
+            </span>
+
+        </div>
+
+
+
+        <!-- ГЛАВНЫЙ ЭКРАН -->
+
+        <section
+            class="signal-screen"
+            id="signalScreen"
+        >
+
+
+            <p class="coordinates">
+
+                COORDINATES:
+                55°45′N
+
+            </p>
+
+
+            <div class="signal-circle">
+
+
+                <div class="circle-inner"></div>
+
+                <div class="circle-line"></div>
+
+            </div>
+
+
+            <p class="incoming">
+
+                ВХОДЯЩЕЕ СООБЩЕНИЕ...
+
+            </p>
+
+
+            <h1>
+
+                ОБНАРУЖЕН
+
+                <span>
+                    ОСОБЕННЫЙ ДЕНЬ
+                </span>
+
+            </h1>
+
+
+            <p class="description">
+
+                Где-то во Вселенной
+                сегодня появился ещё один
+                повод сказать что-то хорошее.
+
+            </p>
+
+
+            <button
+                class="signal-button"
+                id="startButton"
+            >
+
+                <span>
+                    ПРИНЯТЬ СИГНАЛ
+                </span>
+
+            </button>
+
+
+        </section>
+
+
+
+        <!-- СООБЩЕНИЯ -->
+
+        <section
+            class="messages"
+            id="messages"
+        >
+
+
+            <div class="messages-header">
+
+                <p>
+                    MESSAGE ARCHIVE
+                </p>
+
+
+                <h2>
+
+                    Несколько сообщений
+                    специально для тебя.
+
+                </h2>
+
+            </div>
+
+
+
+            <div class="message-grid">
+
+
+                <button
+                    class="message-card"
+                    data-message="
+                    Пусть в твоей жизни всегда будет место
+                    для вещей, которые заставляют тебя
+                    по-настоящему улыбаться.
+                    "
+                >
+
+                    <span class="message-id">
+                        SIGNAL 01
+                    </span>
+
+
+                    <span class="message-title">
+                        Счастье
+                    </span>
+
+
+                    <span class="message-icon">
+                        ✦
+                    </span>
+
+                </button>
+
+
+
+                <button
+                    class="message-card"
+                    data-message="
+                    Пусть рядом будут люди,
+                    с которыми не нужно объяснять,
+                    почему ты именно такая.
+                    "
+                >
+
+                    <span class="message-id">
+                        SIGNAL 02
+                    </span>
+
+
+                    <span class="message-title">
+                        Люди
+                    </span>
+
+
+                    <span class="message-icon">
+                        ✦
+                    </span>
+
+                </button>
+
+
+
+                <button
+                    class="message-card"
+                    data-message="
+                    Желаю тебе всегда находить силы
+                    идти туда, куда действительно хочется.
+                    Даже если путь иногда непонятен.
+                    "
+                >
+
+                    <span class="message-id">
+                        SIGNAL 03
+                    </span>
+
+
+                    <span class="message-title">
+                        Путь
+                    </span>
+
+
+                    <span class="message-icon">
+                        ✦
+                    </span>
+
+                </button>
+
+
+
+                <button
+                    class="message-card"
+                    data-message="
+                    И самое главное:
+                    пусть впереди тебя ждёт
+                    ещё много хорошего.
+                    "
+                >
+
+                    <span class="message-id">
+                        SIGNAL 04
+                    </span>
+
+
+                    <span class="message-title">
+                        Будущее
+                    </span>
+
+
+                    <span class="message-icon">
+                        ✦
+                    </span>
+
+                </button>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ФИНАЛ -->
+
+        <section class="final-section">
+
+
+            <p class="final-status">
+
+                TRANSMISSION COMPLETE
+
+            </p>
+
+
+            <h2>
+
+                Сигнал получен.
+
+                <span>
+                    Поздравление доставлено.
+                </span>
+
+            </h2>
+
+
+            <p>
+
+                А дальше начинается
+                самое интересное.
+
+            </p>
+
+
+            <div class="final-line"></div>
+
+
+            <small>
+
+                END OF TRANSMISSION
+
+            </small>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- МОДАЛЬНОЕ ОКНО -->
+
+    <div
+        class="modal"
+        id="modal"
+    >
+
+
+        <div class="modal-content">
+
+
+            <button
+                class="close-button"
+                id="closeButton"
+            >
+                ×
+            </button>
+
+
+            <p>
+                SIGNAL DECODED
+            </p>
+
+
+            <div
+                class="decoded-message"
+                id="decodedMessage"
+            >
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <script src="page6.js"></script>
+
+
+</body>
+
+</html>
