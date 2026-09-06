@@ -1,0 +1,1284 @@
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+
+body {
+
+    background:
+        #02030a;
+
+    color:
+        #e9f6ff;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    overflow-x:
+        hidden;
+
+}
+
+
+/* =====================
+   ЗВЁЗДЫ
+===================== */
+
+.stars {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -3;
+
+    pointer-events: none;
+
+    opacity: 0.8;
+
+    background-image:
+
+        radial-gradient(
+            white 1px,
+            transparent 1px
+        );
+
+    background-size:
+        70px 70px;
+
+    animation:
+        starsMove
+        20s
+        linear
+        infinite;
+
+}
+
+
+.stars-two {
+
+    opacity: 0.35;
+
+    background-size:
+        130px 130px;
+
+    animation-duration:
+        40s;
+
+}
+
+
+/* =====================
+   СВЕЧЕНИЕ
+===================== */
+
+.space-glow {
+
+    position: fixed;
+
+    width: 700px;
+
+    height: 700px;
+
+    border-radius: 50%;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(
+                44,
+                100,
+                255,
+                0.18
+            ),
+
+            transparent
+            70%
+
+        );
+
+    top:
+        10%;
+
+    left:
+        50%;
+
+    transform:
+        translateX(-50%);
+
+    z-index:
+        -2;
+
+}
+
+
+/* =====================
+   СТРАНИЦА
+===================== */
+
+.page {
+
+    width: 100%;
+
+    min-height: 100vh;
+
+}
+
+
+/* =====================
+   SYSTEM BAR
+===================== */
+
+.system-bar {
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        0;
+
+    width:
+        100%;
+
+    padding:
+        25px
+        5%;
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        2px;
+
+    color:
+        rgba(
+            180,
+            220,
+            255,
+            0.6
+        );
+
+    border-bottom:
+
+        1px solid
+
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+}
+
+
+/* =====================
+   ПЕРВЫЙ ЭКРАН
+===================== */
+
+.signal-screen {
+
+    min-height:
+        100vh;
+
+    padding:
+        120px
+        20px
+        80px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    text-align:
+        center;
+
+}
+
+
+.coordinates {
+
+    font-size:
+        11px;
+
+    letter-spacing:
+        3px;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.4
+        );
+
+    margin-bottom:
+        35px;
+
+}
+
+
+/* =====================
+   КРУГ СИГНАЛА
+===================== */
+
+.signal-circle {
+
+    position:
+        relative;
+
+    width:
+        170px;
+
+    height:
+        170px;
+
+    border:
+
+        1px solid
+
+        rgba(
+            100,
+            180,
+            255,
+            0.4
+        );
+
+    border-radius:
+        50%;
+
+    margin-bottom:
+        40px;
+
+    animation:
+
+        rotateCircle
+
+        12s
+
+        linear
+
+        infinite;
+
+}
+
+
+.signal-circle::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    width:
+        8px;
+
+    height:
+        8px;
+
+    border-radius:
+        50%;
+
+    background:
+        #a8dcff;
+
+    top:
+        -4px;
+
+    left:
+        50%;
+
+    box-shadow:
+
+        0 0 20px
+
+        #a8dcff;
+
+}
+
+
+.circle-inner {
+
+    position:
+        absolute;
+
+    inset:
+        30px;
+
+    border-radius:
+        50%;
+
+    border:
+
+        1px solid
+
+        rgba(
+            255,
+            255,
+            255,
+            0.15
+        );
+
+}
+
+
+.circle-line {
+
+    position:
+        absolute;
+
+    width:
+        1px;
+
+    height:
+        100%;
+
+    left:
+        50%;
+
+    background:
+
+        linear-gradient(
+
+            transparent,
+
+            rgba(
+                120,
+                200,
+                255,
+                0.8
+            ),
+
+            transparent
+
+        );
+
+}
+
+
+/* =====================
+   ТЕКСТ
+===================== */
+
+.incoming {
+
+    font-size:
+        11px;
+
+    letter-spacing:
+        4px;
+
+    color:
+        #80c7ff;
+
+    margin-bottom:
+        25px;
+
+    animation:
+
+        blink
+
+        1.5s
+
+        infinite;
+
+}
+
+
+.signal-screen h1 {
+
+    font-family:
+        "Orbitron",
+        sans-serif;
+
+    font-size:
+
+        clamp(
+            40px,
+            7vw,
+            90px
+        );
+
+    line-height:
+        1.1;
+
+    font-weight:
+        500;
+
+    letter-spacing:
+        2px;
+
+}
+
+
+.signal-screen h1 span {
+
+    display:
+        block;
+
+    color:
+        #73baff;
+
+    margin-top:
+        10px;
+
+}
+
+
+.description {
+
+    max-width:
+        550px;
+
+    margin-top:
+        40px;
+
+    font-size:
+        15px;
+
+    line-height:
+        1.8;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.6
+        );
+
+}
+
+
+/* =====================
+   КНОПКА
+===================== */
+
+.signal-button {
+
+    position:
+        relative;
+
+    margin-top:
+        50px;
+
+    padding:
+        18px
+        40px;
+
+    border:
+
+        1px solid
+
+        rgba(
+            115,
+            186,
+            255,
+            0.6
+        );
+
+    background:
+        transparent;
+
+    color:
+        #dff2ff;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    letter-spacing:
+        2px;
+
+    cursor:
+        pointer;
+
+    overflow:
+        hidden;
+
+    transition:
+        0.3s;
+
+}
+
+
+.signal-button::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    background:
+        #6db8ff;
+
+    transform:
+        translateX(-101%);
+
+    transition:
+        0.3s;
+
+    z-index:
+        -1;
+
+}
+
+
+.signal-button:hover {
+
+    color:
+        #02030a;
+
+    box-shadow:
+
+        0 0 30px
+
+        rgba(
+            80,
+            160,
+            255,
+            0.5
+        );
+
+}
+
+
+.signal-button:hover::before {
+
+    transform:
+        translateX(0);
+
+}
+
+
+/* =====================
+   СООБЩЕНИЯ
+===================== */
+
+.messages {
+
+    padding:
+        150px
+        8%;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            #02030a,
+
+            #07101f
+
+        );
+
+}
+
+
+.messages-header {
+
+    max-width:
+        900px;
+
+    margin:
+        auto
+        auto
+        80px;
+
+}
+
+
+.messages-header p {
+
+    font-size:
+        11px;
+
+    letter-spacing:
+        4px;
+
+    color:
+        #75baff;
+
+    margin-bottom:
+        30px;
+
+}
+
+
+.messages-header h2 {
+
+    font-family:
+        "Orbitron",
+        sans-serif;
+
+    font-size:
+
+        clamp(
+            32px,
+            5vw,
+            65px
+        );
+
+    font-weight:
+        400;
+
+    line-height:
+        1.3;
+
+}
+
+
+/* =====================
+   КАРТОЧКИ
+===================== */
+
+.message-grid {
+
+    max-width:
+        1100px;
+
+    margin:
+        auto;
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            2,
+            1fr
+        );
+
+    gap:
+        20px;
+
+}
+
+
+.message-card {
+
+    position:
+        relative;
+
+    min-height:
+        240px;
+
+    padding:
+        30px;
+
+    background:
+
+        rgba(
+            255,
+            255,
+            255,
+            0.03
+        );
+
+    border:
+
+        1px solid
+
+        rgba(
+            120,
+            190,
+            255,
+            0.15
+        );
+
+    color:
+        white;
+
+    text-align:
+        left;
+
+    cursor:
+        pointer;
+
+    overflow:
+        hidden;
+
+    transition:
+        0.3s;
+
+}
+
+
+.message-card:hover {
+
+    transform:
+        translateY(-8px);
+
+    border-color:
+        #6db8ff;
+
+    box-shadow:
+
+        0 20px 50px
+
+        rgba(
+            20,
+            100,
+            255,
+            0.15
+        );
+
+}
+
+
+.message-id {
+
+    display:
+        block;
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        3px;
+
+    color:
+        #75baff;
+
+}
+
+
+.message-title {
+
+    position:
+        absolute;
+
+    bottom:
+        30px;
+
+    left:
+        30px;
+
+    font-family:
+        "Orbitron",
+        sans-serif;
+
+    font-size:
+        35px;
+
+}
+
+
+.message-icon {
+
+    position:
+        absolute;
+
+    right:
+        30px;
+
+    bottom:
+        30px;
+
+    font-size:
+        35px;
+
+    color:
+        #75baff;
+
+}
+
+
+/* =====================
+   ФИНАЛ
+===================== */
+
+.final-section {
+
+    min-height:
+        100vh;
+
+    padding:
+        150px
+        20px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    text-align:
+        center;
+
+}
+
+
+.final-status {
+
+    font-size:
+        11px;
+
+    letter-spacing:
+        4px;
+
+    color:
+        #6db8ff;
+
+    margin-bottom:
+        50px;
+
+}
+
+
+.final-section h2 {
+
+    max-width:
+        1100px;
+
+    font-family:
+        "Orbitron",
+        sans-serif;
+
+    font-size:
+
+        clamp(
+            40px,
+            7vw,
+            90px
+        );
+
+    font-weight:
+        400;
+
+    line-height:
+        1.3;
+
+}
+
+
+.final-section h2 span {
+
+    display:
+        block;
+
+    color:
+        #6db8ff;
+
+}
+
+
+.final-section > p:not(.final-status) {
+
+    margin-top:
+        50px;
+
+    font-size:
+        18px;
+
+    color:
+
+        rgba(
+            255,
+            255,
+            255,
+            0.55
+        );
+
+}
+
+
+.final-line {
+
+    width:
+        200px;
+
+    height:
+        1px;
+
+    margin:
+        70px
+        0;
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            transparent,
+
+            #6db8ff,
+
+            transparent
+
+        );
+
+}
+
+
+.final-section small {
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        4px;
+
+    color:
+
+        rgba(
+            255,
+            255,
+            255,
+            0.35
+        );
+
+}
+
+
+/* =====================
+   МОДАЛКА
+===================== */
+
+.modal {
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        20px;
+
+    background:
+
+        rgba(
+            0,
+            0,
+            10,
+            0.9
+        );
+
+    opacity:
+        0;
+
+    visibility:
+        hidden;
+
+    transition:
+        0.3s;
+
+    z-index:
+        100;
+
+}
+
+
+.modal.active {
+
+    opacity:
+        1;
+
+    visibility:
+        visible;
+
+}
+
+
+.modal-content {
+
+    position:
+        relative;
+
+    width:
+        100%;
+
+    max-width:
+        700px;
+
+    padding:
+        70px
+        50px;
+
+    border:
+
+        1px solid
+
+        rgba(
+            100,
+            180,
+            255,
+            0.4
+        );
+
+    background:
+        #07101f;
+
+    transform:
+        scale(0.9);
+
+    transition:
+        0.3s;
+
+}
+
+
+.modal.active
+.modal-content {
+
+    transform:
+        scale(1);
+
+}
+
+
+.modal-content > p {
+
+    font-size:
+        11px;
+
+    letter-spacing:
+        4px;
+
+    color:
+        #6db8ff;
+
+    margin-bottom:
+        35px;
+
+}
+
+
+.decoded-message {
+
+    font-family:
+        "Orbitron",
+        sans-serif;
+
+    font-size:
+
+        clamp(
+            22px,
+            4vw,
+            38px
+        );
+
+    line-height:
+        1.5;
+
+}
+
+
+.close-button {
+
+    position:
+        absolute;
+
+    top:
+        20px;
+
+    right:
+        25px;
+
+    border:
+        none;
+
+    background:
+        transparent;
+
+    color:
+        white;
+
+    font-size:
+        30px;
+
+    cursor:
+        pointer;
+
+}
+
+
+/* =====================
+   АНИМАЦИИ
+===================== */
+
+@keyframes rotateCircle {
+
+    from {
+
+        transform:
+            rotate(0deg);
+
+    }
+
+    to {
+
+        transform:
+            rotate(360deg);
+
+    }
+
+}
+
+
+@keyframes blink {
+
+    0%,
+    100% {
+
+        opacity:
+            0.3;
+
+    }
+
+    50% {
+
+        opacity:
+            1;
+
+    }
+
+}
+
+
+@keyframes starsMove {
+
+    from {
+
+        background-position:
+            0
+            0;
+
+    }
+
+    to {
+
+        background-position:
+            300px
+            600px;
+
+    }
+
+}
+
+
+/* =====================
+   ТЕЛЕФОН
+===================== */
+
+@media
+(
+    max-width:
+    700px
+) {
+
+
+    .system-bar {
+
+        font-size:
+            7px;
+
+        padding:
+            20px;
+
+    }
+
+
+    .system-bar span:nth-child(2) {
+
+        display:
+            none;
+
+    }
+
+
+    .signal-circle {
+
+        width:
+            130px;
+
+        height:
+            130px;
+
+    }
+
+
+    .message-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .messages {
+
+        padding:
+            100px
+            25px;
+
+    }
+
+
+    .modal-content {
+
+        padding:
+            60px
+            25px;
+
+    }
+
+}
