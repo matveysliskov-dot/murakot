@@ -1,0 +1,1081 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    background:
+        #e9e0d1;
+
+    color:
+        #1d1b18;
+
+    overflow-x:
+        hidden;
+
+}
+
+
+/* =========================
+   ОСНОВНАЯ СТРАНИЦА
+========================= */
+
+.page {
+
+    position:
+        relative;
+
+    width:
+        100%;
+
+    overflow:
+        hidden;
+
+}
+
+
+/* =========================
+   ЗЕРНО
+========================= */
+
+.grain {
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    pointer-events:
+        none;
+
+    opacity:
+        0.12;
+
+    z-index:
+        100;
+
+    background-image:
+
+        repeating-radial-gradient(
+
+            circle at 0 0,
+
+            transparent 0,
+
+            rgba(0, 0, 0, 0.4) 1px,
+
+            transparent 2px
+
+        );
+
+    background-size:
+        5px 5px;
+
+}
+
+
+/* =========================
+   СВЕТОВЫЕ ПЯТНА
+========================= */
+
+.sun {
+
+    position:
+        absolute;
+
+    width:
+        450px;
+
+    height:
+        450px;
+
+    border-radius:
+        50%;
+
+    filter:
+        blur(20px);
+
+    opacity:
+        0.35;
+
+    z-index:
+        -1;
+
+}
+
+
+.sun-one {
+
+    top:
+        100px;
+
+    left:
+        -180px;
+
+    background:
+        #d79b65;
+
+}
+
+
+.sun-two {
+
+    top:
+        700px;
+
+    right:
+        -180px;
+
+    background:
+        #b86c58;
+
+}
+
+
+/* =========================
+   ПЕРВАЯ СЕКЦИЯ
+========================= */
+
+.hero {
+
+    min-height:
+        100vh;
+
+    padding:
+        70px 8%;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    text-align:
+        center;
+
+}
+
+
+/* =========================
+   ВЕРХНИЙ ТЕКСТ
+========================= */
+
+.date {
+
+    font-family:
+        "DM Mono",
+        monospace;
+
+    font-size:
+        13px;
+
+    letter-spacing:
+        5px;
+
+    margin-bottom:
+        35px;
+
+    opacity:
+        0.65;
+
+    animation:
+        fadeDown 1s ease forwards;
+
+}
+
+
+.hero h1 {
+
+    max-width:
+        1000px;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(
+            65px,
+            10vw,
+            150px
+        );
+
+    line-height:
+        0.9;
+
+    font-weight:
+        500;
+
+    letter-spacing:
+        -5px;
+
+    animation:
+        titleAppear
+        1.3s
+        ease
+        forwards;
+
+}
+
+
+.hero h1 span {
+
+    display:
+        block;
+
+    font-style:
+        italic;
+
+    color:
+        #a84f3d;
+
+}
+
+
+/* =========================
+   ВСТУПЛЕНИЕ
+========================= */
+
+.intro {
+
+    margin-top:
+        50px;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        22px;
+
+    line-height:
+        1.6;
+
+    max-width:
+        600px;
+
+    opacity:
+        0.75;
+
+    animation:
+        fadeUp
+        1.5s
+        ease
+        forwards;
+
+}
+
+
+/* =========================
+   ЛИСТАЙ
+========================= */
+
+.scroll-text {
+
+    margin-top:
+        70px;
+
+    font-family:
+        "DM Mono",
+        monospace;
+
+    font-size:
+        11px;
+
+    letter-spacing:
+        4px;
+
+    animation:
+        pulse
+        2s
+        infinite;
+
+}
+
+
+/* =========================
+   ПОЖЕЛАНИЯ
+========================= */
+
+.wishes {
+
+    padding:
+        150px 8%;
+
+    background:
+        #1d1b18;
+
+    color:
+        #f3ece1;
+
+}
+
+
+.section-header {
+
+    max-width:
+        850px;
+
+    margin:
+        0 auto 80px;
+
+}
+
+
+.section-header p {
+
+    font-family:
+        "DM Mono",
+        monospace;
+
+    font-size:
+        12px;
+
+    letter-spacing:
+        4px;
+
+    opacity:
+        0.6;
+
+    margin-bottom:
+        25px;
+
+}
+
+
+.section-header h2 {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(
+            40px,
+            6vw,
+            80px
+        );
+
+    font-weight:
+        500;
+
+    line-height:
+        1;
+
+}
+
+
+/* =========================
+   КАРТОЧКИ
+========================= */
+
+.cards {
+
+    max-width:
+        1100px;
+
+    margin:
+        auto;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            1fr
+        );
+
+    gap:
+        20px;
+
+}
+
+
+.wish-card {
+
+    position:
+        relative;
+
+    min-height:
+        260px;
+
+    padding:
+        35px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.2
+        );
+
+    background:
+        transparent;
+
+    color:
+        white;
+
+    cursor:
+        pointer;
+
+    text-align:
+        left;
+
+    overflow:
+        hidden;
+
+    transition:
+        0.4s ease;
+
+}
+
+
+.wish-card::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    background:
+        #f0e5d6;
+
+    transform:
+        translateY(
+            100%
+        );
+
+    transition:
+        0.5s ease;
+
+    z-index:
+        0;
+
+}
+
+
+.wish-card:hover::before {
+
+    transform:
+        translateY(
+            0
+        );
+
+}
+
+
+.wish-card:hover {
+
+    color:
+        #1d1b18;
+
+}
+
+
+.number {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    display:
+        block;
+
+    font-family:
+        "DM Mono",
+        monospace;
+
+    font-size:
+        13px;
+
+    opacity:
+        0.7;
+
+}
+
+
+.card-title {
+
+    position:
+        absolute;
+
+    z-index:
+        2;
+
+    bottom:
+        35px;
+
+    left:
+        35px;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        45px;
+
+    font-style:
+        italic;
+
+}
+
+
+.card-arrow {
+
+    position:
+        absolute;
+
+    z-index:
+        2;
+
+    right:
+        35px;
+
+    bottom:
+        35px;
+
+    font-size:
+        35px;
+
+}
+
+
+/* =========================
+   ФИНАЛ
+========================= */
+
+.final {
+
+    min-height:
+        100vh;
+
+    padding:
+        150px 8%;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    text-align:
+        center;
+
+}
+
+
+.small-final {
+
+    font-family:
+        "DM Mono",
+        monospace;
+
+    letter-spacing:
+        5px;
+
+    font-size:
+        12px;
+
+    margin-bottom:
+        40px;
+
+    opacity:
+        0.6;
+
+}
+
+
+.final h2 {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(
+            50px,
+            8vw,
+            110px
+        );
+
+    font-weight:
+        500;
+
+    line-height:
+        0.95;
+
+    letter-spacing:
+        -3px;
+
+    max-width:
+        1100px;
+
+}
+
+
+.final h2 span {
+
+    font-style:
+        italic;
+
+    color:
+        #a84f3d;
+
+}
+
+
+.final-text {
+
+    margin-top:
+        60px;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        22px;
+
+    line-height:
+        1.7;
+
+    opacity:
+        0.75;
+
+}
+
+
+.signature {
+
+    margin-top:
+        80px;
+
+    font-family:
+        "DM Mono",
+        monospace;
+
+    font-size:
+        11px;
+
+    letter-spacing:
+        5px;
+
+}
+
+
+/* =========================
+   МОДАЛЬНОЕ ОКНО
+========================= */
+
+.modal {
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    background:
+        rgba(
+            20,
+            18,
+            15,
+            0.75
+        );
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        25px;
+
+    opacity:
+        0;
+
+    visibility:
+        hidden;
+
+    transition:
+        0.35s ease;
+
+    z-index:
+        1000;
+
+}
+
+
+.modal.active {
+
+    opacity:
+        1;
+
+    visibility:
+        visible;
+
+}
+
+
+.modal-box {
+
+    position:
+        relative;
+
+    width:
+        100%;
+
+    max-width:
+        650px;
+
+    padding:
+        80px 60px;
+
+    background:
+        #f1e7d9;
+
+    color:
+        #1d1b18;
+
+    transform:
+        translateY(
+            30px
+        )
+        scale(
+            0.95
+        );
+
+    transition:
+        0.4s ease;
+
+    box-shadow:
+        0
+        30px
+        100px
+        rgba(
+            0,
+            0,
+            0,
+            0.4
+        );
+
+}
+
+
+.modal.active
+.modal-box {
+
+    transform:
+        translateY(
+            0
+        )
+        scale(
+            1
+        );
+
+}
+
+
+.close {
+
+    position:
+        absolute;
+
+    top:
+        20px;
+
+    right:
+        25px;
+
+    border:
+        none;
+
+    background:
+        transparent;
+
+    font-size:
+        35px;
+
+    cursor:
+        pointer;
+
+    color:
+        #1d1b18;
+
+}
+
+
+.modal-small {
+
+    font-family:
+        "DM Mono",
+        monospace;
+
+    font-size:
+        11px;
+
+    letter-spacing:
+        4px;
+
+    opacity:
+        0.6;
+
+    margin-bottom:
+        35px;
+
+}
+
+
+.modal-text {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(
+            26px,
+            4vw,
+            42px
+        );
+
+    line-height:
+        1.3;
+
+    font-style:
+        italic;
+
+}
+
+
+/* =========================
+   АНИМАЦИИ
+========================= */
+
+@keyframes
+fadeDown {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(
+                -30px
+            );
+
+    }
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(
+                0
+            );
+
+    }
+
+}
+
+
+@keyframes
+fadeUp {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(
+                40px
+            );
+
+    }
+
+    to {
+
+        opacity:
+            0.75;
+
+        transform:
+            translateY(
+                0
+            );
+
+    }
+
+}
+
+
+@keyframes
+titleAppear {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(
+                60px
+            );
+
+        letter-spacing:
+            10px;
+
+    }
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(
+                0
+            );
+
+        letter-spacing:
+            -5px;
+
+    }
+
+}
+
+
+@keyframes
+pulse {
+
+    0%,
+    100% {
+
+        opacity:
+            0.35;
+
+    }
+
+    50% {
+
+        opacity:
+            1;
+
+    }
+
+}
+
+
+/* =========================
+   ТЕЛЕФОН
+========================= */
+
+@media
+(
+    max-width:
+    700px
+) {
+
+
+    .hero {
+
+        padding:
+            50px 25px;
+
+    }
+
+
+    .hero h1 {
+
+        letter-spacing:
+            -2px;
+
+    }
+
+
+    .intro {
+
+        font-size:
+            18px;
+
+    }
+
+
+    .wishes {
+
+        padding:
+            100px 25px;
+
+    }
+
+
+    .cards {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .wish-card {
+
+        min-height:
+            210px;
+
+    }
+
+
+    .final {
+
+        padding:
+            120px 25px;
+
+    }
+
+
+    .modal-box {
+
+        padding:
+            70px 30px;
+
+    }
+
+}
