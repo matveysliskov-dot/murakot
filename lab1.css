@@ -1,9 +1,14 @@
+/* ============================== */
 /* Общие настройки страницы */
+/* ============================== */
+
 body {
-margin: 0;
-padding: 20px;
 
 ```
+margin: 0;
+
+padding: 20px;
+
 font-family: Arial, sans-serif;
 
 background-color: #f2f2f2;
@@ -11,12 +16,17 @@ background-color: #f2f2f2;
 
 }
 
-/* Основной блок */
+/* ============================== */
+/* Основной контейнер */
+/* ============================== */
+
 .container {
-max-width: 1000px;
 
 ```
+max-width: 1000px;
+
 margin: auto;
+
 padding: 30px;
 
 background-color: white;
@@ -24,36 +34,44 @@ background-color: white;
 border-radius: 10px;
 
 text-align: center;
+
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 ```
 
 }
 
-/* Описание */
-.description {
-color: #555;
-}
+/* ============================== */
+/* Заголовки */
+/* ============================== */
 
-/* Блок с полями ввода */
-.inputs {
-display: flex;
+h1 {
 
 ```
-justify-content: center;
-gap: 15px;
-
-flex-wrap: wrap;
-
-margin: 25px 0;
+margin-bottom: 10px;
 ```
 
 }
 
-/* Каждый блок с input */
-.inputs div {
-display: flex;
+h2 {
 
 ```
+margin-top: 30px;
+```
+
+}
+
+/* ============================== */
+/* Блоки ввода */
+/* ============================== */
+
+.input-block {
+
+```
+display: inline-flex;
+
 flex-direction: column;
+
+margin: 10px;
 
 text-align: left;
 ```
@@ -61,26 +79,34 @@ text-align: left;
 }
 
 /* Поля ввода */
+
 input {
-width: 150px;
 
 ```
+width: 180px;
+
 padding: 8px;
 
 margin-top: 5px;
 
-border: 1px solid #aaa;
+border: 1px solid #999;
 
 border-radius: 5px;
 ```
 
 }
 
+/* ============================== */
 /* Кнопка */
+/* ============================== */
+
 button {
-padding: 12px 25px;
 
 ```
+margin-top: 20px;
+
+padding: 12px 25px;
+
 font-size: 16px;
 
 cursor: pointer;
@@ -96,41 +122,115 @@ color: white;
 
 }
 
-/* Эффект при наведении */
 button:hover {
-background-color: #555;
-}
-
-/* Блоки с матрицами */
-#original,
-#ascending,
-#descending,
-#results {
-margin-top: 30px;
-}
-
-/* Таблица */
-table {
-margin: 15px auto;
 
 ```
+background-color: #555;
+```
+
+}
+
+/* ============================== */
+/* Секции */
+/* ============================== */
+
+.section {
+
+```
+margin-top: 30px;
+
+padding-top: 10px;
+
+border-top: 1px solid #ddd;
+```
+
+}
+
+/* ============================== */
+/* Список заданий */
+/* ============================== */
+
+.tasks {
+
+```
+padding: 15px;
+
+background-color: #f5f5f5;
+
+border-radius: 5px;
+
+font-size: 18px;
+```
+
+}
+
+/* ============================== */
+/* Таблица */
+/* ============================== */
+
+table {
+
+```
+width: 100%;
+
+margin-top: 20px;
+
 border-collapse: collapse;
 ```
 
 }
 
-/* Ячейки таблицы */
-td,
-th {
-border: 1px solid black;
+th,
+td {
 
 ```
-padding: 8px 12px;
+border: 1px solid #999;
+
+padding: 10px;
+
+text-align: center;
 ```
 
 }
 
-/* Заголовки таблицы */
 th {
-background-color: #ddd;
+
+```
+background-color: #e5e5e5;
+```
+
+}
+
+/* ============================== */
+/* Блок результата */
+/* ============================== */
+
+.result-block {
+
+```
+margin-top: 25px;
+
+padding: 15px;
+
+border: 1px solid #ccc;
+
+border-radius: 5px;
+
+text-align: left;
+```
+
+}
+
+.processor {
+
+```
+margin: 5px 0;
+
+padding: 8px;
+
+background-color: #f5f5f5;
+
+border-radius: 4px;
+```
+
 }
