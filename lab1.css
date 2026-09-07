@@ -1,0 +1,136 @@
+/* Общие настройки страницы */
+body {
+margin: 0;
+padding: 20px;
+
+```
+font-family: Arial, sans-serif;
+
+background-color: #f2f2f2;
+```
+
+}
+
+/* Основной блок */
+.container {
+max-width: 1000px;
+
+```
+margin: auto;
+padding: 30px;
+
+background-color: white;
+
+border-radius: 10px;
+
+text-align: center;
+```
+
+}
+
+/* Описание */
+.description {
+color: #555;
+}
+
+/* Блок с полями ввода */
+.inputs {
+display: flex;
+
+```
+justify-content: center;
+gap: 15px;
+
+flex-wrap: wrap;
+
+margin: 25px 0;
+```
+
+}
+
+/* Каждый блок с input */
+.inputs div {
+display: flex;
+
+```
+flex-direction: column;
+
+text-align: left;
+```
+
+}
+
+/* Поля ввода */
+input {
+width: 150px;
+
+```
+padding: 8px;
+
+margin-top: 5px;
+
+border: 1px solid #aaa;
+
+border-radius: 5px;
+```
+
+}
+
+/* Кнопка */
+button {
+padding: 12px 25px;
+
+```
+font-size: 16px;
+
+cursor: pointer;
+
+border: none;
+
+border-radius: 5px;
+
+background-color: #333;
+
+color: white;
+```
+
+}
+
+/* Эффект при наведении */
+button:hover {
+background-color: #555;
+}
+
+/* Блоки с матрицами */
+#original,
+#ascending,
+#descending,
+#results {
+margin-top: 30px;
+}
+
+/* Таблица */
+table {
+margin: 15px auto;
+
+```
+border-collapse: collapse;
+```
+
+}
+
+/* Ячейки таблицы */
+td,
+th {
+border: 1px solid black;
+
+```
+padding: 8px 12px;
+```
+
+}
+
+/* Заголовки таблицы */
+th {
+background-color: #ddd;
+}
