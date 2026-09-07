@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 ```
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Алгоритм критического пути</title>
 
-<!-- Подключаем CSS -->
-<link rel="stylesheet" href="style.css">
+<!-- Подключение CSS -->
+<link rel="stylesheet" href="lab1.css">
 ```
 
 </head>
@@ -21,60 +23,114 @@
 
     <h1>Алгоритм критического пути</h1>
 
-    <p class="description">
-        Генерация случайной матрицы и сравнение
-        случайного, возрастающего и убывающего порядка.
+    <p>
+        Распределение M заданий между N процессорами
     </p>
 
-    <!-- Блок ввода параметров -->
-    <div class="inputs">
 
-        <div>
-            <label for="m">M (количество строк):</label>
-            <input type="number" id="m" value="4" min="1">
-        </div>
+    <!-- Ввод данных -->
 
-        <div>
-            <label for="n">N (количество столбцов):</label>
-            <input type="number" id="n" value="4" min="1">
-        </div>
+    <div class="input-block">
 
-        <div>
-            <label for="t1">t1 (минимальное время):</label>
-            <input type="number" id="t1" value="1">
-        </div>
+        <label>
+            M — количество заданий:
+        </label>
 
-        <div>
-            <label for="t2">t2 (максимальное время):</label>
-            <input type="number" id="t2" value="20">
-        </div>
+        <input
+            type="number"
+            id="m"
+            value="14"
+            min="1"
+        >
 
     </div>
 
-    <!-- Кнопка запуска -->
-    <button onclick="startProgram()">
-        Сгенерировать и сравнить
+
+    <div class="input-block">
+
+        <label>
+            N — количество процессоров:
+        </label>
+
+        <input
+            type="number"
+            id="n"
+            value="4"
+            min="1"
+        >
+
+    </div>
+
+
+    <div class="input-block">
+
+        <label>
+            t1 — минимальное время:
+        </label>
+
+        <input
+            type="number"
+            id="t1"
+            value="1"
+        >
+
+    </div>
+
+
+    <div class="input-block">
+
+        <label>
+            t2 — максимальное время:
+        </label>
+
+        <input
+            type="number"
+            id="t2"
+            value="20"
+        >
+
+    </div>
+
+
+    <!-- Кнопка -->
+
+    <button id="startButton">
+
+        Запустить алгоритм
+
     </button>
 
 
-    <!-- Сюда будет выводиться исходная матрица -->
-    <div id="original"></div>
+    <!-- Исходные задания -->
 
-    <!-- Сюда будет выводиться матрица по возрастанию -->
-    <div id="ascending"></div>
+    <div class="section">
 
-    <!-- Сюда будет выводиться матрица по убыванию -->
-    <div id="descending"></div>
+        <h2>Случайно сгенерированные задания</h2>
 
-    <!-- Сюда будут выводиться результаты -->
-    <div id="results"></div>
+        <div id="originalTasks"></div>
+
+    </div>
+
+
+    <!-- Результаты -->
+
+    <div class="section">
+
+        <h2>Сравнение вариантов</h2>
+
+        <div id="results"></div>
+
+    </div>
+
 
 </div>
 
 
-<!-- Подключаем JavaScript -->
-<script src="script.js"></script>
+<!-- Подключение JavaScript -->
+
+<script src="lab1.js"></script>
 ```
 
 </body>
+
 </html>
