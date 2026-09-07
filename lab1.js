@@ -1,74 +1,22 @@
-/* ========================================= */
-/* ЛАБОРАТОРНАЯ РАБОТА */
-/* Алгоритм критического пути (CPM) */
-/* ========================================= */
-
-/* ========================================= */
-/* После загрузки страницы ищем кнопку */
-/* и назначаем ей действие */
-/* ========================================= */
-
-document
-.getElementById("startButton")
-.addEventListener("click", startProgram);
-
-/* ========================================= */
-/* ГЛАВНАЯ ФУНКЦИЯ */
-/* ========================================= */
-
 function startProgram() {
 
 ```
-/* Получаем M */
+// Получаем значения из HTML
 
-let M = Number(
-    document.getElementById("m").value
-);
+let M = Number(document.getElementById("m").value);
 
+let N = Number(document.getElementById("n").value);
 
-/* Получаем N */
+let t1 = Number(document.getElementById("t1").value);
 
-let N = Number(
-    document.getElementById("n").value
-);
+let t2 = Number(document.getElementById("t2").value);
 
 
-/* Получаем минимальное время */
+// Проверяем данные
 
-let t1 = Number(
-    document.getElementById("t1").value
-);
+if (M <= 0 || N <= 0) {
 
-
-/* Получаем максимальное время */
-
-let t2 = Number(
-    document.getElementById("t2").value
-);
-
-
-
-/* ========================================= */
-/* ПРОВЕРКА ВВОДА */
-/* ========================================= */
-
-
-if (M <= 0) {
-
-    alert(
-        "Количество заданий M должно быть больше 0"
-    );
-
-    return;
-
-}
-
-
-if (N <= 0) {
-
-    alert(
-        "Количество процессоров N должно быть больше 0"
-    );
+    alert("M и N должны быть больше 0");
 
     return;
 
@@ -77,262 +25,202 @@ if (N <= 0) {
 
 if (t1 > t2) {
 
-    alert(
-        "t1 не может быть больше t2"
-    );
+    alert("t1 должно быть меньше t2");
 
     return;
 
 }
 
 
-
-/* ========================================= */
-/* СОЗДАЁМ ОДИН СЛУЧАЙНЫЙ НАБОР ЗАДАНИЙ */
-/* ========================================= */
-
-
-let originalTasks =
-    generateTasks(M, t1, t2);
-
-
-
-/* ========================================= */
-/* ВЫВОДИМ ИСХОДНЫЕ ЗАДАНИЯ */
-/* ========================================= */
-
-
-document
-    .getElementById("originalTasks")
-    .innerHTML =
-
-    "<div class='tasks'>" +
-
-    originalTasks.join(", ") +
-
-    "</div>";
-
-
-
-/* ========================================= */
-/* СОЗДАЁМ ТРИ ВАРИАНТА */
-/* ========================================= */
-
-
-/* 1. Случайный порядок */
-
-let randomTasks =
-    [...originalTasks];
-
-
-
-/* 2. Порядок по возрастанию */
-
-let ascendingTasks =
-    [...originalTasks];
-
-ascendingTasks.sort(
-    function(a, b) {
-
-        return a - b;
-
-    }
-);
-
-
-
-/* 3. Порядок по убыванию */
-
-let descendingTasks =
-    [...originalTasks];
-
-descendingTasks.sort(
-    function(a, b) {
-
-        return b - a;
-
-    }
-);
-
-
-
-/* ========================================= */
-/* ЗАПУСКАЕМ АЛГОРИТМ CPM */
-/* ========================================= */
-
-
-let randomResult =
-    runAlgorithm(
-        randomTasks,
-        N
-    );
-
-
-let ascendingResult =
-    runAlgorithm(
-        ascendingTasks,
-        N
-    );
-
-
-let descendingResult =
-    runAlgorithm(
-        descendingTasks,
-        N
-    );
-
-
-
-/* ========================================= */
-/* ВЫВОДИМ ВСЕ РЕЗУЛЬТАТЫ */
-/* ========================================= */
-
-
-showResults(
-
-    randomResult,
-
-    ascendingResult,
-
-    descendingResult
-
-);
-```
-
-}
-
-/* ========================================= */
-/* ГЕНЕРАЦИЯ СЛУЧАЙНЫХ ЗАДАНИЙ */
-/* ========================================= */
-
-function generateTasks(
-M,
-t1,
-t2
-) {
-
-```
-/* Создаём пустой массив */
+// Создаём массив случайных заданий
 
 let tasks = [];
 
 
+for (let i = 0; i < M; i++) {
 
-/* Создаём M случайных заданий */
-
-for (
-    let i = 0;
-
-    i < M;
-
-    i++
-) {
-
-
-    /* Генерируем случайное число */
-
-    let taskTime =
+    let randomNumber =
 
         Math.floor(
-
-            Math.random()
-            *
-            (t2 - t1 + 1)
-
+            Math.random() * (t2 - t1 + 1)
         )
 
-        +
-
-        t1;
+        + t1;
 
 
-
-    /* Добавляем задание в массив */
-
-    tasks.push(
-        taskTime
-    );
-
+    tasks.push(randomNumber);
 
 }
 
 
+// Создаём три варианта
 
-/* Возвращаем массив заданий */
+let randomTasks = [...tasks];
 
-return tasks;
+let ascendingTasks = [...tasks].sort(
+    (a, b) => a - b
+);
+
+let descendingTasks = [...tasks].sort(
+    (a, b) => b - a
+);
+
+
+// Запускаем алгоритм
+
+let randomResult =
+    criticalPath(randomTasks, N);
+
+let ascendingResult =
+    criticalPath(ascendingTasks, N);
+
+let descendingResult =
+    criticalPath(descendingTasks, N);
+
+
+// Выводим результат
+
+let html = "";
+
+
+html += "<h2>Сгенерированные задания</h2>";
+
+html += "<p>" + tasks.join(", ") + "</p>";
+
+
+html += "<h2>Случайный порядок</h2>";
+
+html += "<p>" +
+    randomTasks.join(", ") +
+    "</p>";
+
+html += showProcessors(
+    randomResult.processors
+);
+
+html +=
+    "<b>Максимальная нагрузка: " +
+    randomResult.maxLoad +
+    "</b>";
+
+
+html += "<h2>По возрастанию</h2>";
+
+html += "<p>" +
+    ascendingTasks.join(", ") +
+    "</p>";
+
+html += showProcessors(
+    ascendingResult.processors
+);
+
+html +=
+    "<b>Максимальная нагрузка: " +
+    ascendingResult.maxLoad +
+    "</b>";
+
+
+html += "<h2>По убыванию</h2>";
+
+html += "<p>" +
+    descendingTasks.join(", ") +
+    "</p>";
+
+html += showProcessors(
+    descendingResult.processors
+);
+
+html +=
+    "<b>Максимальная нагрузка: " +
+    descendingResult.maxLoad +
+    "</b>";
+
+
+// Таблица сравнения
+
+html += "<h2>Сравнение</h2>";
+
+
+html += "<table>";
+
+
+html +=
+
+    "<tr>" +
+
+    "<th>Вариант</th>" +
+
+    "<th>Максимальная нагрузка</th>" +
+
+    "</tr>";
+
+
+html +=
+
+    "<tr>" +
+
+    "<td>Случайный порядок</td>" +
+
+    "<td>" +
+    randomResult.maxLoad +
+    "</td>" +
+
+    "</tr>";
+
+
+html +=
+
+    "<tr>" +
+
+    "<td>Возрастание</td>" +
+
+    "<td>" +
+    ascendingResult.maxLoad +
+    "</td>" +
+
+    "</tr>";
+
+
+html +=
+
+    "<tr>" +
+
+    "<td>Убывание</td>" +
+
+    "<td>" +
+    descendingResult.maxLoad +
+    "</td>" +
+
+    "</tr>";
+
+
+html += "</table>";
+
+
+// Показываем результат
+
+document.getElementById("result").innerHTML = html;
 ```
 
 }
 
-/* ========================================= */
-/* АЛГОРИТМ КРИТИЧЕСКОГО ПУТИ */
-/* ========================================= */
+// Алгоритм критического пути
 
-/*
-Логика алгоритма:
+function criticalPath(tasks, N) {
 
 ```
-1. Есть N процессоров.
-
-2. У каждого процессора есть нагрузка.
-
-3. Сначала нагрузка всех процессоров = 0.
-
-4. Берём очередное задание.
-
-5. Ищем процессор
-   с минимальной нагрузкой.
-
-6. Назначаем задание
-   на этот процессор.
-
-7. Повторяем,
-   пока не закончатся задания.
-```
-
-*/
-
-function criticalPathAlgorithm(
-tasks,
-N
-) {
-
-```
-/* ========================================= */
-/* СОЗДАЁМ МАССИВ ПРОЦЕССОРОВ */
-/* ========================================= */
-
+// Создаём массив нагрузок процессоров
 
 let processors = [];
 
 
-/* Создаём N процессоров */
-
-for (
-    let i = 0;
-
-    i < N;
-
-    i++
-) {
-
+for (let i = 0; i < N; i++) {
 
     processors.push({
 
-        /* Номер процессора */
+        tasks: [],
 
-        number: i + 1,
-
-
-        /* Текущая нагрузка */
-
-        load: 0,
-
-
-        /* Задания процессора */
-
-        tasks: []
+        load: 0
 
     });
 
@@ -340,619 +228,121 @@ for (
 
 
 
+// Распределяем задания
 
-/* ========================================= */
-/* РАСПРЕДЕЛЯЕМ ЗАДАНИЯ */
-/* ========================================= */
-
-
-for (
-    let i = 0;
-
-    i < tasks.length;
-
-    i++
-) {
+for (let i = 0; i < tasks.length; i++) {
 
 
-    /* Берём очередное задание */
+    // Считаем, что первый процессор минимальный
 
-    let currentTask =
-        tasks[i];
+    let minIndex = 0;
 
 
 
-    /* ===================================== */
-    /* ИЩЕМ НАИМЕНЕЕ ЗАГРУЖЕННЫЙ ПРОЦЕССОР */
-    /* ===================================== */
+    // Ищем процессор
+    // с минимальной нагрузкой
 
-
-    let minProcessor =
-        processors[0];
-
-
-
-    /* Проверяем все процессоры */
-
-    for (
-        let j = 1;
-
-        j < processors.length;
-
-        j++
-    ) {
-
-
-        /* Если нашли процессор */
-        /* с меньшей нагрузкой */
-
+    for (let j = 1; j < N; j++) {
 
         if (
-
             processors[j].load
             <
-            minProcessor.load
-
+            processors[minIndex].load
         ) {
 
-
-            minProcessor =
-                processors[j];
+            minIndex = j;
 
         }
-
 
     }
 
 
 
-    /* ===================================== */
-    /* НАЗНАЧАЕМ ЗАДАНИЕ */
-    /* ===================================== */
+    // Добавляем задание
+    // на наименее загруженный процессор
 
-
-    /* Добавляем задание */
-
-    minProcessor.tasks.push(
-        currentTask
+    processors[minIndex].tasks.push(
+        tasks[i]
     );
 
 
-    /* Увеличиваем нагрузку */
+    // Увеличиваем нагрузку
 
-    minProcessor.load +=
-        currentTask;
-
+    processors[minIndex].load +=
+        tasks[i];
 
 }
 
 
 
-
-/* ========================================= */
-/* НАХОДИМ МАКСИМАЛЬНУЮ НАГРУЗКУ */
-/* ========================================= */
-
+// Находим максимальную нагрузку
 
 let maxLoad = 0;
 
 
-
-for (
-    let i = 0;
-
-    i < processors.length;
-
-    i++
-) {
-
+for (let i = 0; i < N; i++) {
 
     if (
-
         processors[i].load
         >
         maxLoad
-
     ) {
-
 
         maxLoad =
             processors[i].load;
 
     }
 
-
 }
 
 
 
-/* ========================================= */
-/* ВОЗВРАЩАЕМ РЕЗУЛЬТАТ */
-/* ========================================= */
-
+// Возвращаем результат
 
 return {
 
+    processors: processors,
 
-    /* Распределение заданий */
-
-    processors:
-        processors,
-
-
-    /* Максимальная нагрузка */
-
-    maxLoad:
-        maxLoad
-
+    maxLoad: maxLoad
 
 };
 ```
 
 }
 
-/* ========================================= */
-/* ИЗМЕРЕНИЕ ВРЕМЕНИ РАБОТЫ */
-/* ========================================= */
+// Вывод процессоров
 
-function runAlgorithm(
-tasks,
-N
-) {
-
-```
-/* Засекаем начало */
-
-let startTime =
-    performance.now();
-
-
-
-/* Запускаем алгоритм */
-
-let result =
-    criticalPathAlgorithm(
-        tasks,
-        N
-    );
-
-
-
-/* Засекаем конец */
-
-let endTime =
-    performance.now();
-
-
-
-/* Вычисляем время */
-
-let executionTime =
-
-    endTime
-    -
-    startTime;
-
-
-
-/* Добавляем время */
-
-result.time =
-    executionTime;
-
-
-
-return result;
-```
-
-}
-
-/* ========================================= */
-/* ВЫВОД РЕЗУЛЬТАТОВ */
-/* ========================================= */
-
-function showResults(
-
-```
-randomResult,
-
-ascendingResult,
-
-descendingResult
-```
-
-) {
+function showProcessors(processors) {
 
 ```
 let html = "";
 
 
-
-/* ========================================= */
-/* СЛУЧАЙНЫЙ ПОРЯДОК */
-/* ========================================= */
-
-
-html +=
-
-    createResultBlock(
-
-        "Случайный порядок",
-
-        randomResult
-
-    );
-
-
-
-/* ========================================= */
-/* ВОЗРАСТАНИЕ */
-/* ========================================= */
-
-
-html +=
-
-    createResultBlock(
-
-        "Порядок по возрастанию",
-
-        ascendingResult
-
-    );
-
-
-
-/* ========================================= */
-/* УБЫВАНИЕ */
-/* ========================================= */
-
-
-html +=
-
-    createResultBlock(
-
-        "Порядок по убыванию",
-
-        descendingResult
-
-    );
-
-
-
-/* ========================================= */
-/* ОПРЕДЕЛЯЕМ ЛУЧШИЙ РЕЗУЛЬТАТ */
-/* ========================================= */
-
-
-let bestName =
-    "Случайный порядок";
-
-
-let bestResult =
-    randomResult.maxLoad;
-
-
-
-/* Проверяем возрастание */
-
-
-if (
-
-    ascendingResult.maxLoad
-    <
-    bestResult
-
-) {
-
-
-    bestResult =
-        ascendingResult.maxLoad;
-
-
-    bestName =
-        "Порядок по возрастанию";
-
-
-}
-
-
-
-/* Проверяем убывание */
-
-
-if (
-
-    descendingResult.maxLoad
-    <
-    bestResult
-
-) {
-
-
-    bestResult =
-        descendingResult.maxLoad;
-
-
-    bestName =
-        "Порядок по убыванию";
-
-
-}
-
-
-
-/* ========================================= */
-/* ВЫВОДИМ ОБЩУЮ ТАБЛИЦУ */
-/* ========================================= */
-
-
-html +=
-
-    "<h2>Общее сравнение</h2>";
-
-
-html +=
-
-    "<table>";
-
-
-html +=
-
-    "<tr>" +
-
-    "<th>Порядок заданий</th>" +
-
-    "<th>Максимальная нагрузка</th>" +
-
-    "<th>Время работы (мс)</th>" +
-
-    "</tr>";
-
-
-
-/* Случайный */
-
-
-html +=
-
-    "<tr>" +
-
-    "<td>Случайный</td>" +
-
-    "<td>" +
-
-    randomResult.maxLoad +
-
-    "</td>" +
-
-    "<td>" +
-
-    randomResult.time.toFixed(6) +
-
-    "</td>" +
-
-    "</tr>";
-
-
-
-/* Возрастание */
-
-
-html +=
-
-    "<tr>" +
-
-    "<td>По возрастанию</td>" +
-
-    "<td>" +
-
-    ascendingResult.maxLoad +
-
-    "</td>" +
-
-    "<td>" +
-
-    ascendingResult.time.toFixed(6) +
-
-    "</td>" +
-
-    "</tr>";
-
-
-
-/* Убывание */
-
-
-html +=
-
-    "<tr>" +
-
-    "<td>По убыванию</td>" +
-
-    "<td>" +
-
-    descendingResult.maxLoad +
-
-    "</td>" +
-
-    "<td>" +
-
-    descendingResult.time.toFixed(6) +
-
-    "</td>" +
-
-    "</tr>";
-
-
-
-html +=
-
-    "</table>";
-
-
-
-/* Лучший вариант */
-
-
-html +=
-
-    "<h2>" +
-
-    "Лучший результат: " +
-
-    bestName +
-
-    "</h2>";
-
-
-
-html +=
-
-    "<p>" +
-
-    "Минимальная максимальная нагрузка: " +
-
-    bestResult +
-
-    "</p>";
-
-
-
-/* Выводим всё на страницу */
-
-
-document
-    .getElementById("results")
-    .innerHTML = html;
-```
-
-}
-
-/* ========================================= */
-/* СОЗДАНИЕ БЛОКА ОДНОГО РЕЗУЛЬТАТА */
-/* ========================================= */
-
-function createResultBlock(
-title,
-result
-) {
-
-```
-let html =
-
-    "<div class='result-block'>";
-
-
-/* Название */
-
-
-html +=
-
-    "<h3>" +
-
-    title +
-
-    "</h3>";
-
-
-
-/* Выводим процессоры */
-
-
 for (
-
     let i = 0;
-
-    i < result.processors.length;
-
+    i < processors.length;
     i++
-
 ) {
 
 
-    let processor =
-        result.processors[i];
-
-
-
     html +=
 
-        "<div class='processor'>";
+        "<p>" +
 
+        "Процессор " +
+        (i + 1) +
 
+        ": [" +
 
-    html +=
+        processors[i].tasks.join(", ") +
 
-        "<b>Процессор " +
+        "] — нагрузка: " +
 
-        processor.number +
+        processors[i].load +
 
-        "</b>";
-
-
-
-    html +=
-
-        ": задания [" +
-
-        processor.tasks.join(", ") +
-
-        "]";
-
-
-
-    html +=
-
-        ", нагрузка = " +
-
-        processor.load;
-
-
-
-    html +=
-
-        "</div>";
-
+        "</p>";
 
 }
-
-
-
-/* Максимальная нагрузка */
-
-
-html +=
-
-    "<p>" +
-
-    "<b>Максимальная нагрузка: " +
-
-    result.maxLoad +
-
-    "</b>" +
-
-    "</p>";
-
-
-
-html +=
-
-    "<p>" +
-
-    "Время выполнения: " +
-
-    result.time.toFixed(6) +
-
-    " мс" +
-
-    "</p>";
-
-
-
-html +=
-
-    "</div>";
-
 
 
 return html;
