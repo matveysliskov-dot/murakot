@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Poker Lab — Training</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="logo">
+        ♠ POKER LAB
+    </div>
+
+
+    <nav>
+
+        <a href="index.html">
+            ГЛАВНАЯ
+        </a>
+
+        <a href="training.html">
+            ТРЕНИРОВКА
+        </a>
+
+        <a href="#">
+            КАЛЬКУЛЯТОР
+        </a>
+
+        <a href="#">
+            СТАТИСТИКА
+        </a>
+
+        <a href="#">
+            ОБУЧЕНИЕ
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<main class="training-page">
+
+
+    <!-- ==================================
+         ВЕРХНЯЯ ПАНЕЛЬ
+         ================================== -->
+
+    <div class="training-top">
+
+        <span id="handNumber">
+            HAND #0001
+        </span>
+
+
+        <span id="street">
+            FLOP
+        </span>
+
+
+        <span>
+            POT 100
+        </span>
+
+    </div>
+
+
+
+    <!-- ==================================
+         ПОКЕРНЫЙ СТОЛ
+         ================================== -->
+
+    <section class="poker-table">
+
+
+        <!-- ==================================
+             OPPONENT
+             ================================== -->
+
+        <div class="opponent">
+
+            <div class="player-label">
+                OPPONENT
+            </div>
+
+
+            <div id="opponentCards">
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ==================================
+             POT
+             ================================== -->
+
+        <div class="pot">
+            POT 100
+        </div>
+
+
+
+        <!-- ==================================
+             COMMUNITY
+             ================================== -->
+
+        <div class="community">
+
+            <div id="communityCards">
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ==================================
+             HERO
+             ================================== -->
+
+        <div class="hero-player">
+
+            <div id="heroCards">
+
+            </div>
+
+
+            <div class="player-label">
+                YOU
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ==================================
+         ИНФОРМАЦИЯ
+         ================================== -->
+
+    <div class="hand-info">
+
+
+        <div class="info-item">
+
+            <div class="info-label">
+                ТВОЯ КОМБИНАЦИЯ
+            </div>
+
+
+            <div
+                class="info-value"
+                id="combination"
+            >
+                —
+            </div>
+
+        </div>
+
+
+
+        <div class="info-item">
+
+            <div class="info-label">
+                EQUITY
+            </div>
+
+
+            <div
+                class="info-value"
+                id="equity"
+            >
+                —
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ==================================
+         ДЕЙСТВИЯ
+         ================================== -->
+
+    <div class="actions">
+
+
+        <button id="foldButton">
+            FOLD
+        </button>
+
+
+        <button id="callButton">
+            CALL
+        </button>
+
+
+        <button id="raiseButton">
+            RAISE
+        </button>
+
+
+    </div>
+
+
+
+    <!-- ==================================
+         NEXT STREET
+         ================================== -->
+
+    <div class="next-street">
+
+        <button id="nextButton">
+            ОТКРЫТЬ TURN
+        </button>
+
+    </div>
+
+
+
+    <!-- ==================================
+         РЕЗУЛЬТАТ
+         ================================== -->
+
+    <div
+        id="handResult"
+        style="display: none;"
+    >
+    </div>
+
+
+</main>
+
+
+
+<!-- ======================================
+     ФАКТ
+     ====================================== -->
+
+<div class="fact-box">
+
+    <span id="fact">
+        Покерный факт
+    </span>
+
+</div>
+
+
+
+<!-- ======================================
+     JAVASCRIPT
+     ====================================== -->
+
+<script src="js/deck.js"></script>
+
+<script src="js/evaluator.js"></script>
+
+<script src="js/generator.js"></script>
+
+<script src="js/equity.js"></script>
+
+<script src="js/training.js"></script>
+
+
+</body>
+
+</html>

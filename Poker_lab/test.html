@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Supabase Test</title>
+</head>
+<body>
+
+<h1 id="status">Проверка...</h1>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+
+<script>
+    const status = document.getElementById("status");
+
+    if (supabaseClient) {
+        status.textContent = "Supabase подключён!";
+    } else {
+        status.textContent = "Ошибка подключения";
+    }
+</script>
+
+</body>
+</html>

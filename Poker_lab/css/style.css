@@ -1,0 +1,2112 @@
+/* =========================================================
+   POKER LAB
+   ОБЩИЙ СТИЛЬ САЙТА
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            #182027 0%,
+            #0b1015 50%,
+            #070b0f 100%
+        );
+
+    color: #f1f1f1;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+}
+
+
+/* =========================================================
+   ШАПКА
+   ========================================================= */
+
+header,
+.topbar {
+    width: 100%;
+    height: 90px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 55px;
+
+    background: rgba(7, 11, 15, 0.97);
+
+    border-bottom: 1px solid #20282f;
+
+    position: relative;
+    z-index: 100;
+}
+
+.logo {
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 27px;
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    color: #f4f0e7;
+
+    white-space: nowrap;
+}
+
+.logo span {
+    color: #d4af37;
+}
+
+header nav,
+.topbar nav {
+    display: flex;
+    align-items: center;
+
+    gap: 35px;
+}
+
+header nav a,
+.topbar nav a {
+    color: #aeb4bc;
+
+    text-decoration: none;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    letter-spacing: 0.5px;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+header nav a:hover,
+.topbar nav a:hover {
+    color: #ffffff;
+
+    transform:
+        translateY(-1px);
+}
+
+header nav a.active,
+.topbar nav a.active {
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   ГЛАВНАЯ
+   ========================================================= */
+
+.home {
+    min-height: calc(100vh - 90px);
+
+    display: flex;
+    flex-direction: column;
+}
+
+.hero {
+    min-height: 530px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 50px 20px;
+}
+
+.hero-symbol {
+    font-size: 60px;
+
+    color: #d4af37;
+
+    margin-bottom: 10px;
+}
+
+.hero h1 {
+    margin: 0 0 15px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 64px;
+
+    letter-spacing: 5px;
+
+    color: #f4f0e7;
+}
+
+.hero p {
+    margin: 0 0 35px;
+
+    color: #9ea5ad;
+
+    font-size: 20px;
+}
+
+.buttons {
+    display: flex;
+
+    gap: 15px;
+}
+
+.main-button,
+.secondary-button {
+    display: inline-block;
+
+    padding: 15px 28px;
+
+    border-radius: 5px;
+
+    text-decoration: none;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    transition: 0.2s ease;
+}
+
+.main-button {
+    background: #d4af37;
+
+    color: #101010;
+}
+
+.secondary-button {
+    border: 1px solid #4a555e;
+
+    color: #d4d7da;
+
+    background: transparent;
+}
+
+.main-button:hover,
+.secondary-button:hover {
+    transform: translateY(-2px);
+}
+
+.main-button:hover {
+    filter: brightness(1.08);
+}
+
+.secondary-button:hover {
+    border-color: #d4af37;
+
+    color: #d4af37;
+}
+
+
+/* =========================================================
+   БЫСТРАЯ СТАТИСТИКА
+   ========================================================= */
+
+.quick-stats {
+    width: min(900px, calc(100% - 40px));
+
+    margin: 0 auto 80px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    border-top:
+        1px solid #222b32;
+
+    border-bottom:
+        1px solid #222b32;
+}
+
+.stat {
+    padding: 30px;
+
+    text-align: center;
+
+    border-right:
+        1px solid #222b32;
+}
+
+.stat:last-child {
+    border-right: none;
+}
+
+.stat span {
+    display: block;
+
+    color: #d4af37;
+
+    font-size: 28px;
+
+    margin-bottom: 10px;
+}
+
+.stat strong {
+    display: block;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 34px;
+
+    color: #f4f0e7;
+}
+
+.stat small {
+    color: #8f989f;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   TRAINING
+   ========================================================= */
+
+.training-page {
+    width: min(
+        1200px,
+        calc(100% - 50px)
+    );
+
+    margin: 30px auto 150px;
+}
+
+
+/* верхняя панель */
+
+.training-top {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 18px;
+
+    padding: 0 20px;
+
+    color: #b5bcc2;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    letter-spacing: 0.5px;
+}
+
+.training-top span:nth-child(2) {
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   ПОКЕРНЫЙ СТОЛ
+   ========================================================= */
+
+.poker-table {
+    position: relative;
+
+    width: 100%;
+
+    height: 650px;
+
+    overflow: hidden;
+
+    background:
+        #075536;
+
+    /*
+       Тёмный деревянный бортик
+    */
+    border:
+        17px solid #3b2418;
+
+    border-radius:
+        330px;
+
+    box-shadow:
+
+        inset
+        0 0 0 2px #17120f,
+
+        inset
+        0 0 65px
+        rgba(0, 0, 0, 0.42),
+
+        0 12px 35px
+        rgba(0, 0, 0, 0.55);
+}
+
+
+/*
+   ЖЁЛТАЯ ЛИНИЯ НА СТОЛЕ
+*/
+
+.poker-table::before {
+    content: "";
+
+    position: absolute;
+
+    left: 30px;
+    right: 30px;
+
+    top: 32px;
+    bottom: 32px;
+
+    border:
+        2px solid #e2c300;
+
+    border-radius:
+        290px;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+
+/*
+   Лёгкое свечение возле мест игроков
+*/
+
+.poker-table::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: -120px;
+
+    transform:
+        translateX(-50%);
+
+    width: 520px;
+    height: 240px;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(255,255,255,0.14),
+            rgba(255,255,255,0.05) 35%,
+            transparent 72%
+        );
+
+    pointer-events: none;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   ИГРОКИ
+   ========================================================= */
+
+.opponent {
+    position: absolute;
+
+    top: 20px;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    width: 300px;
+
+    text-align: center;
+
+    z-index: 10;
+}
+
+
+.hero-player {
+    position: absolute;
+
+    bottom: 17px;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    width: 300px;
+
+    text-align: center;
+
+    z-index: 10;
+}
+
+
+.player-label {
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 8px;
+
+    text-shadow:
+        0 1px 3px
+        rgba(0,0,0,0.7);
+}
+
+
+/* =========================================================
+   КАРТЫ ИГРОКОВ
+   ========================================================= */
+
+#opponentCards,
+#heroCards {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+/* =========================================================
+   ОБЩИЕ КАРТЫ
+   ========================================================= */
+
+.community {
+    position: absolute;
+
+    top: 50%;
+
+    left: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    z-index: 10;
+
+    margin: 0;
+}
+
+
+#communityCards {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 12px;
+
+    min-height: 105px;
+}
+
+
+/* =========================================================
+   POT
+   ========================================================= */
+
+.pot {
+    position: absolute;
+
+    top: 215px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    z-index: 10;
+}
+
+
+/* =========================================================
+   КАРТА
+   ========================================================= */
+
+.card {
+    position: relative;
+
+    width: 72px;
+    height: 104px;
+
+    flex:
+        0 0 72px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        #f6f0dd;
+
+    color:
+        #07192e;
+
+    border:
+        3px solid #07192e;
+
+    border-radius:
+        11px;
+
+    box-shadow:
+
+        0 5px 0
+        #07192e,
+
+        0 9px 14px
+        rgba(0,0,0,0.38);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 27px;
+
+    font-weight: bold;
+
+    animation:
+        cardAppear 0.25s ease;
+}
+
+
+/*
+   Внутренняя контурная линия
+*/
+
+.card::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 5px;
+
+    border:
+        1px solid
+        rgba(7,25,46,0.7);
+
+    border-radius:
+        7px;
+
+    pointer-events: none;
+}
+
+
+/*
+   Маленькие декоративные линии,
+   как на твоём примере карт
+*/
+
+.card::after {
+    content: "";
+
+    position: absolute;
+
+    top: 10px;
+    right: 7px;
+
+    width: 18px;
+    height: 5px;
+
+    border-top:
+        2px solid #07192e;
+
+    border-bottom:
+        2px solid #07192e;
+
+    transform:
+        rotate(8deg);
+
+    opacity: 0.8;
+
+    pointer-events: none;
+}
+
+
+/* красные масти */
+
+.card.red {
+    color: #a51d22;
+}
+
+
+/* =========================================================
+   РУБАШКА
+   ========================================================= */
+
+.card.back {
+    background:
+        #10243b;
+
+    color: #f4f0dd;
+
+    border:
+        3px solid #dedbd0;
+
+    box-shadow:
+
+        0 5px 0
+        #07192e,
+
+        0 9px 14px
+        rgba(0,0,0,0.4);
+}
+
+
+.card.back::before {
+    inset: 6px;
+
+    border:
+        2px solid
+        rgba(255,255,255,0.65);
+
+    border-radius:
+        7px;
+}
+
+
+.card.back::after {
+    width: 25px;
+    height: 25px;
+
+    top: 50%;
+    left: 50%;
+
+    right: auto;
+
+    transform:
+        translate(-50%, -50%);
+
+    border:
+        none;
+
+    content: "♠";
+
+    color: #f5f0df;
+
+    font-size: 27px;
+
+    opacity: 1;
+}
+
+
+/* =========================================================
+   ИНФОРМАЦИЯ ПОД СТОЛОМ
+   ========================================================= */
+
+.hand-info {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 100px;
+
+    margin-top: 30px;
+}
+
+
+.info-item {
+    text-align: center;
+}
+
+
+.info-label {
+    margin-bottom: 7px;
+
+    color: #a2a9af;
+
+    font-size: 13px;
+
+    letter-spacing: 1.5px;
+}
+
+
+.info-value {
+    color: #ffffff;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 22px;
+
+    font-weight: bold;
+}
+
+
+#equity {
+    color: #d4af37;
+}
+
+
+/* =========================================================
+   КНОПКИ ДЕЙСТВИЙ
+   ========================================================= */
+
+.actions {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 14px;
+
+    margin-top: 25px;
+}
+
+
+.actions button {
+    min-width: 125px;
+
+    padding: 13px 25px;
+
+    border:
+        1px solid #35404a;
+
+    border-radius: 5px;
+
+    background:
+        #151c22;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        0.2s ease;
+}
+
+
+.actions button:hover {
+    transform:
+        translateY(-2px);
+
+    border-color:
+        #d4af37;
+
+    color:
+        #d4af37;
+}
+
+
+#foldButton:hover {
+    border-color: #a51d22;
+    color: #e25a5a;
+}
+
+
+/* =========================================================
+   NEXT STREET
+   ========================================================= */
+
+.next-street {
+    display: flex;
+
+    justify-content: center;
+
+    margin-top: 20px;
+}
+
+
+.next-street button {
+    padding:
+        13px 32px;
+
+    border:
+        1px solid #d4af37;
+
+    border-radius: 5px;
+
+    background:
+        transparent;
+
+    color:
+        #d4af37;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    letter-spacing: 0.5px;
+
+    cursor: pointer;
+
+    transition:
+        0.2s ease;
+}
+
+
+.next-street button:hover {
+    background:
+        #d4af37;
+
+    color:
+        #101010;
+}
+
+
+/* =========================================================
+   ФАКТ
+   ========================================================= */
+
+.fact-box {
+    position: fixed;
+
+    left: 50%;
+    bottom: 18px;
+
+    transform:
+        translateX(-50%);
+
+    width:
+        min(
+            840px,
+            calc(100% - 30px)
+        );
+
+    padding:
+        14px 24px;
+
+    text-align: center;
+
+    background:
+        rgba(7,11,15,0.96);
+
+    border:
+        1px solid #252e35;
+
+    border-radius:
+        9px;
+
+    color:
+        #969fa7;
+
+    font-size:
+        14px;
+
+    z-index:
+        200;
+
+    box-shadow:
+        0 8px 30px
+        rgba(0,0,0,0.35);
+}
+
+
+/* =========================================================
+   CALCULATOR
+   ========================================================= */
+
+.calculator-header {
+    text-align: center;
+
+    padding:
+        55px 20px 35px;
+}
+
+
+.calculator-header h1 {
+    margin:
+        0 0 10px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        42px;
+
+    letter-spacing:
+        3px;
+
+    color:
+        #f4f0e7;
+}
+
+
+.calculator-header p {
+    margin: 0;
+
+    color:
+        #a7adb4;
+
+    font-size:
+        19px;
+}
+
+
+.calculator-page {
+    width:
+        min(
+            1100px,
+            calc(100% - 40px)
+        );
+
+    margin:
+        0 auto 180px;
+}
+
+
+.calculator-section {
+    margin-bottom:
+        50px;
+
+    padding:
+        30px;
+
+    background:
+        rgba(14,20,25,0.72);
+
+    border:
+        1px solid #222c34;
+
+    border-radius:
+        10px;
+
+    box-shadow:
+        0 12px 30px
+        rgba(0,0,0,0.18);
+}
+
+
+.calculator-section h2 {
+    margin:
+        0 0 8px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        27px;
+
+    letter-spacing:
+        1.5px;
+
+    color:
+        #f2f0e9;
+}
+
+
+.section-description {
+    margin:
+        0 0 25px;
+
+    color:
+        #929aa2;
+
+    font-size:
+        15px;
+}
+
+
+/* =========================================================
+   ВЫБРАННЫЕ КАРТЫ
+   ========================================================= */
+
+.selected-cards {
+    min-height:
+        125px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        18px;
+
+    margin-bottom:
+        30px;
+
+    padding:
+        15px;
+
+    background:
+        rgba(0,0,0,0.18);
+
+    border-radius:
+        8px;
+}
+
+
+.selector-card {
+    position:
+        relative;
+
+    width:
+        82px;
+
+    height:
+        115px;
+
+    padding:
+        7px;
+
+    background:
+        #f5f0df;
+
+    border:
+        3px solid #07192e;
+
+    border-radius:
+        10px;
+
+    color:
+        #07192e;
+
+    cursor:
+        pointer;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    box-shadow:
+        0 5px 0 #07192e,
+        0 8px 15px rgba(0,0,0,0.4);
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+.selector-card:hover {
+    transform:
+        translateY(-6px)
+        rotate(-2deg);
+}
+
+
+.selector-card.red {
+    color:
+        #a51d22;
+}
+
+
+.selector-card .small {
+    position:
+        absolute;
+
+    left:
+        8px;
+
+    top:
+        6px;
+
+    font-size:
+        19px;
+
+    font-weight:
+        bold;
+}
+
+
+.selector-card .big {
+    position:
+        absolute;
+
+    left:
+        50%;
+
+    top:
+        50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    font-size:
+        48px;
+}
+
+
+.selector-card .bottom {
+    left:
+        auto;
+
+    right:
+        8px;
+
+    top:
+        auto;
+
+    bottom:
+        5px;
+
+    transform:
+        rotate(180deg);
+}
+
+
+.empty-slot {
+    width:
+        82px;
+
+    height:
+        115px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border:
+        2px dashed #46515a;
+
+    border-radius:
+        10px;
+
+    color:
+        #59636b;
+
+    font-size:
+        30px;
+}
+
+
+/* =========================================================
+   ВЫБОР КАРТ
+   ========================================================= */
+
+.card-picker {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(13, 1fr);
+
+    gap:
+        7px;
+
+    padding:
+        15px;
+
+    background:
+        #090e13;
+
+    border:
+        1px solid #222c34;
+
+    border-radius:
+        8px;
+}
+
+
+.pick-card {
+    height:
+        52px;
+
+    border:
+        1px solid #53606a;
+
+    border-radius:
+        6px;
+
+    background:
+        #eee9d8;
+
+    color:
+        #07192e;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        16px;
+
+    font-weight:
+        bold;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.15s ease;
+
+    box-shadow:
+        0 2px 0 #07192e;
+}
+
+
+.pick-card.red {
+    color:
+        #a51d22;
+}
+
+
+.pick-card:hover {
+    transform:
+        translateY(-2px);
+
+    border-color:
+        #d4af37;
+}
+
+
+.pick-card.blocked {
+    opacity:
+        0.18;
+
+    cursor:
+        not-allowed;
+
+    transform:
+        none;
+
+    box-shadow:
+        none;
+}
+
+
+/* =========================================================
+   RANGE
+   ========================================================= */
+
+.range-section {
+    overflow:
+        hidden;
+}
+
+
+.range-presets {
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        10px;
+
+    margin-bottom:
+        25px;
+}
+
+
+.range-presets button {
+    padding:
+        11px 17px;
+
+    background:
+        #151d23;
+
+    border:
+        1px solid #39434b;
+
+    border-radius:
+        5px;
+
+    color:
+        #dce0e3;
+
+    font-size:
+        13px;
+
+    font-weight:
+        bold;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.2s ease;
+}
+
+
+.range-presets button:hover {
+    border-color:
+        #d4af37;
+
+    color:
+        #d4af37;
+}
+
+
+.range-grid {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(13, minmax(45px, 1fr));
+
+    gap:
+        4px;
+
+    padding:
+        12px;
+
+    background:
+        #090e13;
+
+    border:
+        1px solid #222c34;
+
+    border-radius:
+        8px;
+}
+
+
+.range-cell {
+    min-height:
+        43px;
+
+    border:
+        1px solid #2e3941;
+
+    border-radius:
+        4px;
+
+    background:
+        #151d23;
+
+    color:
+        #cbd0d4;
+
+    font-size:
+        12px;
+
+    font-weight:
+        bold;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.12s ease;
+}
+
+
+.range-cell:hover {
+    border-color:
+        #d4af37;
+
+    color:
+        #ffffff;
+
+    transform:
+        scale(1.04);
+}
+
+
+.range-cell.selected {
+    background:
+        #d4af37;
+
+    color:
+        #111820;
+
+    border-color:
+        #f1d86b;
+
+    box-shadow:
+        0 0 8px
+        rgba(212,175,55,0.25);
+}
+
+
+/* =========================================================
+   КНОПКА КАЛЬКУЛЯТОРА
+   ========================================================= */
+
+.calculate-section {
+    text-align:
+        center;
+
+    margin:
+        60px 0;
+}
+
+
+.calculate-button {
+    padding:
+        18px 42px;
+
+    background:
+        #d4af37;
+
+    color:
+        #101010;
+
+    border:
+        none;
+
+    border-radius:
+        5px;
+
+    font-size:
+        16px;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        1px;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.2s ease;
+}
+
+
+.calculate-button:hover {
+    transform:
+        translateY(-3px);
+
+    filter:
+        brightness(1.08);
+}
+
+
+/* =========================================================
+   РЕЗУЛЬТАТ КАЛЬКУЛЯТОРА
+   ========================================================= */
+
+.result-section {
+    min-height:
+        500px;
+
+    padding:
+        55px 45px;
+
+    margin-top:
+        40px;
+
+    text-align:
+        center;
+
+    background:
+        radial-gradient(
+            circle at 50% 25%,
+            #172229,
+            #0b1015 70%
+        );
+
+    border:
+        1px solid #2b353d;
+
+    border-radius:
+        12px;
+}
+
+
+.result-title {
+    margin-bottom:
+        15px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        24px;
+
+    letter-spacing:
+        4px;
+
+    color:
+        #d4af37;
+}
+
+
+.equity-number {
+    margin:
+        15px 0;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        82px;
+
+    font-weight:
+        bold;
+
+    line-height:
+        1;
+
+    color:
+        #f4f0e7;
+}
+
+
+.equity-label {
+    margin-bottom:
+        35px;
+
+    color:
+        #9da5ac;
+
+    font-size:
+        14px;
+
+    letter-spacing:
+        2px;
+}
+
+
+.equity-bar-container {
+    width:
+        min(
+            700px,
+            100%
+        );
+
+    height:
+        15px;
+
+    margin:
+        0 auto 45px;
+
+    background:
+        #1b242b;
+
+    border:
+        1px solid #303a42;
+
+    border-radius:
+        20px;
+
+    overflow:
+        hidden;
+}
+
+
+.equity-bar {
+    width:
+        0%;
+
+    height:
+        100%;
+
+    background:
+        #d4af37;
+
+    border-radius:
+        20px;
+
+    transition:
+        width 0.8s ease;
+}
+
+
+.result-stats {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    max-width:
+        700px;
+
+    margin:
+        0 auto 35px;
+
+    border:
+        1px solid #29343c;
+
+    border-radius:
+        8px;
+
+    overflow:
+        hidden;
+}
+
+
+.result-stat {
+    padding:
+        20px;
+
+    background:
+        rgba(0,0,0,0.18);
+
+    border-right:
+        1px solid #29343c;
+}
+
+
+.result-stat:last-child {
+    border-right:
+        none;
+}
+
+
+.stat-name {
+    display:
+        block;
+
+    margin-bottom:
+        8px;
+
+    color:
+        #89929a;
+
+    font-size:
+        12px;
+
+    letter-spacing:
+        1.5px;
+}
+
+
+.result-stat strong {
+    color:
+        #f1f1f1;
+
+    font-size:
+        22px;
+}
+
+
+.result-meta {
+    min-height:
+        20px;
+
+    color:
+        #707a82;
+
+    font-size:
+        13px;
+}
+
+
+/* =========================================================
+   АНИМАЦИИ
+   ========================================================= */
+
+@keyframes cardAppear {
+    from {
+        opacity:
+            0;
+
+        transform:
+            translateY(12px)
+            scale(0.95);
+    }
+
+    to {
+        opacity:
+            1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+@keyframes factAppear {
+    from {
+        opacity:
+            0;
+    }
+
+    to {
+        opacity:
+            1;
+    }
+}
+
+
+/* =========================================================
+   АДАПТИВ
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    header,
+    .topbar {
+        height:
+            auto;
+
+        min-height:
+            85px;
+
+        flex-direction:
+            column;
+
+        gap:
+            18px;
+
+        padding:
+            18px 20px;
+    }
+
+
+    header nav,
+    .topbar nav {
+        flex-wrap:
+            wrap;
+
+        justify-content:
+            center;
+
+        gap:
+            18px;
+    }
+
+
+    .poker-table {
+        height:
+            600px;
+
+        border-radius:
+            250px;
+    }
+
+
+    .training-page {
+        width:
+            calc(100% - 30px);
+    }
+
+
+    .card-picker {
+        grid-template-columns:
+            repeat(7, 1fr);
+    }
+
+
+    .range-grid {
+        overflow-x:
+            auto;
+
+        grid-template-columns:
+            repeat(13, 45px);
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .logo {
+        font-size:
+            23px;
+    }
+
+
+    .hero h1 {
+        font-size:
+            42px;
+    }
+
+
+    .hero p {
+        font-size:
+            17px;
+    }
+
+
+    .buttons {
+        flex-direction:
+            column;
+
+        width:
+            100%;
+
+        max-width:
+            300px;
+    }
+
+
+    .main-button,
+    .secondary-button {
+        text-align:
+            center;
+    }
+
+
+    .quick-stats {
+        grid-template-columns:
+            1fr;
+
+        margin-bottom:
+            40px;
+    }
+
+
+    .stat {
+        border-right:
+            none;
+
+        border-bottom:
+            1px solid #222b32;
+    }
+
+
+    .stat:last-child {
+        border-bottom:
+            none;
+    }
+
+
+    .training-top {
+        padding:
+            0 5px;
+
+        font-size:
+            12px;
+    }
+
+
+    .poker-table {
+        height:
+            520px;
+
+        border-width:
+            10px;
+
+        border-radius:
+            120px;
+    }
+
+
+    .poker-table::before {
+        left:
+            18px;
+
+        right:
+            18px;
+
+        top:
+            20px;
+
+        bottom:
+            20px;
+
+        border-radius:
+            100px;
+    }
+
+
+    .opponent {
+        top:
+            14px;
+    }
+
+
+    .hero-player {
+        bottom:
+            10px;
+    }
+
+
+    .community {
+        top:
+            48%;
+    }
+
+
+    #communityCards {
+        gap:
+            6px;
+    }
+
+
+    #opponentCards,
+    #heroCards {
+        gap:
+            7px;
+    }
+
+
+    .card {
+        width:
+            58px;
+
+        height:
+            84px;
+
+        flex-basis:
+            58px;
+
+        font-size:
+            22px;
+
+        border-width:
+            2px;
+    }
+
+
+    .pot {
+        top:
+            165px;
+    }
+
+
+    .hand-info {
+        gap:
+            35px;
+    }
+
+
+    .actions {
+        gap:
+            7px;
+    }
+
+
+    .actions button {
+        min-width:
+            90px;
+
+        padding:
+            11px 10px;
+    }
+
+
+    .calculator-header {
+        padding:
+            40px 15px 25px;
+    }
+
+
+    .calculator-header h1 {
+        font-size:
+            29px;
+
+        letter-spacing:
+            2px;
+    }
+
+
+    .calculator-header p {
+        font-size:
+            16px;
+    }
+
+
+    .calculator-page {
+        width:
+            calc(100% - 20px);
+    }
+
+
+    .calculator-section {
+        padding:
+            18px;
+    }
+
+
+    .card-picker {
+        grid-template-columns:
+            repeat(4, 1fr);
+
+        gap:
+            5px;
+    }
+
+
+    .pick-card {
+        height:
+            46px;
+
+        font-size:
+            14px;
+    }
+
+
+    .result-section {
+        padding:
+            40px 15px;
+    }
+
+
+    .equity-number {
+        font-size:
+            60px;
+    }
+
+
+    .result-stats {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .result-stat {
+        border-right:
+            none;
+
+        border-bottom:
+            1px solid #29343c;
+    }
+
+
+    .result-stat:last-child {
+        border-bottom:
+            none;
+    }
+
+
+    .fact-box {
+        font-size:
+            12px;
+
+        padding:
+            12px 15px;
+    }
+}

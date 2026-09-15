@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Poker Calculator</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- ==========================================
+     ШАПКА
+     ========================================== -->
+
+<header class="topbar">
+
+    <div class="logo">
+        ♠ POKER LAB
+    </div>
+
+    <nav>
+
+        <a href="index.html">
+            ГЛАВНАЯ
+        </a>
+
+        <a href="training.html">
+            ТРЕНИРОВКА
+        </a>
+
+        <a href="calculator.html" class="active">
+            КАЛЬКУЛЯТОР
+        </a>
+
+        <a href="#">
+            СТАТИСТИКА
+        </a>
+
+        <a href="#">
+            ОБУЧЕНИЕ
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- ==========================================
+     ЗАГОЛОВОК
+     ========================================== -->
+
+<section class="calculator-header">
+
+    <h1>
+        POKER CALCULATOR
+    </h1>
+
+    <p>
+        Выбери свои карты, стол и диапазон соперника
+    </p>
+
+</section>
+
+
+
+<!-- ==========================================
+     ОСНОВНОЙ КАЛЬКУЛЯТОР
+     ========================================== -->
+
+<main class="calculator-page">
+
+
+    <!-- ======================================
+         ТВОЯ РУКА
+         ====================================== -->
+
+    <section class="calculator-section">
+
+        <h2>
+            ТВОЯ РУКА
+        </h2>
+
+        <p class="section-description">
+            Выбери две карты
+        </p>
+
+        <div
+            id="heroSelection"
+            class="selected-cards"
+        >
+        </div>
+
+        <div
+            id="heroPicker"
+            class="card-picker"
+        >
+        </div>
+
+    </section>
+
+
+
+    <!-- ======================================
+         СТОЛ
+         ====================================== -->
+
+    <section class="calculator-section">
+
+        <h2>
+            СТОЛ
+        </h2>
+
+        <p class="section-description">
+            Выбери известные общие карты
+        </p>
+
+        <div
+            id="boardSelection"
+            class="selected-cards"
+        >
+        </div>
+
+        <div
+            id="boardPicker"
+            class="card-picker"
+        >
+        </div>
+
+    </section>
+
+
+
+    <!-- ======================================
+         ДИАПАЗОН СОПЕРНИКА
+         ====================================== -->
+
+    <section class="calculator-section range-section">
+
+        <h2>
+            ДИАПАЗОН СОПЕРНИКА
+        </h2>
+
+        <p class="section-description">
+            Выбери руки, которые могут быть у соперника
+        </p>
+
+
+        <!-- Быстрый выбор -->
+
+        <div class="range-presets">
+
+            <button
+                data-preset="all"
+            >
+                ЛЮБЫЕ РУКИ
+            </button>
+
+            <button
+                data-preset="premium"
+            >
+                ПРЕМИУМ
+            </button>
+
+            <button
+                data-preset="top10"
+            >
+                ТОП 10%
+            </button>
+
+            <button
+                data-preset="pairs"
+            >
+                ПАРЫ
+            </button>
+
+            <button
+                data-preset="clear"
+            >
+                ОЧИСТИТЬ
+            </button>
+
+        </div>
+
+
+        <!-- Матрица диапазона -->
+
+        <div
+            id="rangeGrid"
+            class="range-grid"
+        >
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ======================================
+         КНОПКА
+         ====================================== -->
+
+    <section class="calculate-section">
+
+        <button
+            id="calculateButton"
+            class="calculate-button"
+        >
+            ПОСЧИТАТЬ ВЕРОЯТНОСТЬ
+        </button>
+
+    </section>
+
+
+
+    <!-- ======================================
+         РЕЗУЛЬТАТ
+         ====================================== -->
+
+    <section
+        id="equityResultSection"
+        class="result-section"
+    >
+
+        <div class="result-title">
+
+            <span>
+                EQUITY
+            </span>
+
+        </div>
+
+
+        <div
+            id="equityResult"
+            class="equity-number"
+        >
+            —
+        </div>
+
+
+        <div class="equity-label">
+            ТВОЯ ВЕРОЯТНОСТЬ НА ПОБЕДУ
+        </div>
+
+
+        <!-- Полоса Equity -->
+
+        <div class="equity-bar-container">
+
+            <div
+                id="equityBar"
+                class="equity-bar"
+            >
+            </div>
+
+        </div>
+
+
+        <!-- Статистика -->
+
+        <div class="result-stats">
+
+
+            <div class="result-stat">
+
+                <span class="stat-name">
+                    ПОБЕДА
+                </span>
+
+                <strong id="winResult">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="result-stat">
+
+                <span class="stat-name">
+                    НИЧЬЯ
+                </span>
+
+                <strong id="tieResult">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="result-stat">
+
+                <span class="stat-name">
+                    ПОРАЖЕНИЕ
+                </span>
+
+                <strong id="lossResult">
+                    —
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- Информация о расчёте -->
+
+        <div
+            id="resultMeta"
+            class="result-meta"
+        >
+            Выбери карты и диапазон соперника
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<!-- ==========================================
+     ФАКТ
+     ========================================== -->
+
+<div class="fact-box">
+
+    <span id="fact">
+        В стандартной колоде 52 карты.
+    </span>
+
+</div>
+
+
+
+<!-- ==========================================
+     JAVASCRIPT
+     ========================================== -->
+
+<script src="js/deck.js"></script>
+
+<script src="js/evaluator.js"></script>
+
+<script src="js/calculator.js"></script>
+
+
+</body>
+
+</html>
