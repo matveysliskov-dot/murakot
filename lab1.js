@@ -1,351 +1,193 @@
 function startProgram() {
 
-```
-// Получаем значения из HTML
+    // Получаем значения из HTML
+    const M = Number(document.getElementById("m").value);
+    const N = Number(document.getElementById("n").value);
+    const t1 = Number(document.getElementById("t1").value);
+    const t2 = Number(document.getElementById("t2").value);
 
-let M = Number(document.getElementById("m").value);
+    // Проверка
+    if (M <= 0 || N <= 0) {
+        alert("M и N должны быть больше 0");
+        return;
+    }
 
-let N = Number(document.getElementById("n").value);
+    if (t1 > t2) {
+        alert("t1 должно быть меньше или равно t2");
+        return;
+    }
 
-let t1 = Number(document.getElementById("t1").value);
+    // Создаём массив случайных заданий
+    const tasks = [];
 
-let t2 = Number(document.getElementById("t2").value);
+    for (let i = 0; i < M; i++) {
+        const randomNumber =
+            Math.floor(Math.random() * (t2 - t1 + 1)) + t1;
 
+        tasks.push(randomNumber);
+    }
 
-// Проверяем данные
+    // Создаём варианты из одних и тех же чисел
+    const ascending = [...tasks].sort(function (a, b) {
+        return a - b;
+    });
 
-if (M <= 0 || N <= 0) {
+    const descending = [...tasks].sort(function (a, b) {
+        return b - a;
+    });
 
-    alert("M и N должны быть больше 0");
+    // Запускаем алгоритм
+    const randomResult = criticalPath(tasks, N);
+    const ascendingResult = criticalPath(ascending, N);
+    const descendingResult = criticalPath(descending, N);
 
-    return;
+    // Получаем место для вывода
+    const result = document.getElementById("result");
 
+    // Выводим результаты
+    result.innerHTML =
+        "<h2>Сгенерированные задания</h2>" +
+        "<p>" + tasks.join(", ") + "</p>" +
+
+        "<hr>" +
+
+        createResult(
+            "Случайный порядок",
+            tasks,
+            randomResult
+        ) +
+
+        "<hr>" +
+
+        createResult(
+            "По возрастанию",
+            ascending,
+            ascendingResult
+        ) +
+
+        "<hr>" +
+
+        createResult(
+            "По убыванию",
+            descending,
+            descendingResult
+        );
 }
 
 
-if (t1 > t2) {
-
-    alert("t1 должно быть меньше t2");
-
-    return;
-
-}
-
-
-// Создаём массив случайных заданий
-
-let tasks = [];
-
-
-for (let i = 0; i < M; i++) {
-
-    let randomNumber =
-
-        Math.floor(
-            Math.random() * (t2 - t1 + 1)
-        )
-
-        + t1;
-
-
-    tasks.push(randomNumber);
-
-}
-
-
-// Создаём три варианта
-
-let randomTasks = [...tasks];
-
-let ascendingTasks = [...tasks].sort(
-    (a, b) => a - b
-);
-
-let descendingTasks = [...tasks].sort(
-    (a, b) => b - a
-);
-
-
-// Запускаем алгоритм
-
-let randomResult =
-    criticalPath(randomTasks, N);
-
-let ascendingResult =
-    criticalPath(ascendingTasks, N);
-
-let descendingResult =
-    criticalPath(descendingTasks, N);
-
-
-// Выводим результат
-
-let html = "";
-
-
-html += "<h2>Сгенерированные задания</h2>";
-
-html += "<p>" + tasks.join(", ") + "</p>";
-
-
-html += "<h2>Случайный порядок</h2>";
-
-html += "<p>" +
-    randomTasks.join(", ") +
-    "</p>";
-
-html += showProcessors(
-    randomResult.processors
-);
-
-html +=
-    "<b>Максимальная нагрузка: " +
-    randomResult.maxLoad +
-    "</b>";
-
-
-html += "<h2>По возрастанию</h2>";
-
-html += "<p>" +
-    ascendingTasks.join(", ") +
-    "</p>";
-
-html += showProcessors(
-    ascendingResult.processors
-);
-
-html +=
-    "<b>Максимальная нагрузка: " +
-    ascendingResult.maxLoad +
-    "</b>";
-
-
-html += "<h2>По убыванию</h2>";
-
-html += "<p>" +
-    descendingTasks.join(", ") +
-    "</p>";
-
-html += showProcessors(
-    descendingResult.processors
-);
-
-html +=
-    "<b>Максимальная нагрузка: " +
-    descendingResult.maxLoad +
-    "</b>";
-
-
-// Таблица сравнения
-
-html += "<h2>Сравнение</h2>";
-
-
-html += "<table>";
-
-
-html +=
-
-    "<tr>" +
-
-    "<th>Вариант</th>" +
-
-    "<th>Максимальная нагрузка</th>" +
-
-    "</tr>";
-
-
-html +=
-
-    "<tr>" +
-
-    "<td>Случайный порядок</td>" +
-
-    "<td>" +
-    randomResult.maxLoad +
-    "</td>" +
-
-    "</tr>";
-
-
-html +=
-
-    "<tr>" +
-
-    "<td>Возрастание</td>" +
-
-    "<td>" +
-    ascendingResult.maxLoad +
-    "</td>" +
-
-    "</tr>";
-
-
-html +=
-
-    "<tr>" +
-
-    "<td>Убывание</td>" +
-
-    "<td>" +
-    descendingResult.maxLoad +
-    "</td>" +
-
-    "</tr>";
-
-
-html += "</table>";
-
-
-// Показываем результат
-
-document.getElementById("result").innerHTML = html;
-```
-
-}
-
-// Алгоритм критического пути
+// ========================================
+// АЛГОРИТМ РАСПРЕДЕЛЕНИЯ ЗАДАНИЙ
+// ========================================
 
 function criticalPath(tasks, N) {
 
-```
-// Создаём массив нагрузок процессоров
+    // Создаём N процессоров
+    const processors = [];
 
-let processors = [];
+    for (let i = 0; i < N; i++) {
 
+        processors.push({
+            tasks: [],
+            load: 0
+        });
 
-for (let i = 0; i < N; i++) {
-
-    processors.push({
-
-        tasks: [],
-
-        load: 0
-
-    });
-
-}
+    }
 
 
+    // Берём задания по очереди
+    for (let i = 0; i < tasks.length; i++) {
 
-// Распределяем задания
-
-for (let i = 0; i < tasks.length; i++) {
-
-
-    // Считаем, что первый процессор минимальный
-
-    let minIndex = 0;
+        // Сначала считаем первый процессор
+        // наименее загруженным
+        let minIndex = 0;
 
 
+        // Ищем процессор с минимальной нагрузкой
+        for (let j = 1; j < N; j++) {
 
-    // Ищем процессор
-    // с минимальной нагрузкой
+            if (
+                processors[j].load <
+                processors[minIndex].load
+            ) {
 
-    for (let j = 1; j < N; j++) {
+                minIndex = j;
 
-        if (
-            processors[j].load
-            <
-            processors[minIndex].load
-        ) {
+            }
 
-            minIndex = j;
+        }
 
+
+        // Добавляем задание выбранному процессору
+        processors[minIndex].tasks.push(tasks[i]);
+
+        // Увеличиваем нагрузку
+        processors[minIndex].load += tasks[i];
+
+    }
+
+
+    // Ищем максимальную нагрузку
+    let maxLoad = 0;
+
+    for (let i = 0; i < N; i++) {
+
+        if (processors[i].load > maxLoad) {
+            maxLoad = processors[i].load;
         }
 
     }
 
 
-
-    // Добавляем задание
-    // на наименее загруженный процессор
-
-    processors[minIndex].tasks.push(
-        tasks[i]
-    );
-
-
-    // Увеличиваем нагрузку
-
-    processors[minIndex].load +=
-        tasks[i];
+    // Возвращаем результат
+    return {
+        processors: processors,
+        maxLoad: maxLoad
+    };
 
 }
 
 
+// ========================================
+// СОЗДАНИЕ БЛОКА РЕЗУЛЬТАТА
+// ========================================
 
-// Находим максимальную нагрузку
+function createResult(title, tasks, result) {
 
-let maxLoad = 0;
+    let html = "";
+
+    html += "<h2>" + title + "</h2>";
+
+    html += "<p><b>Задания:</b><br>";
+    html += tasks.join(", ");
+    html += "</p>";
 
 
-for (let i = 0; i < N; i++) {
+    // Выводим каждый процессор
+    for (let i = 0; i < result.processors.length; i++) {
 
-    if (
-        processors[i].load
-        >
-        maxLoad
-    ) {
+        const processor = result.processors[i];
 
-        maxLoad =
-            processors[i].load;
+        html += "<p>";
+
+        html +=
+            "<b>Процессор " + (i + 1) + ":</b> ";
+
+        html +=
+            "[" + processor.tasks.join(", ") + "]";
+
+        html +=
+            " — нагрузка: " + processor.load;
+
+        html += "</p>";
 
     }
 
-}
-
-
-
-// Возвращаем результат
-
-return {
-
-    processors: processors,
-
-    maxLoad: maxLoad
-
-};
-```
-
-}
-
-// Вывод процессоров
-
-function showProcessors(processors) {
-
-```
-let html = "";
-
-
-for (
-    let i = 0;
-    i < processors.length;
-    i++
-) {
-
 
     html +=
-
-        "<p>" +
-
-        "Процессор " +
-        (i + 1) +
-
-        ": [" +
-
-        processors[i].tasks.join(", ") +
-
-        "] — нагрузка: " +
-
-        processors[i].load +
-
-        "</p>";
-
-}
+        "<p><b>Максимальная нагрузка: " +
+        result.maxLoad +
+        "</b></p>";
 
 
-return html;
-```
-
+    return html;
 }
