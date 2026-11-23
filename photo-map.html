@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="robots" content="noindex"/>
+<title>Карта фотографий — OwlRnD</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{--navy:#0f1f3d;--blue:#2f5fc4;--line:#dfe7f5;--bg:#f5f8ff;--muted:#6b7a96;
+--a:#e5484d;--b:#f08a24;--c:#2f5fc4;--d:#2a9d6a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--navy);font:500 15px/1.6 Manrope,Arial,sans-serif;padding:36px 20px 80px}
+.wrap{max-width:1180px;margin:auto}
+h1{font-size:34px;line-height:1.15;margin:0 0 8px;letter-spacing:-1px}
+h2{font-size:22px;margin:46px 0 14px;letter-spacing:-.5px}
+.lead{color:var(--muted);max-width:720px;margin:0 0 6px}
+.tip{display:inline-block;margin-top:14px;padding:10px 14px;border-radius:12px;background:#e8f0ff;color:#1b4b9a;font-weight:700;font-size:14px}
+.tip code{background:#fff;border-radius:6px;padding:2px 7px}
+.layout{display:grid;grid-template-columns:minmax(0,430px) minmax(0,1fr);gap:34px;align-items:start}
+@media(max-width:900px){.layout{grid-template-columns:1fr}}
+/* схема страницы */
+.page{background:#fff;border:1px solid var(--line);border-radius:20px;padding:14px;display:flex;flex-direction:column;gap:10px;box-shadow:0 20px 50px #2a4a8618}
+.page .cap{font-size:11px;font-weight:800;letter-spacing:1.4px;color:var(--muted);text-transform:uppercase;margin:2px 4px 0}
+.blk{border:1px dashed #cdd8ee;border-radius:12px;padding:10px;font-size:12px;color:var(--muted);background:#fafcff}
+.blk>b{display:block;color:var(--navy);font-size:12px;margin-bottom:8px}
+.row{display:grid;gap:8px}.r3{grid-template-columns:repeat(3,1fr)}
+.slot{position:relative;border-radius:10px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:13px;min-height:54px;text-align:center;line-height:1.2;padding:6px}
+.slot small{display:block;font-size:10px;font-weight:700;opacity:.9}
+.slot.A{background:var(--a);min-height:118px;font-size:15px}
+.slot.B{background:var(--b);min-height:66px}
+.slot.C{background:var(--c);min-height:76px}
+.slot.D{background:var(--d);min-height:66px}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:center}
+.hero .txt{color:var(--muted);font-size:11px;line-height:1.5}
+.muted-blk{height:30px;border-radius:10px;background:#f0f4fb;display:grid;place-items:center;color:#9aa8bd;font-size:11px}
+/* таблица */
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 14px}
+.chip{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:13px;color:var(--navy)}
+.chip i{width:14px;height:14px;border-radius:5px;display:inline-block}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:12px;display:grid;grid-template-columns:54px 1fr;gap:14px;align-items:start}
+.badge{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:17px}
+.badge.A{background:var(--a)}.badge.B{background:var(--b)}.badge.C{background:var(--c)}.badge.D{background:var(--d)}
+.card h3{margin:0 0 2px;font-size:16px}
+.card .where{color:var(--muted);font-size:13px;margin:0 0 8px}
+.file{display:inline-block;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;font-weight:700;background:#eef3ff;color:#173b86;border-radius:8px;padding:3px 9px;margin-right:8px}
+.meta{font-size:13px;color:#4c5b78;margin-top:8px}
+.meta b{color:var(--navy)}
+.done{display:inline-block;margin-left:8px;font-size:11px;font-weight:800;color:#1c7a4f;background:#e3f6ec;border-radius:7px;padding:2px 8px;vertical-align:2px}
+.folder{background:#0f1f3d;color:#cfe0ff;border-radius:14px;padding:16px 18px;font:600 13px/1.8 ui-monospace,Menlo,Consolas,monospace;overflow:auto}
+.folder .y{color:#ffd66b}.folder .g{color:#7ee0a9}.folder .m{color:#8ea4cc}
+.note{background:#fff7e6;border:1px solid #f6dfae;border-radius:14px;padding:14px 16px;color:#7a5410;font-size:14px}
+ul{margin:8px 0 0;padding-left:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <h1>Карта фотографий OwlRnD</h1>
+ <p class="lead">Здесь видно, где на сайте будет стоять каждое фото, как оно называется и в какую папку его класть. Всего <b>9 фото</b>. Блока «Рассмотрите поближе» и шестой работы в галерее больше нет.</p>
+ <span class="tip">Совет: откройте сайт с <code>?slots=1</code> в конце адреса (например <code>index.html?slots=1</code>) — на каждом фото появится бейдж с его именем.</span>
+
+ <h2>Где что находится на главной странице</h2>
+ <div class="layout">
+  <div class="page">
+   <div class="cap">Главная страница (index.html), сверху вниз</div>
+   <div class="muted-blk">Шапка: логотип · меню · кнопка «Заказать»</div>
+   <div class="blk"><b>1. Первый экран — фото, которое видят сразу</b>
+    <div class="hero"><div class="txt">Заголовок<br/>«Ваше фото. Ваш силуэт…»<br/>кнопки, цена</div>
+     <div class="slot A">A1<small>hero-keychain.jpg</small></div></div></div>
+   <div class="muted-blk">Лента готовых работ (берётся из work-01…05) · Три плашки: «По фото · Объёмная печать · Подарок» (без фото)</div>
+   <div class="muted-blk">«Три шага» — 3 карточки со значками (без фото)</div>
+   <div class="blk"><b>2. «Как рождается ваш брелок» — три этапа</b>
+    <div class="row r3"><div class="slot B">B1<small>process-1</small></div><div class="slot B">B2<small>process-2</small></div><div class="slot B">B3<small>process-3</small></div></div></div>
+   <div class="blk"><b>3. «Каждый брелок — свой» — три первых примера</b>
+    <div class="row r3"><div class="slot C">C1<small>work-01</small></div><div class="slot C">C2<small>work-02</small></div><div class="slot C">C3<small>work-03</small></div></div></div></div>
+   <div class="muted-blk">Цена · Отзывы · Подвал (без фото)</div>
+   <div class="cap" style="margin-top:8px">Страница «Примеры работ» (gallery.html)</div>
+   <div class="blk"><b>5. Галерея: 3 фото сверху, 2 по центру снизу</b>
+    <div class="row r3"><div class="slot C">C1<small>work-01</small></div><div class="slot C">C2<small>work-02</small></div><div class="slot C">C3<small>work-03</small></div></div>
+    <div class="row" style="grid-template-columns:1fr 1fr;margin:8px 16% 0"><div class="slot C">C4<small>work-04</small></div><div class="slot C">C5<small>work-05</small></div></div></div>
+  </div>
+
+  <div>
+   <div class="legend">
+    <span class="chip"><i style="background:var(--a)"></i>A — главное фото</span>
+    <span class="chip"><i style="background:var(--b)"></i>B — этапы создания</span>
+    <span class="chip"><i style="background:var(--c)"></i>C — готовые работы</span>
+    
+   </div>
+
+   <div class="card"><div class="badge A">A1</div><div>
+    <h3>Главное фото первого экрана <span style="color:#c0392b;font-weight:800">(самое заметное)</span></h3>
+    <p class="where">Главная · строго справа от заголовка, круглая рамка. Рядом нет подписей. Это первое, что видит посетитель.</p>
+    <span class="file">images/hero-keychain.jpg</span>
+    <div class="meta"><b>Что снять:</b> один самый красивый готовый брелок крупно, на чистом светлом фоне, без лишних предметов. <br/><b>Размер:</b> квадрат 1:1, от 1400 × 1400 px. Рамка круглая, углы обрезаются: предмет держите в центре.</div></div></div>
+
+   <div class="card"><div class="badge B">B1</div><div>
+    <h3>Этап 1 — обработка фотографии</h3>
+    <p class="where">Главная · блок «Как рождается ваш брелок», левая карточка.</p>
+    <span class="file">images/process-1.jpg</span>
+    <div class="meta"><b>Что снять:</b> скриншот Inkscape: фото и чёрно-белый контур. <b>Размер:</b> горизонтальный 4:3 или 3:2, от 1400 px по ширине.</div></div></div>
+
+   <div class="card"><div class="badge B">B2</div><div>
+    <h3>Этап 2 — 3D-модель</h3>
+    <p class="where">Главная · «Как рождается ваш брелок», средняя карточка.</p>
+    <span class="file">images/process-2.jpg</span>
+    <div class="meta"><b>Что снять:</b> скриншот 3D-редактора, где контур уже выдавлен в объём. <b>Размер:</b> как у B1.</div></div></div>
+
+   <div class="card"><div class="badge B">B3</div><div>
+    <h3>Этап 3 — печать</h3>
+    <p class="where">Главная · «Как рождается ваш брелок», правая карточка.</p>
+    <span class="file">images/process-3.jpg</span>
+    <div class="meta"><b>Что снять:</b> 3D-принтер во время печати брелока. <b>Размер:</b> как у B1.</div></div></div>
+
+   <div class="card"><div class="badge C">C1</div><div>
+    <h3>Готовая работа 1<span class="done">уже готово</span></h3>
+    <p class="where">Главная (первый пример) и Галерея (первая карточка).</p>
+    <span class="file">images/gallery/work-01.jpg</span>
+    <div class="meta"><b>Размер:</b> 4:5 или 1:1, от 1000 px по короткой стороне.</div></div></div>
+   <div class="card"><div class="badge C">C2</div><div>
+    <h3>Готовая работа 2<span class="done">уже готово</span></h3>
+    <p class="where">Главная (второй пример) и Галерея.</p>
+    <span class="file">images/gallery/work-02.jpg</span></div></div>
+   <div class="card"><div class="badge C">C3</div><div>
+    <h3>Готовая работа 3<span class="done">уже готово</span></h3>
+    <p class="where">Главная (третий пример) и Галерея.</p>
+    <span class="file">images/gallery/work-03.jpg</span></div></div>
+   <div class="card"><div class="badge C">C4</div><div>
+    <h3>Готовая работа 4<span class="done">уже готово</span></h3>
+    <p class="where">Только Галерея, нижний ряд слева.</p>
+    <span class="file">images/gallery/work-04.jpg</span></div></div>
+   <div class="card"><div class="badge C">C5</div><div>
+    <h3>Готовая работа 5<span class="done">уже готово</span></h3>
+    <p class="where">Только Галерея, нижний ряд справа. Шестого слота больше нет.</p>
+    <span class="file">images/gallery/work-05.jpg</span></div></div>
+  </div>
+ </div>
+
+ <h2>Как должна выглядеть папка сайта</h2>
+ <div class="folder">
+  owlrnd-keychains/<br/>
+  &nbsp;├─ index.html · gallery.html · order.html · photo-map.html<br/>
+  &nbsp;├─ css/ · js/<br/>
+  &nbsp;└─ <span class="y">images/</span><br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;├─ <span class="y">hero-keychain.jpg</span> <span class="m">← A1, главное фото</span><br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;├─ <span class="y">process-1.jpg · process-2.jpg · process-3.jpg</span> <span class="m">← B1–B3</span><br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;└─ <span class="g">gallery/</span><br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ <span class="g">work-01.jpg … work-05.jpg</span> <span class="m">← C1–C5</span>
+ </div>
+
+ <h2>Важно</h2>
+ <div class="note">
+  <ul>
+   <li>Имена файлов только латиницей, строго как выше, регистр важен: <b>hero-keychain.jpg</b>, а не <i>Hero-Keychain.JPG</i>.</li>
+   <li>Формат JPG. Если у вас PNG — переименуйте в .jpg (пересохраните), либо поменяйте расширение в HTML.</li>
+   <li>Пока файла нет, на сайте на его месте стоит серая рамка с именем файла — значит, фото ещё не добавлено или названо иначе.</li>
+   <li>Эту страницу (photo-map.html) перед публикацией сайта можно удалить — посетителям она не нужна.</li>
+  </ul>
+ </div>
+</div>
+</body>
+</html>
